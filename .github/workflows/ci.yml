@@ -31,3 +31,13 @@ jobs:
     # - name: Test
     #   working-directory: ${{github.workspace}}/build
     #   run: ctest -C ${{env.BUILD_TYPE}}
+
+  lint-format:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: DoozyX/clang-format-lint-action@v0.13
+      with:
+        source: 'src'
+        clangFormatVersion: 12
