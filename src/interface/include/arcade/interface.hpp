@@ -9,4 +9,3 @@
 void interface_dummy();
 
 #endif // !defined(ARACADE_INTERFACE_HPP_)
-
