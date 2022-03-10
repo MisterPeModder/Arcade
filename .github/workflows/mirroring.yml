@@ -14,7 +14,6 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0 # Fetch depth set to 0 means that all commits are to be mirrored
-        submodules: "true"
 
     - uses: pixta-dev/repository-mirroring-action@v1
       with:
