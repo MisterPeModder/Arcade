@@ -20,5 +20,8 @@
 /lib/arcade_qix.so
 /lib/arcade_solarfox.so
 
+# Documentation
+/doc/generated
+
 # Shame on you!
 vgcore.*
