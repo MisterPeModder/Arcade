@@ -23,13 +23,12 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "Arcane", "index.html", [
-    [ "Arcade", "index.html", [
-      [ "Building", "index.html#autotoc_md0", [
-        [ "Command Line (via CMake)", "index.html#autotoc_md1", null ]
-      ] ],
-      [ "Documentation", "index.html#autotoc_md2", [
-        [ "Local Docs", "index.html#autotoc_md3", null ]
-      ] ]
+    [ "<a href=\"https://github.com/MisterPeModder/Arcade\"><img src=\"https://img.shields.io/github/license/MisterPeModder/Arcade\" alt=\"License\"/></a>", "index.html#autotoc_md0", null ],
+    [ "Building", "index.html#autotoc_md1", [
+      [ "Command Line (via CMake)", "index.html#autotoc_md2", null ]
+    ] ],
+    [ "Documentation", "index.html#autotoc_md3", [
+      [ "Local Docs", "index.html#autotoc_md4", null ]
     ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
