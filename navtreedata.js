@@ -26,6 +26,9 @@ var NAVTREE =
     [ "Arcade", "index.html", [
       [ "Building", "index.html#autotoc_md0", [
         [ "Command Line (via CMake)", "index.html#autotoc_md1", null ]
+      ] ],
+      [ "Documentation", "index.html#autotoc_md2", [
+        [ "Local Docs", "index.html#autotoc_md3", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [

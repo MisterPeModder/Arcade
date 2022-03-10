@@ -96,17 +96,30 @@ Command Line (via CMake)</h2>
 <p>Required tools:</p><ul>
 <li>CMake 3.17 (minimum)</li>
 </ul>
-<div class="fragment"><div class="line"># Creating the build directory</div>
+<p>on Linux: </p><div class="fragment"><div class="line"># Create the build directory</div>
 <div class="line">mkdir build &amp;&amp; cd build </div>
 <div class="line"> </div>
-<div class="line"># Configuring the project</div>
+<div class="line"># Configure the project</div>
 <div class="line">cmake .. -G &#39;Unix Makefiles&#39; -DCMAKE_BUILD_TYPE=Release</div>
 <div class="line"> </div>
-<div class="line"># Building the executable and libraries</div>
+<div class="line"># Build the executable and libraries</div>
 <div class="line">cmake --build .</div>
 <div class="line"> </div>
-<div class="line"># Returning to previous directory</div>
+<div class="line"># Return to previous directory</div>
 <div class="line">cd -</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2"></a>
+Documentation</h1>
+<p>The documatation is available <a href="https://misterpemodder.github.io/Arcade/">online</a>.</p>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Local Docs</h2>
+<p>Required tools:</p><ul>
+<li>Doxygen</li>
+</ul>
+<p>on Linux: </p><div class="fragment"><div class="line"># Run at the root of the project</div>
+<div class="line">doxygen</div>
+<div class="line"> </div>
+<div class="line"># Open the genrated pages</div>
+<div class="line">xdg-open doc/generated/html/index.html</div>
 </div><!-- fragment --> </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
