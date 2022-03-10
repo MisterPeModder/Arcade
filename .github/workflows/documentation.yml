@@ -2,15 +2,35 @@ name: Doxygen GitHub Pages Deploy Action
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: DenverCoder1/doxygen-github-pages-action@v1
-        with:
-          branch: gh-pages
-          folder: docs/html
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        submodules: "true"
+
+    - name: Install Graphviz & Doxygen
+      run: |
+        sudo apt-get update
+        sudo apt-get install graphviz -y
+        sudo apt-get install doxygen -y
+
+    - name: Generate Doxygen Documentation
+      run: doxygen
+    
+    - name: Listing
+      run: ls -lR
+      
+    - name: Create .nojekyll (ensures pages with underscores work on gh pages)
+      run: touch ${{github.workspace}}/doc/generated/html/.nojekyll
+
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4.2.5
+      with:
+        github_token: ${{inputs.github_token}}
+        branch: gh-pages
+        folder: doc/generated/html
