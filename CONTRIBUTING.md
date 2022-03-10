@@ -12,6 +12,22 @@
 
 * Once validated, merge to PR to `master` and remove the source branch (with `git branch -D <branch_name>`.
 
+### ***How to title commits?***
+
+* Use present tense (avoid past tense).
+
+* The title of the commit must be a summuary of the content and not be too long (less than 80 characters).
+
+* Prefer putting detailed informations inside the commit's description.
+
+* Example:
+  ```sh
+  $> git commit -m 'Fix infinite loop when pressing Alt-F4
+  
+  This was caused by a missing check in the event loop
+  The program now checks when the window is set to close'
+  ```
+
 #### **DOs and DONTs**
 
 * :x: **DONT**: Push to the `master` (or `main`) branch for any reason, please submit a PR instead.
