@@ -8,16 +8,35 @@ Arcade
 Required tools:
 - CMake 3.17 (minimum)
 
+on Linux:
 ```sh
-# Creating the build directory
+# Create the build directory
 mkdir build && cd build 
 
-# Configuring the project
+# Configure the project
 cmake .. -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release
 
-# Building the executable and libraries
+# Build the executable and libraries
 cmake --build .
 
-# Returning to previous directory
+# Return to previous directory
 cd -
+```
+
+# Documentation
+
+The documatation is available [online](https://misterpemodder.github.io/Arcade/).
+
+## Local Docs
+
+Required tools:
+- Doxygen
+
+on Linux:
+```sh
+# Run at the root of the project
+doxygen
+
+# Open the genrated pages
+xdg-open doc/generated/html/index.html
 ```
