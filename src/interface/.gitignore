@@ -1,0 +1,9 @@
+# IDEs
+.vscode
+
+# Build Data
+*.o
+/build
+
+# Shame on you!
+vgcore.*
