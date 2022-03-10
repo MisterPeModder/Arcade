@@ -1,4 +1,6 @@
 Arcade
+[![Build](https://img.shields.io/github/workflow/status/MisterPeModder/Arcade/CI)](https://github.com/MisterPeModder/Arcade/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/MisterPeModder/Arcade)](https://github.com/MisterPeModder/Arcade)
 ====
 
 # Building
