@@ -2,7 +2,12 @@ set(INCROOT ${PROJECT_SOURCE_DIR}/include)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src)
 
 set(SRC
-    ${INCROOT}/arcade/interface.hpp
+    ${INCROOT}/arcade/Event.hpp
+    ${INCROOT}/arcade/IAsset.hpp
+    ${INCROOT}/arcade/IDisplay.hpp
+    ${INCROOT}/arcade/IGame.hpp
+    ${INCROOT}/arcade/IGameObject.hpp
+    ${INCROOT}/arcade/types.hpp
     ${SRCROOT}/placeholder.cpp
 )
 
