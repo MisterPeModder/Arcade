@@ -18,6 +18,5 @@ set(SRC
 
 add_library(libarcade_interface INTERFACE ${SRC})
 
-target_include_directories(libarcade_interface PRIVATE ${INCDIRS} ${SRCROOT})
 target_include_directories(libarcade_interface INTERFACE ${INCROOT})
 

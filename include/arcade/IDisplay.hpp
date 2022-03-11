@@ -15,8 +15,8 @@
 #include <memory>
 #include <string_view>
 
-#include "arcade/IAsset.hpp"
-#include "arcade/types.hpp"
+#include "IAsset.hpp"
+#include "types.hpp"
 
 namespace arcade
 {
