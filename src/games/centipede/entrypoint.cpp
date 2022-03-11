@@ -14,7 +14,6 @@ extern "C"
 
 namespace arcade
 {
-
     class Centipede : public IGame {
       public:
         static IGame *INSTANCE;

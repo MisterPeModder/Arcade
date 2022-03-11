@@ -15,7 +15,6 @@ extern "C"
 
 namespace arcade
 {
-
     class Sdl2Display : public IDisplay {
       public:
         static IDisplay *INSTANCE;
@@ -35,7 +34,7 @@ namespace arcade
             // ...
         }
 
-        Type getDisplayType() const override final
+        Type getType() const override final
         {
             return Type::Graphical2D;
         };
