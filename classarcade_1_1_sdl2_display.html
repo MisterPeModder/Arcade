@@ -118,8 +118,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9f9a2b45553ea7d5a1a2257cc5e18c25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54d5fece9f64d89074de464a4320f8e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_sdl2_display.html#a54d5fece9f64d89074de464a4320f8e3">close</a> () override final</td></tr>
 <tr class="separator:a54d5fece9f64d89074de464a4320f8e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad42510058e1f5b91695179135c1edc57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_sdl2_display.html#ad42510058e1f5b91695179135c1edc57">getDisplayType</a> () const override final</td></tr>
-<tr class="separator:ad42510058e1f5b91695179135c1edc57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21e81b98b078021b8fdde520cc1140c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_sdl2_display.html#a21e81b98b078021b8fdde520cc1140c8">getType</a> () const override final</td></tr>
+<tr class="separator:a21e81b98b078021b8fdde520cc1140c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14d3d77abb71e622a57ef9e3720c5e17"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classarcade_1_1_i_asset.html">IAsset</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_sdl2_display.html#a14d3d77abb71e622a57ef9e3720c5e17">loadAsset</a> (std::string_view name, <a class="el" href="classarcade_1_1_i_asset.html#ae3a66b9e4eab80bac718dfcc6bcf71b5">IAsset::Type</a> type) override final</td></tr>
 <tr class="separator:a14d3d77abb71e622a57ef9e3720c5e17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7d3a14162b53ab6e5aaa7b3b96553b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8hpp.html#a9030af5de12a940030414fb458cad430">vec2u</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_sdl2_display.html#ae7d3a14162b53ab6e5aaa7b3b96553b2">getSize</a> () const override final</td></tr>
@@ -325,35 +325,6 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ad42510058e1f5b91695179135c1edc57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad42510058e1f5b91695179135c1edc57">&#9670;&nbsp;</a></span>getDisplayType()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">Type</a> arcade::Sdl2Display::getDisplayType </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">final</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section note"><dt>Note</dt><dd>Calling this method without calling <a class="el" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">IDisplay::setup()</a> leads to <b>undefined behavior</b>.</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>The type of display output. </dd></dl>
-
-<p>Implements <a class="el" href="classarcade_1_1_i_display.html#ab8c546cca43938546c5214124c5e3bef">arcade::IDisplay</a>.</p>
-
-</div>
-</div>
 <a id="ae7d3a14162b53ab6e5aaa7b3b96553b2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae7d3a14162b53ab6e5aaa7b3b96553b2">&#9670;&nbsp;</a></span>getSize()</h2>
 
@@ -380,6 +351,35 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The size of the display, in units. </dd></dl>
 
 <p>Implements <a class="el" href="classarcade_1_1_i_display.html#a2cbd526578e6f85d4f7714a2b6230ebf">arcade::IDisplay</a>.</p>
+
+</div>
+</div>
+<a id="a21e81b98b078021b8fdde520cc1140c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21e81b98b078021b8fdde520cc1140c8">&#9670;&nbsp;</a></span>getType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">Type</a> arcade::Sdl2Display::getType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">final</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section note"><dt>Note</dt><dd>Calling this method without calling <a class="el" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">IDisplay::setup()</a> leads to <b>undefined behavior</b>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The type of display output. </dd></dl>
+
+<p>Implements <a class="el" href="classarcade_1_1_i_display.html#a5d015d7fbe88cdf66d5eca4183c2df08">arcade::IDisplay</a>.</p>
 
 </div>
 </div>

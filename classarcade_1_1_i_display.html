@@ -119,8 +119,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3c024465a1ecd427e521487087e22da0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a103bb51dca12a2ace9aa23bcc3703800"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#a103bb51dca12a2ace9aa23bcc3703800">close</a> ()=0</td></tr>
 <tr class="separator:a103bb51dca12a2ace9aa23bcc3703800"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8c546cca43938546c5214124c5e3bef"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#ab8c546cca43938546c5214124c5e3bef">getDisplayType</a> () const =0</td></tr>
-<tr class="separator:ab8c546cca43938546c5214124c5e3bef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d015d7fbe88cdf66d5eca4183c2df08"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#a5d015d7fbe88cdf66d5eca4183c2df08">getType</a> () const =0</td></tr>
+<tr class="separator:a5d015d7fbe88cdf66d5eca4183c2df08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63bf0cd8ed338bdd7791099d3fffed54"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="classarcade_1_1_i_asset.html">IAsset</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#a63bf0cd8ed338bdd7791099d3fffed54">loadAsset</a> (std::string_view name, <a class="el" href="classarcade_1_1_i_asset.html#ae3a66b9e4eab80bac718dfcc6bcf71b5">IAsset::Type</a> type)=0</td></tr>
 <tr class="separator:a63bf0cd8ed338bdd7791099d3fffed54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cbd526578e6f85d4f7714a2b6230ebf"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="types_8hpp.html#a9030af5de12a940030414fb458cad430">vec2u</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#a2cbd526578e6f85d4f7714a2b6230ebf">getSize</a> () const =0</td></tr>
@@ -345,35 +345,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ab8c546cca43938546c5214124c5e3bef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8c546cca43938546c5214124c5e3bef">&#9670;&nbsp;</a></span>getDisplayType()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">Type</a> arcade::IDisplay::getDisplayType </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="section note"><dt>Note</dt><dd>Calling this method without calling <a class="el" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">IDisplay::setup()</a> leads to <b>undefined behavior</b>.</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>The type of display output. </dd></dl>
-
-<p>Implemented in <a class="el" href="classarcade_1_1_sdl2_display.html#ad42510058e1f5b91695179135c1edc57">arcade::Sdl2Display</a>.</p>
-
-</div>
-</div>
 <a id="a2cbd526578e6f85d4f7714a2b6230ebf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2cbd526578e6f85d4f7714a2b6230ebf">&#9670;&nbsp;</a></span>getSize()</h2>
 
@@ -400,6 +371,35 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The size of the display, in units. </dd></dl>
 
 <p>Implemented in <a class="el" href="classarcade_1_1_sdl2_display.html#ae7d3a14162b53ab6e5aaa7b3b96553b2">arcade::Sdl2Display</a>.</p>
+
+</div>
+</div>
+<a id="a5d015d7fbe88cdf66d5eca4183c2df08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d015d7fbe88cdf66d5eca4183c2df08">&#9670;&nbsp;</a></span>getType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">Type</a> arcade::IDisplay::getType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section note"><dt>Note</dt><dd>Calling this method without calling <a class="el" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">IDisplay::setup()</a> leads to <b>undefined behavior</b>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The type of display output. </dd></dl>
+
+<p>Implemented in <a class="el" href="classarcade_1_1_sdl2_display.html#a21e81b98b078021b8fdde520cc1140c8">arcade::Sdl2Display</a>.</p>
 
 </div>
 </div>
