@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['interface_2ehpp_3',['interface.hpp',['../interface_8hpp.html',1,'']]],
-  ['interface_5fdummy_4',['interface_dummy',['../interface_8hpp.html#aeaa518052d7e35984f46b8dc38daf773',1,'placeholder.cpp']]]
+  ['drawgameobject_12',['drawGameObject',['../classarcade_1_1_i_display.html#a78db24c9bd6b6822b54918bd38ea5285',1,'arcade::IDisplay']]]
 ];

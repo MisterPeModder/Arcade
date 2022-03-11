@@ -31,6 +31,17 @@ var NAVTREE =
       [ "Local Docs", "index.html#autotoc_md9", null ]
     ] ],
     [ "How to contribute", "md_src_interface__c_o_n_t_r_i_b_u_t_i_n_g.html", null ],
+    [ "Classes", "annotated.html", [
+      [ "Class List", "annotated.html", "annotated_dup" ],
+      [ "Class Index", "classes.html", null ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ],
+        [ "Variables", "functions_vars.html", null ],
+        [ "Typedefs", "functions_type.html", null ],
+        [ "Enumerations", "functions_enum.html", null ]
+      ] ]
+    ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
@@ -43,7 +54,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"core_8hpp.html"
+".html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
