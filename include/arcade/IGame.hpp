@@ -14,6 +14,7 @@
 
 namespace arcade
 {
+    class IDisplay;
     struct Event;
 
     /// A game instance.
@@ -39,7 +40,9 @@ namespace arcade
         /// Calling this function again without calling IGame::close() leads to <b>undefined behavior</b>.
         ///
         /// @note Calling this method without calling IGame::setup() leads to <b>undefined behavior</b>.
-        virtual void setup() = 0;
+        ///
+        /// @param display The starting display manager.
+        virtual void setup(IDisplay &display) = 0;
 
         /// Releases the ressources allocated by this game.
         ///
@@ -48,6 +51,15 @@ namespace arcade
         ///
         /// @note Calling this method without calling IGame::setup() leads to <b>undefined behavior</b>.
         virtual void close() = 0;
+
+        /// Changes the display of the game.
+        ///
+        /// Changes in display must not interrupt the game.
+        ///
+        /// @note Calling this method without calling IGame::setup() leads to <b>undefined behavior</b>.
+        ///
+        /// @param display The new display manager.
+        virtual void setDisplay(IDisplay &display) = 0;
 
         /// Alters the state of the game.
         ///
