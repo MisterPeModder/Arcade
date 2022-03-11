@@ -53,7 +53,7 @@ namespace arcade
         /// @note Calling this method without calling IDisplay::setup() leads to <b>undefined behavior</b>.
         ///
         /// @returns The type of display output.
-        virtual Type getDisplayType() const = 0;
+        virtual Type getType() const = 0;
 
         /// Fetches an asset by name, loading it if necessary.
         ///
