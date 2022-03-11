@@ -16,7 +16,7 @@ set(SRC
     ${INCROOT}/arcade/types.hpp
 )
 
-add_library(libarcade_interface INTERFACE ${SRC})
+add_library(arcade_interface INTERFACE ${SRC})
 
-target_include_directories(libarcade_interface INTERFACE ${INCROOT})
+target_include_directories(arcade_interface INTERFACE ${INCROOT})
 
