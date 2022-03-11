@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pollevent_109',['pollEvent',['../classarcade_1_1_i_display.html#a650424e0b07da29ebe86baf4bc691a26',1,'arcade::IDisplay']]]
+  ['render_114',['render',['../classarcade_1_1_sdl2_display.html#a40fd51e99c82376956494994902dc8e9',1,'arcade::Sdl2Display::render()'],['../classarcade_1_1_i_display.html#ab4c1b8b7c91798dc355a3f1f4102aaf2',1,'arcade::IDisplay::render()']]]
 ];

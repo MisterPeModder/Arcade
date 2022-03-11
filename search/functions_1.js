@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['close_97',['close',['../classarcade_1_1_i_display.html#a103bb51dca12a2ace9aa23bcc3703800',1,'arcade::IDisplay::close()'],['../classarcade_1_1_i_game.html#aa46cf332a053cdbbcc248be278e068c2',1,'arcade::IGame::close()']]],
-  ['createrectobject_98',['createRectObject',['../classarcade_1_1_i_display.html#adce4297fa6cdde470c1a2c8871c1cbdc',1,'arcade::IDisplay']]],
-  ['createtextobject_99',['createTextObject',['../classarcade_1_1_i_display.html#a08e8c40d467e666ac4ceee795b310f04',1,'arcade::IDisplay']]]
+  ['drawgameobject_104',['drawGameObject',['../classarcade_1_1_sdl2_display.html#a51a77db1ebaef27b2fa6cf9c59201a5b',1,'arcade::Sdl2Display::drawGameObject()'],['../classarcade_1_1_i_display.html#a78db24c9bd6b6822b54918bd38ea5285',1,'arcade::IDisplay::drawGameObject()']]]
 ];

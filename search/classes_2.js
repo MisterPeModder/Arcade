@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keyevent_84',['KeyEvent',['../structarcade_1_1_event_1_1_key_event.html',1,'arcade::Event']]]
+  ['event_83',['Event',['../structarcade_1_1_event.html',1,'arcade']]]
 ];

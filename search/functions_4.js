@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['handleevent_107',['handleEvent',['../classarcade_1_1_i_game.html#a59a38fac94e9ab1d071761880853bfce',1,'arcade::IGame']]]
+  ['loadasset_112',['loadAsset',['../classarcade_1_1_sdl2_display.html#a14d3d77abb71e622a57ef9e3720c5e17',1,'arcade::Sdl2Display::loadAsset()'],['../classarcade_1_1_i_display.html#a63bf0cd8ed338bdd7791099d3fffed54',1,'arcade::IDisplay::loadAsset()']]]
 ];

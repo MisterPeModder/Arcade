@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['mousebuttonevent_85',['MouseButtonEvent',['../structarcade_1_1_event_1_1_mouse_button_event.html',1,'arcade::Event']]],
-  ['mousemoveevent_86',['MouseMoveEvent',['../structarcade_1_1_event_1_1_mouse_move_event.html',1,'arcade::Event']]]
+  ['iasset_84',['IAsset',['../classarcade_1_1_i_asset.html',1,'arcade']]],
+  ['idisplay_85',['IDisplay',['../classarcade_1_1_i_display.html',1,'arcade']]],
+  ['igame_86',['IGame',['../classarcade_1_1_i_game.html',1,'arcade']]],
+  ['igameobject_87',['IGameObject',['../classarcade_1_1_i_game_object.html',1,'arcade']]]
 ];
