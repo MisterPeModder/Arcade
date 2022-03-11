@@ -2,7 +2,7 @@ set(INCROOT ${PROJECT_SOURCE_DIR}/src/core)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/core)
 
 set(SRC
-    ${INCROOT}/arcade/core.hpp
+    ${INCROOT}/core.hpp
     ${SRCROOT}/arcade.cpp
 )
 

@@ -28,6 +28,8 @@ function(add_arcade_graphics)
     # Add ${INCDIRS} and ${SRCROOT} to the lib's private include path
     target_include_directories(${TARGET_NAME} PRIVATE ${INCDIRS} ${SRCROOT})
 
+    target_link_libraries(${TARGET_NAME} PRIVATE libarcade_interface)
+
     # Copy the library to lib/${TARGET_NAME}
     add_custom_command(TARGET ${TARGET_NAME} 
     	POST_BUILD
