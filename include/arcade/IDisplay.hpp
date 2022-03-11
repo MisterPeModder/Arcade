@@ -21,7 +21,7 @@
 namespace arcade
 {
     class IGameObject;
-    class Event;
+    struct Event;
 
     /// Graphics backend.
     ///

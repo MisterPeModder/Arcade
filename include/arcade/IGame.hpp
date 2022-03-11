@@ -14,7 +14,7 @@
 
 namespace arcade
 {
-    class Event;
+    struct Event;
 
     /// A game instance.
     class IGame {
