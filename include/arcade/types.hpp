@@ -1,19 +1,32 @@
 /*
 ** EPITECH PROJECT, 2022
-** Arcade-Interface
+** Arcade: Interface
 ** File description:
-** types
+** Misc types
 */
 
-#ifndef TYPES_HPP_
-#define TYPES_HPP_
+/// @file
+///
+/// Misc types.
+
+#ifndef ARCADE_TYPES_HPP_
+#define ARCADE_TYPES_HPP_
 
 namespace arcade
 {
-    struct vec2u {
-        unsigned int x;
-        unsigned int y;
+    /// A 2D vector.
+    template <typename T> struct vec2 {
+        /// x coordinate.
+        T x;
+        /// y coordinate.
+        T y;
     };
+
+    /// A 2D vector of unsigned ints.
+    using vec2u = vec2<unsigned int>;
+
+    /// A 2D vector of ints.
+    using vec2i = vec2<int>;
 } // namespace arcade
 
-#endif /* !TYPES_HPP_ */
+#endif // !defined(ARCADE_TYPES_HPP_)
