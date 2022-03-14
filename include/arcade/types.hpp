@@ -15,8 +15,7 @@
 namespace arcade
 {
     /// A 2D vector.
-    template <typename T> struct vec2
-    {
+    template <typename T> struct vec2 {
         /// x coordinate.
         T x;
         /// y coordinate.
