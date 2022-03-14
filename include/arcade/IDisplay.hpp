@@ -12,6 +12,7 @@
 #ifndef IDISPLAY_HPP_
 #define IDISPLAY_HPP_
 
+/// Entry point to get an instance of IDisplay
 #define ARCADE_DISPLAY_ENTRY_POINT extern "C" ::arcade::IDisplay *arcade_DisplayEntryPoint()
 
 #include <memory>
