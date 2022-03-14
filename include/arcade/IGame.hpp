@@ -12,6 +12,11 @@
 #ifndef ARCADE_IGAME_HPP_
 #define ARCADE_IGAME_HPP_
 
+/// Entry point to get an instance of IGame
+#define ARCADE_GAME_ENTRY_POINT extern "C" ::arcade::IGame *arcade_GameEntryPoint()
+
+#include <string_view>
+
 namespace arcade
 {
     class IDisplay;
@@ -31,6 +36,12 @@ namespace arcade
             /// When the game is ended.
             Ended,
         };
+
+        /// Type of the entry point of the library to get an instance of IGame.
+        /// The function used as EntryPoint must be named as the GameEntryPointName below.
+        using EntryPoint = IGame *(*)();
+        /// Expected name of the Game entry point.
+        static constexpr std::string_view ENTRY_POINT = "arcade_GameEntryPoint";
 
         virtual ~IGame() = default;
 

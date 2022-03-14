@@ -12,6 +12,9 @@
 #ifndef IDISPLAY_HPP_
 #define IDISPLAY_HPP_
 
+/// Entry point to get an instance of IDisplay
+#define ARCADE_DISPLAY_ENTRY_POINT extern "C" ::arcade::IDisplay *arcade_DisplayEntryPoint()
+
 #include <memory>
 #include <string_view>
 
@@ -35,6 +38,12 @@ namespace arcade
             /// Flat graphical output.
             Graphical2D,
         };
+
+        /// Type of the entry point of the library to get an instance of IGame.
+        /// The function used as EntryPoint must be named as the DisplayEntryPointName below.
+        using EntryPoint = IDisplay *(*)();
+        /// Expected name of the Display entry point.
+        static constexpr std::string_view ENTRY_POINT = "arcade_DisplayEntryPoint";
 
         virtual ~IDisplay() = default;
 
