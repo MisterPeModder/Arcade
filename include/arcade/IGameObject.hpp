@@ -47,14 +47,15 @@ namespace arcade
 
         /// Change the foreground color of the game object.
         ///
-        /// @param color 32bits ARGB Color to set.
-        /// @param backup 8bit color to set if the display doesn't support 32bits ARGB colors.
+        /// @param color 32-bit ARGB Color to set.
+        /// @param backup 8bit color to set if the display doesn't support 32-bit ARGB colors.
         ///
         virtual void setForeground(Color color, DefaultColor backup = DefaultColor::White) = 0;
+        
         /// Change the background color of the game object.
         ///
-        /// @param color 32bits ARGB color to set.
-        /// @param backup 8bit color to set if the display doesn't support 32bits ARGB colors.
+        /// @param color 32-bit ARGB color to set.
+        /// @param backup 8bit color to set if the display doesn't support 32-bit ARGB colors.
         ///
         virtual void setBackground(Color color, DefaultColor backup = DefaultColor::Transparent) = 0;
     };
