@@ -96,6 +96,11 @@ namespace arcade
         /// @param delta The time (in seconds) elapsed since the last update.
         virtual void update(float delta) = 0;
 
+        /// Draw the game GameObjects.
+        /// 
+        /// @note Calling this method without calling IGame::setup() leads to <b>undefined behavior</b>.
+        virtual void draw() = 0;
+
         /// Handles the given event.
         ///
         /// @note Calling this method without calling IGame::setup() leads to <b>undefined behavior</b>.
