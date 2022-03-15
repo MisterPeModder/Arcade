@@ -112,24 +112,27 @@ namespace arcade
         /// @note Calling this method without calling IDisplay::setup() leads to <b>undefined behavior</b>.
         ///
         /// @param text The string to display.
-        /// @param font The font to use.
+        /// @param font The font to use. If @c nullptr, the font isn't used.
         ///
         /// @throws std::logic_error When @c font is not a font asset.
+        /// @throws std::logic_error When @c font is @c nulltptr and a TextObject can't be created without a font.
         ///
         /// @returns A boxed IGameObject instance.
-        virtual std::unique_ptr<IGameObject> createTextObject(std::string_view text, IAsset const &font) const = 0;
+        virtual std::unique_ptr<IGameObject> createTextObject(
+            std::string_view text, IAsset const *font = nullptr) const = 0;
 
         /// Creates a textured rectangle object.
         ///
         /// @note Calling this method without calling IDisplay::setup() leads to <b>undefined behavior</b>.
         ///
         /// @param size The dimensions (in units) of the rectangle.
-        /// @param texture The texture to use.
+        /// @param texture The texture to use. If @c nullptr, the texture isn't used.
         ///
         /// @throws std::logic_error When @c texture is not a texture asset.
+        /// @throws std::logic_error When @c texture is @c nullptr and a RectObject can't be created without a texture.
         ///
         /// @returns A boxed IGameObject instance.
-        virtual std::unique_ptr<IGameObject> createRectObject(vec2u size, IAsset const &texture) const = 0;
+        virtual std::unique_ptr<IGameObject> createRectObject(vec2u size, IAsset const *texture = nullptr) const = 0;
     };
 } // namespace arcade
 
