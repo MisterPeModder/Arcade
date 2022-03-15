@@ -29,7 +29,7 @@ namespace arcade
             CharSet,
         };
 
-        virtual ~IAsset() = 0;
+        virtual ~IAsset() = default;
 
         /// @returns The type of this asset.
         virtual Type getType() const = 0;
