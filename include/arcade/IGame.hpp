@@ -97,7 +97,7 @@ namespace arcade
         virtual void update(float delta) = 0;
 
         /// Draw the game GameObjects.
-        /// 
+        ///
         /// @note Calling this method without calling IGame::setup() leads to <b>undefined behavior</b>.
         virtual void draw() = 0;
 
