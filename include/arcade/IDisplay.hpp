@@ -117,7 +117,8 @@ namespace arcade
         /// @throws std::logic_error When @c font is not a font asset.
         ///
         /// @returns A boxed IGameObject instance.
-        virtual std::unique_ptr<IGameObject> createTextObject(std::string_view text, IAsset const &font) const = 0;
+        virtual std::unique_ptr<IGameObject> createTextObject(
+            std::string_view text, IAsset const *font = nullptr) const = 0;
 
         /// Creates a textured rectangle object.
         ///
@@ -129,7 +130,7 @@ namespace arcade
         /// @throws std::logic_error When @c texture is not a texture asset.
         ///
         /// @returns A boxed IGameObject instance.
-        virtual std::unique_ptr<IGameObject> createRectObject(vec2u size, IAsset const &texture) const = 0;
+        virtual std::unique_ptr<IGameObject> createRectObject(vec2u size, IAsset const *texture = nullptr) const = 0;
     };
 } // namespace arcade
 
