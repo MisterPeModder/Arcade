@@ -86,6 +86,7 @@ namespace arcade
 
         /// @note Calling this method without calling IGame::setup() leads to <b>undefined behavior</b>.
         ///
+        /// @returns The current score of the player.
         virtual unsigned int getScore() const = 0;
 
         /// Updates the game logic.
