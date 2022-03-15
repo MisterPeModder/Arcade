@@ -13,7 +13,7 @@
 #define ARCADE_COLOR_HPP_
 
 #include <cstddef>
-#include <stdint.h>
+#include <cstdint>
 
 namespace arcade
 {
@@ -32,10 +32,10 @@ namespace arcade
         /// @param color 32bits ARGB color.
         constexpr inline Color(uint32_t color)
         {
-            a = std::byte(color && (0xff << 6));
-            r = std::byte(color && (0xff << 4));
-            g = std::byte(color && (0xff << 2));
-            b = std::byte(color && 0xff);
+            a = std::byte((color & (0xff << 6)) >> 6);
+            r = std::byte((color & (0xff << 4)) >> 4);
+            g = std::byte((color & (0xff << 2)) >> 2);
+            b = std::byte(color & 0xff);
         }
         /// Construct a color from its components values.
         ///
@@ -87,7 +87,7 @@ namespace arcade
 
     const Color Color::Black;
     const Color Color::White = Color(std::byte(255), std::byte(255), std::byte(255));
-    const Color Color::White = Color(std::byte(255), std::byte(255), std::byte(255), std::byte(255));
+    const Color Color::Transparent = Color(std::byte(255), std::byte(255), std::byte(255), std::byte(255));
     const Color Color::Red = Color(std::byte(255), std::byte(0), std::byte(0));
     const Color Color::Green = Color(std::byte(0), std::byte(255), std::byte(0));
     const Color Color::Blue = Color(std::byte(0), std::byte(0), std::byte(255));
