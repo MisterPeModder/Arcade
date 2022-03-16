@@ -1,3 +1,4 @@
+#include <exception>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -11,5 +12,12 @@ int main(int ac, char *av[])
     args.reserve(ac);
     for (int i = 0; i < ac; ++i)
         args.emplace_back(av[i]);
-    return arcade::arcade(args);
+    try {
+        return arcade::arcade(args);
+    } catch (std::exception const &error) {
+        std::cerr << av[0] << ": fatal error: " << error.what() << std::endl;
+    } catch (...) {
+        std::cerr << av[0] << ": fatal error" << std::endl;
+    }
+    return 84;
 }

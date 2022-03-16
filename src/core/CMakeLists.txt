@@ -8,6 +8,8 @@ set(SRC
 
 set(INCDIRS ${INCROOT})
 
+add_subdirectory(util)
+
 source_group("" FILES ${SRC})
 
 set(LIB_NAME libarcade_core)

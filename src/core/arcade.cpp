@@ -1,69 +1,27 @@
 #include <iostream>
+#include <span>
+#include <string>
 
 #include <arcade/IDisplay.hpp>
 #include <arcade/IGame.hpp>
 
 #include "core.hpp"
-
-extern "C"
-{
-#include <dlfcn.h>
-}
+#include "util/DynamicLibrary.hpp"
 
 namespace arcade
 {
-    class DummyGame : public IGame {
-    };
-
     int arcade(std::span<std::string> args)
     {
-        std::cout << "starting arcade...\n";
-        std::cout << "args: \n";
-
-        for (auto arg : args)
-            std::cout << "- " << arg << '\n';
-        std::cout.flush();
-
         if (args.size() != 3) {
             std::cerr << args[0] << ": expected two arguments" << std::endl;
             return 84;
         }
 
-        void *displayLib(dlopen(args[1].c_str(), RTLD_NOW));
+        DynamicLibrary displayLib(args[1]);
+        DynamicLibrary gameLib(args[2]);
 
-        if (displayLib == nullptr) {
-            std::cerr << args[0] << ": " << dlerror() << std::endl;
-            return 84;
-        }
-
-        void *gameLib(dlopen(args[2].c_str(), RTLD_NOW));
-
-        if (gameLib == nullptr) {
-            std::cerr << args[0] << ": " << dlerror() << std::endl;
-            dlclose(displayLib);
-            return 84;
-        }
-
-        IDisplay *(*displayEntry)()(reinterpret_cast<IDisplay *(*)()>(dlsym(displayLib, "arcade_DisplayEntryPoint")));
-
-        if (displayEntry == nullptr) {
-            std::cerr << args[0] << ": " << dlerror() << std::endl;
-            dlclose(gameLib);
-            dlclose(displayLib);
-            return 84;
-        }
-
-        IGame *(*gameEntry)()(reinterpret_cast<IGame *(*)()>(dlsym(gameLib, "arcade_GameEntryPoint")));
-
-        if (gameEntry == nullptr) {
-            std::cerr << args[0] << ": " << dlerror() << std::endl;
-            dlclose(gameLib);
-            dlclose(displayLib);
-            return 84;
-        }
-
-        IDisplay *display((*displayEntry)());
-        IGame *game((*gameEntry)());
+        IDisplay *display(displayLib.symbol<IDisplay::EntryPoint>(IDisplay::ENTRY_POINT)());
+        IGame *game(gameLib.symbol<IGame::EntryPoint>(IGame::ENTRY_POINT)());
 
         display->setup();
 
@@ -74,8 +32,6 @@ namespace arcade
 
         display->close();
 
-        dlclose(gameLib);
-        dlclose(displayLib);
         return 0;
     }
 } // namespace arcade
