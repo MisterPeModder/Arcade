@@ -6,7 +6,7 @@ extern "C"
 {
     arcade::IDisplay *ARCADE_DISPLAY_INSTANCE = nullptr;
 
-    arcade::IDisplay *arcade_DisplayEntryPoint(void)
+    ARCADE_DISPLAY_ENTRY_POINT
     {
         std::cout << "[sdl2]: called entry point" << std::endl;
         return ARCADE_DISPLAY_INSTANCE;
@@ -68,14 +68,14 @@ namespace arcade
             // ...
         }
 
-        std::unique_ptr<IGameObject> createTextObject(std::string_view text, IAsset const &font) const override final
+        std::unique_ptr<IGameObject> createTextObject(std::string_view text, IAsset const *font) const override final
         {
             (void)text;
             (void)font;
             return std::unique_ptr<IGameObject>(nullptr);
         }
 
-        std::unique_ptr<IGameObject> createRectObject(vec2u size, IAsset const &texture) const override final
+        std::unique_ptr<IGameObject> createRectObject(vec2u size, IAsset const *texture) const override final
         {
             (void)size;
             (void)texture;

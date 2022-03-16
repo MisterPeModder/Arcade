@@ -4,20 +4,18 @@
 extern "C"
 {
     arcade::IGame *ARCADE_GAME_INSTANCE = nullptr;
+}
 
-    arcade::IGame *arcade_GameEntryPoint(void)
-    {
-        std::cout << "[centipede]: called entry point" << std::endl;
-        return ARCADE_GAME_INSTANCE;
-    }
+ARCADE_GAME_ENTRY_POINT
+{
+    std::cout << "[centipede]: called entry point" << std::endl;
+    return ARCADE_GAME_INSTANCE;
 }
 
 namespace arcade
 {
     class Centipede : public IGame {
       public:
-        static IGame *INSTANCE;
-
         Centipede()
         {
             // ...
@@ -57,6 +55,11 @@ namespace arcade
         void update(float delta) override final
         {
             (void)delta;
+            // ...
+        }
+
+        void draw()
+        {
             // ...
         }
 
