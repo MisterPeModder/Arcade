@@ -14,5 +14,6 @@ add_compile_options(
     "$<$<CONFIG:DEBUG>:-O0;-g3;-ggdb>"
 )
 
+add_subdirectory(doc)
 add_subdirectory(src)
 
