@@ -1,6 +1,12 @@
 #include <arcade/IGame.hpp>
 #include <iostream>
 
+namespace arcade
+{
+    class IDisplay;
+    struct Event;
+} // namespace arcade
+
 // Using 'using' imports to keep the example clean, do not use in final code!
 using ::arcade::Event;
 using ::arcade::IDisplay;
@@ -56,12 +62,12 @@ class ExampleGame : public IGame {
         // ...
     }
 
-    void draw()
+    void draw() override final
     {
         // ...
     }
 
-    void handleEvent(Event &event)
+    void handleEvent(Event &event) override final
     {
         (void)event;
         // ...

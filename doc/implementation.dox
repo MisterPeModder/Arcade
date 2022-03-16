@@ -13,7 +13,7 @@
 /// @line include
 ///
 /// Then, create implement the IGame interface:
-/// @skip class
+/// @skip class ExampleGame
 /// @until {
 ///
 /// Store the game state and display adapter as private fields:
@@ -51,7 +51,7 @@
 /// @line include
 ///
 /// Then, create implement the IDisplay interface:
-/// @skip class
+/// @skip class ExampleDisplay
 /// @until {
 ///
 /// Then implement the needed methods:

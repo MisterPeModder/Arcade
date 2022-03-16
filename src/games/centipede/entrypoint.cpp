@@ -3,6 +3,9 @@
 
 namespace arcade
 {
+    class IDisplay;
+    struct Event;
+
     class Centipede : public IGame {
       public:
         Centipede()
@@ -47,12 +50,12 @@ namespace arcade
             // ...
         }
 
-        void draw()
+        void draw() override final
         {
             // ...
         }
 
-        void handleEvent(Event &event)
+        void handleEvent(Event &event) override final
         {
             (void)event;
             // ...

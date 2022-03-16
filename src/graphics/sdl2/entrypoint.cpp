@@ -1,6 +1,16 @@
+#include <iostream>
+#include <memory>
+#include <string_view>
+
+#include <arcade/IAsset.hpp>
 #include <arcade/IDisplay.hpp>
 #include <arcade/IGameObject.hpp>
-#include <iostream>
+#include <arcade/types.hpp>
+
+namespace arcade
+{
+    struct Event;
+}
 
 namespace arcade
 {
@@ -38,7 +48,7 @@ namespace arcade
             return {0, 0};
         }
 
-        virtual bool pollEvent(Event &event)
+        virtual bool pollEvent(Event &event) override final
         {
             (void)event;
             return false;
