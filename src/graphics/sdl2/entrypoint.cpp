@@ -2,23 +2,10 @@
 #include <arcade/IGameObject.hpp>
 #include <iostream>
 
-extern "C"
-{
-    arcade::IDisplay *ARCADE_DISPLAY_INSTANCE = nullptr;
-
-    ARCADE_DISPLAY_ENTRY_POINT
-    {
-        std::cout << "[sdl2]: called entry point" << std::endl;
-        return ARCADE_DISPLAY_INSTANCE;
-    }
-}
-
 namespace arcade
 {
     class Sdl2Display : public IDisplay {
       public:
-        static IDisplay *INSTANCE;
-
         Sdl2Display()
         {
             // ...
@@ -37,7 +24,7 @@ namespace arcade
         Type getType() const override final
         {
             return Type::Graphical2D;
-        };
+        }
 
         std::unique_ptr<IAsset> loadAsset(std::string_view name, IAsset::Type type) override final
         {
@@ -83,16 +70,24 @@ namespace arcade
         }
     };
 
+    static IDisplay *DISPLAY_INSTANCE = nullptr;
+
+    ARCADE_DISPLAY_ENTRY_POINT
+    {
+        std::cout << "[sdl2]: called entry point" << std::endl;
+        return DISPLAY_INSTANCE;
+    }
+
     [[gnu::constructor]] void onConstruct()
     {
-        ARCADE_DISPLAY_INSTANCE = new Sdl2Display();
+        DISPLAY_INSTANCE = new Sdl2Display();
         std::cout << "[sdl2]: constructed" << std::endl;
     }
 
     [[gnu::destructor]] void onDestroy()
     {
-        delete ARCADE_DISPLAY_INSTANCE;
-        ARCADE_DISPLAY_INSTANCE = nullptr;
+        delete DISPLAY_INSTANCE;
+        DISPLAY_INSTANCE = nullptr;
         std::cout << "[sdl2]: destroyed" << std::endl;
     }
 } // namespace arcade

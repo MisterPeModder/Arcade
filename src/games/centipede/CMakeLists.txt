@@ -3,7 +3,6 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/games/centipede)
 
 set(SRC
     ${SRCROOT}/entrypoint.cpp
-    ${SRCROOT}/ExampleGame.cpp
 )
 
 set(INCDIRS ${INCROOT})
