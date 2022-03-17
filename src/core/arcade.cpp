@@ -2,28 +2,14 @@
 #include <span>
 #include <string>
 
-#include <arcade/Event.hpp>
 #include <arcade/IDisplay.hpp>
 
+#include "Core.hpp"
 #include "arcade.hpp"
 #include "util/DynamicLibrary.hpp"
 
 namespace arcade
 {
-    static void mainLoop(IDisplay &display)
-    {
-        Event event;
-
-        for (;;) {
-            while (display.pollEvent(event)) {
-                if (event.type == Event::EventType::Closed)
-                    return;
-            }
-
-            display.render();
-        }
-    }
-
     int arcade(std::span<std::string> args)
     {
         if (args.size() != 2) {
@@ -38,7 +24,11 @@ namespace arcade
 
         DynamicLibrary::loadDirectory("./lib", libs);
 
-        mainLoop(*defaultGraphics);
+        {
+            Core core(libs, defaultGraphics);
+
+            core.eventLoop();
+        }
 
         return 0;
     }
