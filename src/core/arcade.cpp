@@ -2,35 +2,43 @@
 #include <span>
 #include <string>
 
+#include <arcade/Event.hpp>
 #include <arcade/IDisplay.hpp>
-#include <arcade/IGame.hpp>
 
 #include "core.hpp"
 #include "util/DynamicLibrary.hpp"
 
 namespace arcade
 {
+    static void mainLoop(IDisplay &display)
+    {
+        Event event;
+
+        for (;;) {
+            while (display.pollEvent(event)) {
+                if (event.type == Event::EventType::Closed)
+                    return;
+            }
+
+            display.render();
+        }
+    }
+
     int arcade(std::span<std::string> args)
     {
-        if (args.size() != 3) {
-            std::cerr << args[0] << ": expected two arguments" << std::endl;
+        if (args.size() != 2) {
+            std::cerr << args[0] << ": expected graphics backend argument" << std::endl;
             return 84;
         }
 
-        DynamicLibrary displayLib(args[1]);
-        DynamicLibrary gameLib(args[2]);
+        DynamicLibrary::Registry libs;
 
-        IDisplay *display(displayLib.symbol<IDisplay::EntryPoint>(IDisplay::ENTRY_POINT)());
-        IGame *game(gameLib.symbol<IGame::EntryPoint>(IGame::ENTRY_POINT)());
+        DynamicLibrary &defaultGraphicsLib(DynamicLibrary::load(args[1], libs));
+        IDisplay *defaultGraphics(defaultGraphicsLib.symbol<IDisplay::EntryPoint>(IDisplay::ENTRY_POINT)());
 
-        display->setup();
+        DynamicLibrary::loadDirectory("./lib", libs);
 
-        game->setup(*display);
-        game->setState(IGame::State::Running);
-        game->update(42.21);
-        game->close();
-
-        display->close();
+        mainLoop(*defaultGraphics);
 
         return 0;
     }

@@ -1,18 +1,19 @@
-#include <string_view>
-
 /// @file Dynamic Library (.so / .dll) wrapper.
 /// @internal
+
+#ifndef ARCADE_CORE_UTIL_DYNAMIC_LIBRARY_HPP_
+#define ARCADE_CORE_UTIL_DYNAMIC_LIBRARY_HPP_
+
+#include <filesystem>
+#include <string>
+#include <string_view>
+#include <unordered_map>
 
 namespace arcade
 {
     class DynamicLibrary {
       public:
-        /// Loads the dynamic library at the given path
-        ///
-        /// @param path Where the library is located, must be a null-terminated string.
-        ///
-        /// @throws std::runtime_exception if not found.
-        explicit DynamicLibrary(std::string_view path);
+        using Registry = std::unordered_map<std::string, DynamicLibrary>;
 
         DynamicLibrary(DynamicLibrary const &) = delete;
 
@@ -51,7 +52,43 @@ namespace arcade
             return reinterpret_cast<T>(this->rawSymbol(name));
         }
 
+        /// @returns The path of this dynamic library.
+        std::filesystem::path const &path();
+
+        /// @param name the name of the symbol to query, must be null-terminated.
+        ///
+        /// @returns Whether the library posseses the requested symbol.
+        bool hasSymbol(std::string_view name);
+
+        /// Attempts to load a dynamic library.
+        ///
+        /// @param path The path of the .so/.dll file.
+        /// @param[in, out] libs The currenly loaded libraries.
+        ///
+        /// @throws std::runtime_exception if the library has failed to load.
+        static DynamicLibrary &load(std::filesystem::path const &path, Registry &libs);
+
+        /// Attempts to load all dynamic libraries in the given directory.
+        ///
+        /// Skips libraries that fail to load or are already present in @c libs.
+        ///
+        /// @param dir Where to load the libraries from.
+        /// @param[in, out] libs The currenly loaded libraries.
+        ///
+        /// @return Whether at least one library has successfully loaded.
+        static bool loadDirectory(std::filesystem::path const &dir, Registry &libs);
+
       private:
+        std::filesystem::path _path;
         void *_handle;
+
+        /// Loads the dynamic library at the given path
+        ///
+        /// @param path Where the library is located.
+        ///
+        /// @throws std::runtime_exception if not found.
+        explicit DynamicLibrary(std::filesystem::path const &path);
     };
 } // namespace arcade
+
+#endif // !defined(ARCADE_CORE_UTIL_DYNAMIC_LIBRARY_HPP_)
