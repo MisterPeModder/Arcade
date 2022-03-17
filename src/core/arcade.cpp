@@ -5,7 +5,7 @@
 #include <arcade/Event.hpp>
 #include <arcade/IDisplay.hpp>
 
-#include "core.hpp"
+#include "arcade.hpp"
 #include "util/DynamicLibrary.hpp"
 
 namespace arcade

@@ -2,8 +2,8 @@ set(INCROOT ${PROJECT_SOURCE_DIR}/src/core)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/core)
 
 set(SRC
-    ${INCROOT}/core.hpp
     ${SRCROOT}/arcade.cpp
+    ${INCROOT}/arcade.hpp
 )
 
 set(INCDIRS ${INCROOT})

@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "core.hpp"
+#include "arcade.hpp"
 
 int main(int ac, char *av[])
 {
