@@ -5,6 +5,7 @@
 #define ARCADE_CORE_UTIL_DYNAMIC_LIBRARY_HPP_
 
 #include <filesystem>
+#include <stdexcept>
 #include <string>
 #include <string_view>
 #include <unordered_map>
@@ -14,6 +15,20 @@ namespace arcade
     class DynamicLibrary {
       public:
         using Registry = std::unordered_map<std::string, DynamicLibrary>;
+
+        class LoadError : public std::runtime_error {
+          private:
+            LoadError(std::string const &msg);
+
+            friend DynamicLibrary;
+        };
+
+        class UnknownSymbolError : public std::runtime_error {
+          private:
+            UnknownSymbolError(std::string const &msg);
+
+            friend DynamicLibrary;
+        };
 
         DynamicLibrary(DynamicLibrary const &) = delete;
 
@@ -40,6 +55,8 @@ namespace arcade
         /// @param name the name of the symbol to fetch, must be null-terminated.
         ///
         /// @returns the address where the symbol is loaded into memory.
+        ///
+        /// @throws DynamicLibrary::UnknownSymbolError if not found.
         void *rawSymbol(std::string_view name);
 
         /// A safe, throwing version of DyanmicLibrary::symbolUnchecked().
@@ -47,6 +64,8 @@ namespace arcade
         /// @param name the name of the symbol to fetch, must be null-terminated.
         ///
         /// @returns the address where the symbol is loaded into memory.
+        ///
+        /// @throws DynamicLibrary::UnknownSymbolError if not found.
         template <typename T> T symbol(std::string_view name)
         {
             return reinterpret_cast<T>(this->rawSymbol(name));
@@ -65,7 +84,7 @@ namespace arcade
         /// @param path The path of the .so/.dll file.
         /// @param[in, out] libs The currenly loaded libraries.
         ///
-        /// @throws std::runtime_exception if the library has failed to load.
+        /// @throws DynamicLibrary::LoadError if the library has failed to load.
         static DynamicLibrary &load(std::filesystem::path const &path, Registry &libs);
 
         /// Attempts to load all dynamic libraries in the given directory.
@@ -86,7 +105,7 @@ namespace arcade
         ///
         /// @param path Where the library is located.
         ///
-        /// @throws std::runtime_exception if not found.
+        /// @throws DynamicLibrary::LoadError if the library has failed to load.
         explicit DynamicLibrary(std::filesystem::path const &path);
     };
 } // namespace arcade

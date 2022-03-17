@@ -7,11 +7,19 @@
 
 namespace arcade
 {
+    DynamicLibrary::LoadError::LoadError(std::string const &msg) : std::runtime_error(msg)
+    {
+    }
+
+    DynamicLibrary::UnknownSymbolError::UnknownSymbolError(std::string const &msg) : std::runtime_error(msg)
+    {
+    }
+
     DynamicLibrary::DynamicLibrary(std::filesystem::path const &path) : _path(path)
     {
         this->_handle = dlopen(path.c_str(), RTLD_NOW | RTLD_LOCAL);
         if (this->_handle == nullptr)
-            throw std::runtime_error(dlerror());
+            throw LoadError(dlerror());
     }
 
     DynamicLibrary::DynamicLibrary(DynamicLibrary &&other) : _handle(other._handle)
@@ -44,7 +52,7 @@ namespace arcade
         void *symbol(this->rawSymbolUnchecked(name));
 
         if (!symbol)
-            throw std::runtime_error(dlerror());
+            throw UnknownSymbolError(dlerror());
         return symbol;
     }
 
@@ -60,7 +68,7 @@ namespace arcade
 
     DynamicLibrary &DynamicLibrary::load(std::filesystem::path const &path, Registry &libs)
     {
-        std::filesystem::path cpath(std::filesystem::canonical(path));
+        std::filesystem::path cpath(std::filesystem::absolute(path));
         Registry::iterator entry(libs.find(cpath.string()));
 
         if (entry != libs.end())
@@ -74,14 +82,14 @@ namespace arcade
         bool success(false);
 
         for (auto const &entry : std::filesystem::directory_iterator(dir)) {
-            std::filesystem::path cpath(std::filesystem::canonical(entry.path()));
+            std::filesystem::path cpath(std::filesystem::absolute(entry.path()));
 
             if (libs.contains(cpath))
                 continue;
             try {
                 libs.emplace(cpath, DynamicLibrary(cpath));
                 success = true;
-            } catch (std::runtime_error &) {
+            } catch (LoadError &) {
                 // if lib counldn't be loaded, skip
             }
         }
