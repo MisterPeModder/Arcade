@@ -7,19 +7,22 @@
 #include <string>
 #include <unordered_map>
 
+#include <arcade/IDisplay.hpp>
+#include <arcade/IGame.hpp>
+
 #include "util/DynamicLibrary.hpp"
+#include "util/LibraryInstance.hpp"
 
 namespace arcade
 {
-    class IDisplay;
-    class IGame;
-
     class Core {
       public:
         Core(DynamicLibrary::Registry &libs, IDisplay *startingDisplay);
 
         Core(Core const &) = delete;
         Core(Core &&) = delete;
+
+        ~Core() = default;
 
         /// Starts the program's main event loop.
         void eventLoop();
@@ -28,8 +31,8 @@ namespace arcade
         std::unordered_map<std::string, IDisplay *> _displays;
         std::unordered_map<std::string, IGame *> _games;
 
-        IDisplay *_currentDisplay;
-        IGame *_currentGame;
+        LibraryInstance<IDisplay> _display;
+        LibraryInstance<IGame> _game;
     };
 } // namespace arcade
 

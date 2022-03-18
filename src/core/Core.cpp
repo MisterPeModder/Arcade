@@ -10,8 +10,7 @@
 
 namespace arcade
 {
-    Core::Core(DynamicLibrary::Registry &libs, IDisplay *startingDisplay)
-        : _displays(), _games(), _currentDisplay(startingDisplay), _currentGame(nullptr)
+    Core::Core(DynamicLibrary::Registry &libs, IDisplay *startingDisplay) : _displays(), _games(), _display(), _game()
     {
         // Convert our generic libs into either game or graphics (or both)
         for (auto &[name, lib] : libs) {
@@ -36,7 +35,9 @@ namespace arcade
         for (auto &[name, _] : this->_games) {
             std::cout << "- " << name << '\n';
         }
-        std::cout.flush();
+
+        std::cout << "\nLoading graphics..." << std::endl;
+        this->_display.set(startingDisplay);
     }
 
     void Core::eventLoop()
@@ -48,27 +49,27 @@ namespace arcade
         std::cout << "\nRunning..." << std::endl;
         for (;;) {
             // Poll all event and forward each to the current game (if any)
-            while (this->_currentDisplay->pollEvent(event)) {
-                if (this->_currentGame)
-                    this->_currentGame->handleEvent(event);
+            while (this->_display->pollEvent(event)) {
+                if (this->_game)
+                    this->_game->handleEvent(event);
                 if (event.type == Event::EventType::Closed)
                     return;
             }
 
-            if (this->_currentGame) {
+            if (this->_game) {
                 auto currentUpdate(clock.now());
                 std::chrono::duration<double> elapsed(currentUpdate - lastUpdate);
 
                 // Update the game's logic
-                this->_currentGame->update(elapsed.count());
+                this->_game->update(elapsed.count());
                 lastUpdate = currentUpdate;
 
                 // Render the game
-                this->_currentGame->draw();
+                this->_game->draw();
             }
 
             // Update the display
-            this->_currentDisplay->render();
+            this->_display->render();
         }
     }
 } // namespace arcade
