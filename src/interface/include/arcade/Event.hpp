@@ -12,6 +12,8 @@
 #ifndef ARCADE_EVENT_HPP_
 #define ARCADE_EVENT_HPP_
 
+#include "types.hpp"
+
 namespace arcade
 {
     /// Contains an event's data.
@@ -37,15 +39,15 @@ namespace arcade
             Count
         };
 
-        /// Size events parameters (EventType::Resized).
+        /// Size events parameters (Event::Type::Resized).
         struct SizeEvent {
-            /// New width, in units.
-            unsigned int width;
-            /// New height, in units.
-            unsigned int height;
+            /// Old size, in units.
+            vec2u oldSize;
+            /// New size, in units.
+            vec2u newSize;
         };
 
-        /// @brief Keyboard event parameters (EventType::KeyPressed, EventType::KeyReleased).
+        /// @brief Keyboard event parameters (Event::Type::KeyPressed, Event::Type::KeyReleased).
         struct KeyEvent {
             /// Is the Alt key pressed?
             bool alt;
@@ -59,26 +61,22 @@ namespace arcade
             Key code;
         };
 
-        /// Mouse move event parameters (EventType::MouseMoved)
+        /// Mouse move event parameters (Event::Type::MouseMoved)
         struct MouseMoveEvent {
-            /// X position of the mouse pointer, relative to the left of the owner window.
-            int x;
-            /// Y position of the mouse pointer, relative to the top of the owner window.
-            int y;
+            /// Position of the mouse pointer, relative to the left of the owner window.
+            vec2i pos;
         };
 
-        /// Mouse buttons events parameters (EventType::MouseButtonPressed, EventType::MouseButtonReleased).
+        /// Mouse buttons events parameters (Event::Type::MouseButtonPressed, Event::Type::MouseButtonReleased).
         struct MouseButtonEvent {
             /// Code of the button that has been pressed.
             MouseButton button;
-            /// X position of the mouse pointer, relative to the left of the owner window.
-            int x;
-            /// Y position of the mouse pointer, relative to the top of the owner window.
-            int y;
+            /// Position of the mouse pointer, relative to the left of the owner window.
+            vec2i pos;
         };
 
         /// Enumeration of the different types of events.
-        enum class EventType {
+        enum class Type {
             /// The window requested to be closed (no data).
             Closed,
             /// The window was resized (data in Event.size).
@@ -101,7 +99,7 @@ namespace arcade
         // Member data
 
         /// Type of the event.
-        EventType type;
+        Type type;
 
         union {
             /// Size event parameters (Event::Resized).
