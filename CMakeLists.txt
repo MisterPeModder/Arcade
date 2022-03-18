@@ -9,7 +9,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 add_compile_options(
-    "-Wall" "-Wextra" "-Wshadow" "-pedantic" "-Wpointer-arith"
+    "-Wall" "-Wextra" "-Wshadow" "-pedantic" "-Wpointer-arith" "-Wsuggest-final-methods"
+    "-Wsuggest-final-types" "-Wsuggest-override"
+    "-fno-gnu-unique"
     "$<$<CONFIG:RELEASE>:-O3;-Werror>"
     "$<$<CONFIG:DEBUG>:-O0;-g3;-ggdb>"
 )
