@@ -68,7 +68,7 @@ namespace arcade
 
     DynamicLibrary &DynamicLibrary::load(std::filesystem::path const &path, Registry &libs)
     {
-        std::filesystem::path cpath(std::filesystem::absolute(path));
+        std::filesystem::path cpath(std::filesystem::weakly_canonical(path));
         Registry::iterator entry(libs.find(cpath.string()));
 
         if (entry != libs.end())
@@ -82,7 +82,7 @@ namespace arcade
         bool success(false);
 
         for (auto const &entry : std::filesystem::directory_iterator(dir)) {
-            std::filesystem::path cpath(std::filesystem::absolute(entry.path()));
+            std::filesystem::path cpath(std::filesystem::weakly_canonical(entry.path()));
 
             if (libs.contains(cpath))
                 continue;
