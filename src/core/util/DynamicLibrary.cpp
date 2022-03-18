@@ -27,12 +27,13 @@ namespace arcade
         other._handle = nullptr;
     }
 
-    void DynamicLibrary::operator&&(DynamicLibrary &&other)
+    DynamicLibrary &DynamicLibrary::operator=(DynamicLibrary &&other)
     {
         if (this->_handle)
             dlclose(this->_handle);
         this->_handle = other._handle;
         other._handle = nullptr;
+        return *this;
     }
 
     DynamicLibrary::~DynamicLibrary()

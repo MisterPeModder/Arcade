@@ -33,7 +33,7 @@ namespace arcade
         DynamicLibrary(DynamicLibrary const &) = delete;
 
         DynamicLibrary(DynamicLibrary &&);
-        void operator&&(DynamicLibrary &&);
+        DynamicLibrary &operator=(DynamicLibrary &&);
 
         ~DynamicLibrary();
 
