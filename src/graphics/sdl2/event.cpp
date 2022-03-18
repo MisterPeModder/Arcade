@@ -7,6 +7,7 @@
 #include <SDL_video.h>
 
 #include <arcade/Event.hpp>
+#include <arcade/types.hpp>
 
 #include "event.hpp"
 
@@ -127,11 +128,11 @@ namespace arcade
     static bool translateSdl2WindowEvent(SDL_WindowEvent const &raw, Event &event)
     {
         switch (raw.event) {
-            case SDL_WINDOWEVENT_CLOSE: event.type = Event::EventType::Closed; return true;
+            case SDL_WINDOWEVENT_CLOSE: event.type = Event::Event::Type::Closed; return true;
             case SDL_WINDOWEVENT_RESIZED:
-                event.type = Event::EventType::Resized;
-                event.size.height = static_cast<unsigned int>(std::max(0, raw.data1));
-                event.size.width = static_cast<unsigned int>(std::max(0, raw.data2));
+                event.type = Event::Event::Type::Resized;
+                event.size.newSize.x = static_cast<unsigned int>(std::max(0, raw.data1));
+                event.size.newSize.y = static_cast<unsigned int>(std::max(0, raw.data2));
                 return true;
             default: return false;
         }
@@ -140,9 +141,9 @@ namespace arcade
     static bool translateSdl2MouseButtonEvent(SDL_MouseButtonEvent const &raw, Event &event)
     {
         if (raw.type == SDL_MOUSEBUTTONDOWN)
-            event.type = Event::EventType::MouseButtonPressed;
+            event.type = Event::Event::Type::MouseButtonPressed;
         else
-            event.type = Event::EventType::MouseButtonReleased;
+            event.type = Event::Event::Type::MouseButtonReleased;
 
         switch (raw.button) {
             case SDL_BUTTON_RIGHT:
@@ -155,16 +156,14 @@ namespace arcade
             default: event.mouseButton.button = Event::MouseButton::Left; break;
         }
 
-        event.mouseButton.x = raw.x;
-        event.mouseButton.y = raw.y;
+        event.mouseButton.pos = {raw.x, raw.y};
         return true;
     }
 
     static bool translateSdl2MouseMotionEvent(SDL_MouseMotionEvent const &raw, Event &event)
     {
-        event.type = Event::EventType::MouseMoved;
-        event.mouseMove.x = raw.x;
-        event.mouseMove.y = raw.y;
+        event.type = Event::Event::Type::MouseMoved;
+        event.mouseMove.pos = {raw.x, raw.y};
         return true;
     }
 
@@ -175,9 +174,9 @@ namespace arcade
             return false;
 
         if (raw.type == SDL_KEYDOWN)
-            event.type = Event::EventType::KeyPressed;
+            event.type = Event::Event::Type::KeyPressed;
         else
-            event.type = Event::EventType::KeyReleased;
+            event.type = Event::Event::Type::KeyReleased;
 
         auto mod = raw.keysym.mod;
         event.key.alt = !!(mod & KMOD_ALT);

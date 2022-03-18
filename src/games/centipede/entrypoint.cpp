@@ -65,8 +65,8 @@ namespace arcade
 
         void handleEvent(Event &event) override final
         {
-            if (event.type == Event::EventType::Resized
-                || (event.type == Event::EventType::KeyPressed && event.key.code == 'c')) {
+            if (event.type == Event::Event::Type::Resized
+                || (event.type == Event::Event::Type::KeyPressed && event.key.code == 'c')) {
                 vec2u size(this->_logo->getSize());
                 vec2u winSize = this->_display->getSize();
                 vec2i pos{static_cast<int>(winSize.x) / 2 - static_cast<int>(size.x) / 2,
@@ -74,14 +74,14 @@ namespace arcade
 
                 this->_logo->setPosition(pos);
                 this->_dragging = false;
-            } else if (event.type == Event::EventType::MouseButtonPressed) {
+            } else if (event.type == Event::Event::Type::MouseButtonPressed) {
                 this->_dragging = true;
-            } else if (event.type == Event::EventType::MouseButtonReleased) {
+            } else if (event.type == Event::Event::Type::MouseButtonReleased) {
                 this->_dragging = false;
-            } else if (event.type == Event::EventType::MouseMoved && this->_dragging) {
+            } else if (event.type == Event::Event::Type::MouseMoved && this->_dragging) {
                 vec2u size(this->_logo->getSize());
-                vec2i pos{
-                    event.mouseMove.x - static_cast<int>(size.x) / 2, event.mouseMove.y - static_cast<int>(size.y) / 2};
+                vec2i mousePos(event.mouseMove.pos);
+                vec2i pos{mousePos.x - static_cast<int>(size.x) / 2, mousePos.y - static_cast<int>(size.y) / 2};
 
                 this->_logo->setPosition(pos);
             }
