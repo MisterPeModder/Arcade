@@ -62,7 +62,7 @@ namespace arcade
             while (this->_display->pollEvent(event)) {
                 if (this->_game)
                     this->_game->handleEvent(event);
-                if (event.type == Event::EventType::Closed)
+                if (event.type == Event::Type::Closed)
                     return;
             }
 
