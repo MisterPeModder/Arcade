@@ -5,6 +5,10 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/graphics/sdl2)
 
 set(SRC
     ${SRCROOT}/entrypoint.cpp
+    ${SRCROOT}/event.cpp
+    ${INCROOT}/event.hpp
+    ${SRCROOT}/Sdl2Display.cpp
+    ${INCROOT}/Sdl2Display.hpp
 )
 
 set(INCDIRS ${INCROOT})
