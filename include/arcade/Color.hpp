@@ -96,15 +96,15 @@ namespace arcade
         std::byte b;
     };
 
-    const Color Color::Black = Color(0x00000000);
-    const Color Color::White = Color(0x00ffffff);
-    const Color Color::Transparent = Color(0xffffff);
-    const Color Color::Red = Color(0x00ff0000);
-    const Color Color::Green = Color(0x0000ff00);
-    const Color Color::Blue = Color(0x000000ff);
-    const Color Color::Yellow = Color(0x00ffff00);
-    const Color Color::Magenta = Color(0x00ff00ff);
-    const Color Color::Cyan = Color(0x0000ffff);
+    constexpr Color Color::Black = Color(0x00000000);
+    constexpr Color Color::White = Color(0x00ffffff);
+    constexpr Color Color::Transparent = Color(0xffffff);
+    constexpr Color Color::Red = Color(0x00ff0000);
+    constexpr Color Color::Green = Color(0x0000ff00);
+    constexpr Color Color::Blue = Color(0x000000ff);
+    constexpr Color Color::Yellow = Color(0x00ffff00);
+    constexpr Color Color::Magenta = Color(0x00ff00ff);
+    constexpr Color Color::Cyan = Color(0x0000ffff);
 
 } // namespace arcade
 
