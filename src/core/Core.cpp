@@ -38,6 +38,16 @@ namespace arcade
 
         std::cout << "\nLoading graphics..." << std::endl;
         this->_display.set(startingDisplay);
+
+        // Load first game available
+        auto first = this->_games.begin();
+
+        if (first != this->_games.end()) {
+            std::cout << "\nLoading graphics..." << std::endl;
+            this->_game.set<IDisplay &>(first->second, *this->_display);
+        } else {
+            std::cout << "\nNo game available!" << std::endl;
+        }
     }
 
     void Core::eventLoop()

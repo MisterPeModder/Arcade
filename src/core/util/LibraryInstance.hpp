@@ -109,6 +109,26 @@ namespace arcade
             return this->_instance;
         }
 
+        /// Provides an immutable reference to the instance.
+        ///
+        /// @note Using this operator when nothing is contained results in <b>undefined behavior</b>.
+        ///
+        /// @returns An immutable reference to the wrapped instance.
+        T const &operator*() const
+        {
+            return *this->_instance;
+        }
+
+        /// Provides a mutable reference to the instance.
+        ///
+        /// @note Using this operator when nothing is contained results in <b>undefined behavior</b>.
+        ///
+        /// @returns A mutable reference to the wrapped instance.
+        T &operator*()
+        {
+            return *this->_instance;
+        }
+
         /// @returns Whether this currently contains a loaded instance.
         operator bool() const
         {
