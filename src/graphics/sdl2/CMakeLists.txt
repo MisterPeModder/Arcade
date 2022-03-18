@@ -1,4 +1,5 @@
 find_package(SDL2 REQUIRED)
+find_package(SDL2_image REQUIRED)
 
 set(INCROOT ${PROJECT_SOURCE_DIR}/src/graphics/sdl2)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/graphics/sdl2)
@@ -13,9 +14,12 @@ set(SRC
 
 set(INCDIRS ${INCROOT})
 
+add_subdirectory(asset)
+add_subdirectory(object)
+
 add_arcade_graphics(
     NAME sdl2
     INCLUDE_DIRS ${SRCROOT} ${INCROOT}
     SOURCES ${SRC}
-    DEPENDS_ON SDL2::Main
+    DEPENDS_ON SDL2::Main SDL2::Image
 )

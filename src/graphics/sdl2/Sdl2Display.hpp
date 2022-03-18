@@ -10,6 +10,7 @@
 #include <stdexcept>
 #include <string_view>
 
+#include <SDL_render.h>
 #include <SDL_video.h>
 
 #include <arcade/IAsset.hpp>
@@ -55,6 +56,12 @@ namespace arcade
 
       private:
         SDL_Window *_window;
+        SDL_Renderer *_renderer;
+        vec2u _size;
+
+        static constexpr vec2u DEFAULT_SIZE = {960, 540};
+
+        void updateSize(vec2u defaultSize);
     };
 } // namespace arcade
 

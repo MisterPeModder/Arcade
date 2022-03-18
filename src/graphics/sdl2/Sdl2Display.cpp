@@ -1,3 +1,5 @@
+#include <algorithm>
+#include <filesystem>
 #include <iostream>
 #include <stdexcept>
 #include <string>
@@ -6,13 +8,16 @@
 #include <SDL_error.h>
 #include <SDL_events.h>
 
+#include <arcade/Event.hpp>
 #include <arcade/IAsset.hpp>
 #include <arcade/IDisplay.hpp>
 #include <arcade/IGameObject.hpp>
 #include <arcade/types.hpp>
 
 #include "Sdl2Display.hpp"
+#include "asset/Texture.hpp"
 #include "event.hpp"
+#include "object/Rectangle.hpp"
 
 namespace arcade
 {
@@ -20,9 +25,7 @@ namespace arcade
     {
     }
 
-    struct Event;
-
-    Sdl2Display::Sdl2Display() : _window(nullptr)
+    Sdl2Display::Sdl2Display() : _window(nullptr), _renderer(nullptr), _size({0, 0})
     {
         // do nothing here, real init is done in ::setup()
     }
@@ -32,17 +35,23 @@ namespace arcade
         if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) != 0)
             throw Error("failed to initialize SDL2");
 
-        this->_window = SDL_CreateWindow(
-            "Arcade (SDL2)", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 960, 540, SDL_WINDOW_RESIZABLE);
+        this->_window = SDL_CreateWindow("Arcade (SDL2)", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+            DEFAULT_SIZE.x, DEFAULT_SIZE.y, SDL_WINDOW_RESIZABLE);
         if (!this->_window)
             throw Error("failed to initialize window");
-        std::cout << "loaded" << std::endl;
+
+        this->_renderer = SDL_CreateRenderer(this->_window, -1, SDL_RENDERER_ACCELERATED);
+        if (!this->_renderer)
+            throw Error("failed to initialize window");
+        this->updateSize(DEFAULT_SIZE);
+        std::cout << "[sdl2]: setup" << std::endl;
     }
 
     void Sdl2Display::close()
     {
-        std::cout << "[sdl2]: "
-                  << "closing" << std::endl;
+        std::cout << "[sdl2]: close" << std::endl;
+        if (this->_renderer)
+            SDL_DestroyRenderer(this->_renderer);
         if (this->_window)
             SDL_DestroyWindow(this->_window);
         SDL_Quit();
@@ -55,33 +64,50 @@ namespace arcade
 
     std::unique_ptr<IAsset> Sdl2Display::loadAsset(std::string_view name, IAsset::Type type)
     {
-        (void)name;
-        (void)type;
-        return std::unique_ptr<IAsset>();
+        std::filesystem::path path(name);
+
+        switch (type) {
+            case IAsset::Type::Texture: return Texture::fromFile(path, this->_renderer);
+            default: return std::unique_ptr<IAsset>();
+        }
     }
 
     vec2u Sdl2Display::getSize() const
     {
-        return {0, 0};
+        return this->_size;
     }
 
     bool Sdl2Display::pollEvent(Event &event)
     {
         SDL_Event rawEvent;
 
-        if (!SDL_PollEvent(&rawEvent))
+        if (!SDL_PollEvent(&rawEvent) || !arcade::translateSdl2Event(rawEvent, event))
             return false;
 
-        return arcade::translateSdl2Event(rawEvent, event);
+        // If the window was resized, query the size of the render output and update the event before returning.
+        if (event.type == Event::EventType::Resized) {
+            this->updateSize({event.size.width, event.size.height});
+            event.size.width = this->_size.x;
+            event.size.height = this->_size.y;
+
+            std::cout << "Resized to " << this->_size.x << "x" << this->_size.y << "px" << std::endl;
+        }
+
+        return true;
     }
 
     void Sdl2Display::render()
     {
+        SDL_RenderPresent(this->_renderer);
+        SDL_RenderClear(this->_renderer);
     }
 
-    void Sdl2Display::drawGameObject(const IGameObject &object)
+    void Sdl2Display::drawGameObject(IGameObject const &object)
     {
-        (void)object;
+        Rectangle const *rect = dynamic_cast<Rectangle const *>(&object);
+
+        if (rect)
+            rect->draw();
     }
 
     std::unique_ptr<IGameObject> Sdl2Display::createTextObject(std::string_view text, IAsset const *font) const
@@ -93,8 +119,20 @@ namespace arcade
 
     std::unique_ptr<IGameObject> Sdl2Display::createRectObject(vec2u size, IAsset const *texture) const
     {
-        (void)size;
-        (void)texture;
-        return std::unique_ptr<IGameObject>();
+        Texture const *t = dynamic_cast<Texture const *>(texture);
+
+        if (texture != nullptr && t == nullptr)
+            throw std::logic_error("rectObject asset must be of texture type");
+        return std::make_unique<Rectangle>(size, t);
+    }
+
+    void Sdl2Display::updateSize(vec2u defaultSize)
+    {
+        int w, h;
+
+        if (SDL_GetRendererOutputSize(this->_renderer, &w, &h) != 0)
+            this->_size = defaultSize;
+        else
+            this->_size = {static_cast<unsigned int>(std::max(0, w)), static_cast<unsigned int>(std::max(0, h))};
     }
 } // namespace arcade
