@@ -7,11 +7,9 @@
 #include <filesystem>
 #include <memory>
 
-#include <SDL_rect.h>
 #include <SDL_render.h>
 #include <SDL_surface.h>
 
-#include <arcade/Color.hpp>
 #include <arcade/IAsset.hpp>
 
 namespace arcade
@@ -29,19 +27,18 @@ namespace arcade
 
         Type getType() const override final;
 
-        void render(SDL_Rect dims) const;
+        /// Instanciates the wrapped SDL surface (unique texture) into a SDL texture (sprite instance).
+        ///
+        /// @return The newly created sprite, or @c nullptr on failure.
+        SDL_Texture *createSprite(SDL_Renderer *renderer) const;
 
-        void tint(Color color);
-
-        static std::unique_ptr<Texture> fromFile(std::filesystem::path const &path, SDL_Renderer *renderer);
+        static std::unique_ptr<Texture> fromFile(std::filesystem::path const &path);
 
       private:
         SDL_Surface *_surface;
-        SDL_Texture *_texture;
-        SDL_Renderer *_renderer;
 
         /// Creates a texture from a SDL2 surface.
-        Texture(SDL_Surface *surface, SDL_Texture *texture, SDL_Renderer *renderer);
+        Texture(SDL_Surface *surface);
     };
 } // namespace arcade
 

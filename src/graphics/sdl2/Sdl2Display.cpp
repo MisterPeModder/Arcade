@@ -43,6 +43,7 @@ namespace arcade
         this->_renderer = SDL_CreateRenderer(this->_window, -1, SDL_RENDERER_ACCELERATED);
         if (!this->_renderer)
             throw Error("failed to initialize window");
+        SDL_SetRenderDrawBlendMode(this->_renderer, SDL_BLENDMODE_BLEND);
         this->updateSize(DEFAULT_SIZE);
         std::cout << "[sdl2]: setup" << std::endl;
     }
@@ -67,7 +68,7 @@ namespace arcade
         std::filesystem::path path(name);
 
         switch (type) {
-            case IAsset::Type::Texture: return Texture::fromFile(path, this->_renderer);
+            case IAsset::Type::Texture: return Texture::fromFile(path);
             default: return std::unique_ptr<IAsset>();
         }
     }
@@ -123,7 +124,7 @@ namespace arcade
 
         if (texture != nullptr && t == nullptr)
             throw std::logic_error("rectObject asset must be of texture type");
-        return std::make_unique<Rectangle>(size, t);
+        return Rectangle::create(this->_renderer, t, size);
     }
 
     void Sdl2Display::updateSize(vec2u defaultSize)
