@@ -86,7 +86,7 @@ namespace arcade
             return false;
 
         // If the window was resized, query the size of the render output and update the event before returning.
-        if (event.type == Event::Event::Type::Resized) {
+        if (event.type == Event::Type::Resized) {
             event.size.oldSize = this->_size;
             this->updateSize(event.size.newSize);
             event.size.newSize = this->_size;

@@ -128,9 +128,9 @@ namespace arcade
     static bool translateSdl2WindowEvent(SDL_WindowEvent const &raw, Event &event)
     {
         switch (raw.event) {
-            case SDL_WINDOWEVENT_CLOSE: event.type = Event::Event::Type::Closed; return true;
+            case SDL_WINDOWEVENT_CLOSE: event.type = Event::Type::Closed; return true;
             case SDL_WINDOWEVENT_RESIZED:
-                event.type = Event::Event::Type::Resized;
+                event.type = Event::Type::Resized;
                 event.size.newSize.x = static_cast<unsigned int>(std::max(0, raw.data1));
                 event.size.newSize.y = static_cast<unsigned int>(std::max(0, raw.data2));
                 return true;
@@ -141,9 +141,9 @@ namespace arcade
     static bool translateSdl2MouseButtonEvent(SDL_MouseButtonEvent const &raw, Event &event)
     {
         if (raw.type == SDL_MOUSEBUTTONDOWN)
-            event.type = Event::Event::Type::MouseButtonPressed;
+            event.type = Event::Type::MouseButtonPressed;
         else
-            event.type = Event::Event::Type::MouseButtonReleased;
+            event.type = Event::Type::MouseButtonReleased;
 
         switch (raw.button) {
             case SDL_BUTTON_RIGHT:
@@ -162,7 +162,7 @@ namespace arcade
 
     static bool translateSdl2MouseMotionEvent(SDL_MouseMotionEvent const &raw, Event &event)
     {
-        event.type = Event::Event::Type::MouseMoved;
+        event.type = Event::Type::MouseMoved;
         event.mouseMove.pos = {raw.x, raw.y};
         return true;
     }
@@ -174,9 +174,9 @@ namespace arcade
             return false;
 
         if (raw.type == SDL_KEYDOWN)
-            event.type = Event::Event::Type::KeyPressed;
+            event.type = Event::Type::KeyPressed;
         else
-            event.type = Event::Event::Type::KeyReleased;
+            event.type = Event::Type::KeyReleased;
 
         auto mod = raw.keysym.mod;
         event.key.alt = !!(mod & KMOD_ALT);
