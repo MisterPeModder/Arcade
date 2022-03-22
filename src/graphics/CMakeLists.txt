@@ -29,7 +29,7 @@ function(add_arcade_graphics)
     # Add ${INCDIRS} and ${SRCROOT} to the lib's private include path
     target_include_directories(${TARGET_NAME} PRIVATE ${INCDIRS} ${SRCROOT})
 
-    target_link_libraries(${TARGET_NAME} PRIVATE arcade_interface ${DEPENDENCIES})
+    target_link_libraries(${TARGET_NAME} PRIVATE arcade_interface arcade_graphics_common ${DEPENDENCIES})
 
     # Copy the library to lib/${TARGET_NAME}
     add_custom_command(TARGET ${TARGET_NAME} 
@@ -37,6 +37,9 @@ function(add_arcade_graphics)
     	COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_SOURCE_DIR}/lib
     	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TARGET_NAME}> ${PROJECT_SOURCE_DIR}/lib)
 endfunction()
+
+# Common Graphics Library
+add_subdirectory(common)
 
 # Graphics Backends
 add_subdirectory(ncurses)
