@@ -27,7 +27,7 @@ namespace arcade
       public:
         class Error : public std::runtime_error {
           private:
-            Error(std::string_view cause);
+            Error(std::string_view cause, char const *(*getError)() = &SDL_GetError);
 
             friend Sdl2Display;
         };

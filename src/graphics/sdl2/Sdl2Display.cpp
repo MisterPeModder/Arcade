@@ -7,6 +7,8 @@
 #include <SDL.h>
 #include <SDL_error.h>
 #include <SDL_events.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
 
 #include <arcade/Event.hpp>
 #include <arcade/IAsset.hpp>
@@ -22,7 +24,8 @@
 
 namespace arcade
 {
-    Sdl2Display::Error::Error(std::string_view cause) : std::runtime_error(std::string(cause) + ": " + SDL_GetError())
+    Sdl2Display::Error::Error(std::string_view cause, char const *(*getError)())
+        : std::runtime_error(std::string(cause) + ": " + (*getError)())
     {
     }
 
@@ -33,8 +36,19 @@ namespace arcade
 
     void Sdl2Display::setup()
     {
+        // SDL Libraries Initialization
+
         if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) != 0)
             throw Error("failed to initialize SDL2");
+
+        int initializedImgs(IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG));
+        if ((initializedImgs & IMG_INIT_JPG) == 0 || (initializedImgs & IMG_INIT_PNG) == 0)
+            throw Error("failed to initialize SDL2 image", &IMG_GetError);
+
+        if (TTF_Init())
+            throw Error("failed to initialize SDL2 TTF", &TTF_GetError);
+
+        // Window Creation
 
         this->_window = SDL_CreateWindow("Arcade (SDL2)", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
             WINDOW_SIZE_PIXELS.x, WINDOW_SIZE_PIXELS.y, SDL_WINDOW_RESIZABLE);
@@ -56,7 +70,13 @@ namespace arcade
             SDL_DestroyRenderer(this->_renderer);
         if (this->_window)
             SDL_DestroyWindow(this->_window);
-        SDL_Quit();
+
+        if (TTF_WasInit())
+            TTF_Quit();
+        if (SDL_WasInit(SDL_INIT_VIDEO | SDL_INIT_EVENTS)) {
+            IMG_Quit();
+            SDL_Quit();
+        }
     }
 
     IDisplay::Type Sdl2Display::getType() const
