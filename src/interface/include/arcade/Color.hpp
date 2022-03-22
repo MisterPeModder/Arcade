@@ -98,7 +98,7 @@ namespace arcade
 
     constexpr Color Color::Black = Color(0x00000000);
     constexpr Color Color::White = Color(0x00ffffff);
-    constexpr Color Color::Transparent = Color(0xffffff);
+    constexpr Color Color::Transparent = Color(0xffffffff);
     constexpr Color Color::Red = Color(0x00ff0000);
     constexpr Color Color::Green = Color(0x0000ff00);
     constexpr Color Color::Blue = Color(0x000000ff);
