@@ -7,8 +7,10 @@
 #include <SDL_video.h>
 
 #include <arcade/Event.hpp>
+#include <arcade/graphics/units.hpp>
 #include <arcade/types.hpp>
 
+#include "Sdl2Display.hpp"
 #include "event.hpp"
 
 namespace arcade
@@ -131,8 +133,7 @@ namespace arcade
             case SDL_WINDOWEVENT_CLOSE: event.type = Event::Type::Closed; return true;
             case SDL_WINDOWEVENT_RESIZED:
                 event.type = Event::Type::Resized;
-                event.size.newSize.x = static_cast<unsigned int>(std::max(0, raw.data1));
-                event.size.newSize.y = static_cast<unsigned int>(std::max(0, raw.data2));
+                event.size.newSize = toUnits(static_cast<vec2u>(vec2i{std::max(0, raw.data1), std::max(0, raw.data2)}));
                 return true;
             default: return false;
         }
@@ -156,14 +157,14 @@ namespace arcade
             default: event.mouseButton.button = Event::MouseButton::Left; break;
         }
 
-        event.mouseButton.pos = {raw.x, raw.y};
+        event.mouseButton.pos = toUnits(vec2i({raw.x, raw.y}));
         return true;
     }
 
     static bool translateSdl2MouseMotionEvent(SDL_MouseMotionEvent const &raw, Event &event)
     {
         event.type = Event::Type::MouseMoved;
-        event.mouseMove.pos = {raw.x, raw.y};
+        event.mouseMove.pos = toUnits(vec2i({raw.x, raw.y}));
         return true;
     }
 

@@ -40,6 +40,7 @@ namespace arcade
         void setBackground(Color color, DefaultColor) override final;
 
       private:
+        /// Position & Size (in pixels, not units)
         SDL_Rect _dims;
         SDL_Renderer *_renderer;
         SDL_Texture *_sprite;

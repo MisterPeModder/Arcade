@@ -12,6 +12,7 @@
 #include <arcade/IAsset.hpp>
 #include <arcade/IDisplay.hpp>
 #include <arcade/IGameObject.hpp>
+#include <arcade/graphics/units.hpp>
 #include <arcade/types.hpp>
 
 #include "Sdl2Display.hpp"
@@ -36,7 +37,7 @@ namespace arcade
             throw Error("failed to initialize SDL2");
 
         this->_window = SDL_CreateWindow("Arcade (SDL2)", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-            DEFAULT_SIZE.x, DEFAULT_SIZE.y, SDL_WINDOW_RESIZABLE);
+            WINDOW_SIZE_PIXELS.x, WINDOW_SIZE_PIXELS.y, SDL_WINDOW_RESIZABLE);
         if (!this->_window)
             throw Error("failed to initialize window");
 
@@ -44,7 +45,7 @@ namespace arcade
         if (!this->_renderer)
             throw Error("failed to initialize window");
         SDL_SetRenderDrawBlendMode(this->_renderer, SDL_BLENDMODE_BLEND);
-        this->updateSize(DEFAULT_SIZE);
+        this->updateSize(WINDOW_SIZE_UNITS);
         std::cout << "[sdl2]: setup" << std::endl;
     }
 
@@ -91,7 +92,7 @@ namespace arcade
             this->updateSize(event.size.newSize);
             event.size.newSize = this->_size;
 
-            std::cout << "Resized to " << this->_size.x << "x" << this->_size.y << "px" << std::endl;
+            std::cout << "Resized to " << this->_size.x << "x" << this->_size.y << " units" << std::endl;
         }
 
         return true;
@@ -134,6 +135,6 @@ namespace arcade
         if (SDL_GetRendererOutputSize(this->_renderer, &w, &h) != 0)
             this->_size = defaultSize;
         else
-            this->_size = {static_cast<unsigned int>(std::max(0, w)), static_cast<unsigned int>(std::max(0, h))};
+            this->_size = toUnits(static_cast<vec2u>(vec2i{std::max(0, w), std::max(0, h)}));
     }
 } // namespace arcade

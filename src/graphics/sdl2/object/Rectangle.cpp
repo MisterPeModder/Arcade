@@ -3,6 +3,7 @@
 
 #include <arcade/Color.hpp>
 #include <arcade/IGameObject.hpp>
+#include <arcade/graphics/units.hpp>
 #include <arcade/types.hpp>
 
 #include "../asset/Texture.hpp"
@@ -17,9 +18,11 @@ namespace arcade
     }
 
     Rectangle::Rectangle(SDL_Renderer *renderer, SDL_Texture *sprite, vec2u size)
-        : _dims({0, 0, static_cast<int>(size.x), static_cast<int>(size.y)}), _renderer(renderer), _sprite(sprite),
-          _foregroundColor(Color::Transparent), _backgroundColor(Color::Transparent)
+        : _renderer(renderer), _sprite(sprite), _foregroundColor(Color::Transparent),
+          _backgroundColor(Color::Transparent)
     {
+        vec2i scaled = toPixels(static_cast<vec2i>(vec2u{size.x, size.y}));
+        this->_dims = {0, 0, scaled.x, scaled.y};
     }
 
     Rectangle::Rectangle(Rectangle &&other)
@@ -68,7 +71,7 @@ namespace arcade
         if (this->_backgroundColor.toInteger() != Color::Transparent.toInteger())
             this->drawColor(this->_backgroundColor);
 
-        // Draw forground, if present
+        // Draw foreground, if present
         if (this->_sprite)
             SDL_RenderCopy(this->_renderer, this->_sprite, nullptr, &this->_dims);
         else
@@ -101,18 +104,19 @@ namespace arcade
 
     vec2u Rectangle::getSize() const
     {
-        return {static_cast<unsigned int>(this->_dims.w), static_cast<unsigned int>(this->_dims.h)};
+        return toUnits(static_cast<vec2u>(vec2i{this->_dims.w, this->_dims.h}));
     }
 
     vec2i Rectangle::getPosition() const
     {
-        return {this->_dims.x, this->_dims.y};
+        return toUnits(vec2i{this->_dims.x, this->_dims.y});
     }
 
     void Rectangle::setPosition(vec2i pos)
     {
-        this->_dims.x = pos.x;
-        this->_dims.y = pos.y;
+        vec2i scaled = toPixels(pos);
+        this->_dims.x = scaled.x;
+        this->_dims.y = scaled.y;
     }
 
     void Rectangle::setForeground(Color color, DefaultColor)
