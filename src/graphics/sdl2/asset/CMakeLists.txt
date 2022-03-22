@@ -3,6 +3,8 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/graphics/sdl2/asset)
 
 set(SRC
     ${SRC}
+    ${SRCROOT}/Font.cpp
+    ${INCROOT}/Font.hpp
     ${SRCROOT}/Texture.cpp
     ${INCROOT}/Texture.hpp
     PARENT_SCOPE

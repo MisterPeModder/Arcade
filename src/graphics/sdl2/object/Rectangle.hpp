@@ -15,6 +15,7 @@
 
 namespace arcade
 {
+    class Font;
     class Texture;
 
     class Rectangle : public IGameObject {
@@ -31,6 +32,7 @@ namespace arcade
         void draw() const;
 
         static std::unique_ptr<Rectangle> create(SDL_Renderer *renderer, Texture const *texture, vec2u size);
+        static std::unique_ptr<Rectangle> create(SDL_Renderer *renderer, Font const *font, std::string_view text);
 
         Type getType() const override final;
         vec2u getSize() const override final;

@@ -18,6 +18,7 @@
 #include <arcade/types.hpp>
 
 #include "Sdl2Display.hpp"
+#include "asset/Font.hpp"
 #include "asset/Texture.hpp"
 #include "event.hpp"
 #include "object/Rectangle.hpp"
@@ -90,6 +91,7 @@ namespace arcade
 
         switch (type) {
             case IAsset::Type::Texture: return Texture::fromFile(path);
+            case IAsset::Type::Font: return Font::fromFile(path);
             default: return std::unique_ptr<IAsset>();
         }
     }
@@ -134,9 +136,11 @@ namespace arcade
 
     std::unique_ptr<IGameObject> Sdl2Display::createTextObject(std::string_view text, IAsset const *font) const
     {
-        (void)text;
-        (void)font;
-        return std::unique_ptr<IGameObject>();
+        Font const *f = dynamic_cast<Font const *>(font);
+
+        if (font != nullptr && f == nullptr)
+            throw std::logic_error("textObject asset must be of font type");
+        return Rectangle::create(this->_renderer, f, text);
     }
 
     std::unique_ptr<IGameObject> Sdl2Display::createRectObject(vec2u size, IAsset const *texture) const
