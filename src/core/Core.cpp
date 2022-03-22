@@ -56,6 +56,8 @@ namespace arcade
         std::chrono::steady_clock clock;
         auto lastUpdate(clock.now());
 
+        if (this->_game)
+            this->_game->setState(IGame::State::Running);
         std::cout << "\nRunning..." << std::endl;
         for (;;) {
             // Poll all event and forward each to the current game (if any)
@@ -67,12 +69,19 @@ namespace arcade
             }
 
             if (this->_game) {
-                auto currentUpdate(clock.now());
-                std::chrono::duration<double> elapsed(currentUpdate - lastUpdate);
+                IGame::State state(this->_game->getState());
 
-                // Update the game's logic
-                this->_game->update(elapsed.count());
-                lastUpdate = currentUpdate;
+                if (state == IGame::State::Ended) {
+                    std::cout << "Game ended, final score: " << this->_game->getScore() << std::endl;
+                    return;
+                } else if (state == IGame::State::Running) {
+                    auto currentUpdate(clock.now());
+                    std::chrono::duration<double> elapsed(currentUpdate - lastUpdate);
+
+                    // Update the game's logic
+                    this->_game->update(elapsed.count());
+                    lastUpdate = currentUpdate;
+                }
 
                 // Render the game
                 this->_game->draw();
