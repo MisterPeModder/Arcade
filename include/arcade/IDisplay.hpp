@@ -18,9 +18,9 @@
 #include <memory>
 #include <string_view>
 
+#include "Color.hpp"
 #include "IAsset.hpp"
 #include "types.hpp"
-#include "Color.hpp"
 
 namespace arcade
 {
@@ -93,7 +93,7 @@ namespace arcade
         virtual bool pollEvent(Event &event) = 0;
 
         /// Clear the render target and fill it with the given color.
-        /// 
+        ///
         /// @note This function must be called before render().
         /// @note Calling this method without calling IDisplay::setup() leads to <b>undefined behavior</b>.
         ///
