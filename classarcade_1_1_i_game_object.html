@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Arcane: arcade::IGameObject Class Reference</title>
+<title>Arcade: arcade::IGameObject Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Arcane
+   <div id="projectname">Arcade
    &#160;<span id="projectnumber">0.1.0</span>
    </div>
    <div id="projectbrief">The Arcade Project at EPITECH School</div>
@@ -117,6 +117,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:acb13e9433f6da432ede2535302939dab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad343cf72bbda2c8293ab04b451601a5e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_game_object.html#ad343cf72bbda2c8293ab04b451601a5e">setPosition</a> (<a class="el" href="types_8hpp.html#a8eb1c23ef11fddb9a63c3dc65a7f636a">vec2i</a> pos)=0</td></tr>
 <tr class="separator:ad343cf72bbda2c8293ab04b451601a5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5b19f17058dfc22ee7afc7a7986a5d9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_game_object.html#ab5b19f17058dfc22ee7afc7a7986a5d9">setForeground</a> (<a class="el" href="classarcade_1_1_color.html">Color</a> color, <a class="el" href="_color_8hpp.html#a80d5823a0c22bb63d062804cc76191db">DefaultColor</a> backup=DefaultColor::White)=0</td></tr>
+<tr class="separator:ab5b19f17058dfc22ee7afc7a7986a5d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee0ca0d80bc45bcce1631180d57850cd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_game_object.html#aee0ca0d80bc45bcce1631180d57850cd">setBackground</a> (<a class="el" href="classarcade_1_1_color.html">Color</a> color, <a class="el" href="_color_8hpp.html#a80d5823a0c22bb63d062804cc76191db">DefaultColor</a> backup=DefaultColor::Transparent)=0</td></tr>
+<tr class="separator:aee0ca0d80bc45bcce1631180d57850cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A movable, drawable game object such as text or sprites. </p>
@@ -227,6 +231,94 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>The type of this object. </dd></dl>
+
+</div>
+</div>
+<a id="aee0ca0d80bc45bcce1631180d57850cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee0ca0d80bc45bcce1631180d57850cd">&#9670;&nbsp;</a></span>setBackground()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void arcade::IGameObject::setBackground </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classarcade_1_1_color.html">Color</a>&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_color_8hpp.html#a80d5823a0c22bb63d062804cc76191db">DefaultColor</a>&#160;</td>
+          <td class="paramname"><em>backup</em> = <code>DefaultColor::Transparent</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Change the background color of the game object.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">color</td><td>32-bit ARGB color to set. </td></tr>
+    <tr><td class="paramname">backup</td><td>8bit color to set if the display doesn't support 32-bit ARGB colors. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab5b19f17058dfc22ee7afc7a7986a5d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5b19f17058dfc22ee7afc7a7986a5d9">&#9670;&nbsp;</a></span>setForeground()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void arcade::IGameObject::setForeground </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classarcade_1_1_color.html">Color</a>&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_color_8hpp.html#a80d5823a0c22bb63d062804cc76191db">DefaultColor</a>&#160;</td>
+          <td class="paramname"><em>backup</em> = <code>DefaultColor::White</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Change the foreground color of the game object.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">color</td><td>32-bit ARGB <a class="el" href="classarcade_1_1_color.html" title="32-bit ARGB Color.">Color</a> to set. </td></tr>
+    <tr><td class="paramname">backup</td><td>8bit color to set if the display doesn't support 32-bit ARGB colors. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

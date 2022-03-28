@@ -1,7 +1,9 @@
 <map id="arcade::Event" name="arcade::Event">
-<area shape="rect" id="node1" title=" " alt="" coords="351,85,461,112"/>
-<area shape="rect" id="node2" href="$structarcade_1_1_event_1_1_size_event.html" title="Size events parameters (EventType::Resized)." alt="" coords="17,5,199,32"/>
-<area shape="rect" id="node3" href="$structarcade_1_1_event_1_1_key_event.html" title="Keyboard event parameters (EventType::KeyPressed, EventType::KeyReleased)." alt="" coords="18,56,198,83"/>
-<area shape="rect" id="node4" href="$structarcade_1_1_event_1_1_mouse_button_event.html" title="Mouse buttons events parameters (EventType::MouseButtonPressed, EventType::MouseButtonReleased)." alt="" coords="5,107,211,149"/>
-<area shape="rect" id="node5" href="$structarcade_1_1_event_1_1_mouse_move_event.html" title="Mouse move event parameters (EventType::MouseMoved)" alt="" coords="9,173,207,214"/>
+<area shape="rect" id="node1" title=" " alt="" coords="632,95,743,121"/>
+<area shape="rect" id="node2" href="$structarcade_1_1_event_1_1_size_event.html" title="Size events parameters (Event::Type::Resized)." alt="" coords="298,21,481,48"/>
+<area shape="rect" id="node3" href="$structarcade_1_1vec2.html" title=" " alt="" coords="5,14,184,55"/>
+<area shape="rect" id="node4" href="$structarcade_1_1_event_1_1_key_event.html" title="Keyboard event parameters (Event::Type::KeyPressed, Event::Type::KeyReleased)." alt="" coords="299,72,479,99"/>
+<area shape="rect" id="node5" href="$structarcade_1_1_event_1_1_mouse_button_event.html" title="Mouse buttons events parameters (Event::Type::MouseButtonPressed, Event::Type::MouseButtonReleased)." alt="" coords="287,123,492,165"/>
+<area shape="rect" id="node6" href="$structarcade_1_1vec2.html" title=" " alt="" coords="19,165,171,192"/>
+<area shape="rect" id="node7" href="$structarcade_1_1_event_1_1_mouse_move_event.html" title="Mouse move event parameters (Event::Type::MouseMoved)" alt="" coords="290,189,489,230"/>
 </map>

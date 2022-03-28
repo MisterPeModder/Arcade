@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Arcane: src/interface/include/arcade/IGame.hpp Source File</title>
+<title>Arcade: src/interface/include/arcade/IGame.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Arcane
+   <div id="projectname">Arcade
    &#160;<span id="projectnumber">0.1.0</span>
    </div>
    <div id="projectbrief">The Arcade Project at EPITECH School</div>
@@ -100,47 +100,59 @@ $(document).ready(function(){initNavTree('_i_game_8hpp_source.html',''); initRes
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef ARCADE_IGAME_HPP_</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define ARCADE_IGAME_HPP_</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span>arcade</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">class </span>IDisplay;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">struct </span>Event;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="_i_game_8hpp.html#a1751ba9e6c1f5fe4d3682c518ff54317">   16</a></span>&#160;<span class="preprocessor">#define ARCADE_GAME_ENTRY_POINT extern &quot;C&quot; ::arcade::IGame *arcade_GameEntryPoint()</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;string_view&gt;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classarcade_1_1_i_game.html">   21</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classarcade_1_1_i_game.html">IGame</a> {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;      <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0">   24</a></span>&#160;        <span class="keyword">enum class</span> <a class="code" href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0">State</a> {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <a class="code" href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0a7381d487d18845b379422325c0a768d6">Loaded</a>,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <a class="code" href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0a5bda814c4aedb126839228f1a3d92f09">Running</a>,</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <a class="code" href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0ae99180abf47a8b3a856e0bcb2656990a">Paused</a>,</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <a class="code" href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0a0157fbb99be9622bdaa6e544270c0622">Ended</a>,</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        };</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keyword">virtual</span> ~<a class="code" href="classarcade_1_1_i_game.html">IGame</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_game.html#a270f874ef2ac72109561fb19fabc7a36">setup</a>(<a class="code" href="classarcade_1_1_i_display.html">IDisplay</a> &amp;display) = 0;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_game.html#aa46cf332a053cdbbcc248be278e068c2">close</a>() = 0;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_game.html#ab5c3c6583f3f5787b9bfb32955a299e2">setDisplay</a>(<a class="code" href="classarcade_1_1_i_display.html">IDisplay</a> &amp;display) = 0;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_game.html#ad1ff960f214fda9022b353c6a17b143f">setState</a>(<a class="code" href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0">State</a> state) = 0;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0">State</a> <a class="code" href="classarcade_1_1_i_game.html#a13fcbd865301bf154a7901b36a021bd4">getState</a>() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classarcade_1_1_i_game.html#a6333182860ca49dcf35fddf4e929d190">getScore</a>() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_game.html#af7ea7eb63d2dc8adf4b7fd7fe72c5eee">update</a>(<span class="keywordtype">float</span> delta) = 0;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">namespace </span>arcade</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">class </span>IDisplay;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">struct </span>Event;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classarcade_1_1_i_game.html">   26</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classarcade_1_1_i_game.html">IGame</a> {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;      <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0">   29</a></span>&#160;        <span class="keyword">enum class</span> <a class="code" href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0">State</a> {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <a class="code" href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0a7381d487d18845b379422325c0a768d6">Loaded</a>,</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <a class="code" href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0a5bda814c4aedb126839228f1a3d92f09">Running</a>,</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <a class="code" href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0ae99180abf47a8b3a856e0bcb2656990a">Paused</a>,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <a class="code" href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0a0157fbb99be9622bdaa6e544270c0622">Ended</a>,</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        };</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classarcade_1_1_i_game.html#a50c14b480f3858c6e3ec22a02c39c817">   42</a></span>&#160;        <span class="keyword">using</span> <a class="code" href="classarcade_1_1_i_game.html#a50c14b480f3858c6e3ec22a02c39c817">EntryPoint</a> = <a class="code" href="classarcade_1_1_i_game.html">IGame</a> *(*)();</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classarcade_1_1_i_game.html#aabd5a73fe4dd6547017b886a1d1e9f08">   44</a></span>&#160;        <span class="keyword">static</span> constexpr std::string_view <a class="code" href="classarcade_1_1_i_game.html#aabd5a73fe4dd6547017b886a1d1e9f08">ENTRY_POINT</a> = <span class="stringliteral">&quot;arcade_GameEntryPoint&quot;</span>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keyword">virtual</span> ~<a class="code" href="classarcade_1_1_i_game.html">IGame</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_game.html#a270f874ef2ac72109561fb19fabc7a36">setup</a>(<a class="code" href="classarcade_1_1_i_display.html">IDisplay</a> &amp;display) = 0;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_game.html#aa46cf332a053cdbbcc248be278e068c2">close</a>() = 0;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_game.html#ab5c3c6583f3f5787b9bfb32955a299e2">setDisplay</a>(<a class="code" href="classarcade_1_1_i_display.html">IDisplay</a> &amp;display) = 0;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_game.html#ad1ff960f214fda9022b353c6a17b143f">setState</a>(<a class="code" href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0">State</a> state) = 0;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0">State</a> <a class="code" href="classarcade_1_1_i_game.html#a13fcbd865301bf154a7901b36a021bd4">getState</a>() <span class="keyword">const</span> = 0;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_game.html#a59a38fac94e9ab1d071761880853bfce">handleEvent</a>(<a class="code" href="structarcade_1_1_event.html">Event</a> &amp;event) = 0;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    };</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;} <span class="comment">// namespace arcade</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif // !defined(ARCADE_IGAME_HPP_)</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classarcade_1_1_i_game.html#a6333182860ca49dcf35fddf4e929d190">getScore</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_game.html#af7ea7eb63d2dc8adf4b7fd7fe72c5eee">update</a>(<span class="keywordtype">float</span> delta) = 0;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_game.html#a235fe6afa971aa40c14eeb22ea9f82f2">draw</a>() = 0;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_game.html#a59a38fac94e9ab1d071761880853bfce">handleEvent</a>(<a class="code" href="structarcade_1_1_event.html">Event</a> &amp;event) = 0;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    };</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;} <span class="comment">// namespace arcade</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#endif // !defined(ARCADE_IGAME_HPP_)</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclassarcade_1_1_i_game_html"><div class="ttname"><a href="classarcade_1_1_i_game.html">arcade::IGame</a></div><div class="ttdoc">A game instance.</div><div class="ttdef"><b>Definition:</b> IGame.hpp:21</div></div>
-<div class="ttc" id="aclassarcade_1_1_i_game_html_a4c56412b9ff9a69bddada6ea628e83e0"><div class="ttname"><a href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0">arcade::IGame::State</a></div><div class="ttdeci">State</div><div class="ttdoc">A game's state.</div><div class="ttdef"><b>Definition:</b> IGame.hpp:24</div></div>
+<div class="ttc" id="aclassarcade_1_1_i_game_html"><div class="ttname"><a href="classarcade_1_1_i_game.html">arcade::IGame</a></div><div class="ttdoc">A game instance.</div><div class="ttdef"><b>Definition:</b> IGame.hpp:26</div></div>
+<div class="ttc" id="aclassarcade_1_1_i_game_html_a50c14b480f3858c6e3ec22a02c39c817"><div class="ttname"><a href="classarcade_1_1_i_game.html#a50c14b480f3858c6e3ec22a02c39c817">arcade::IGame::EntryPoint</a></div><div class="ttdeci">IGame *(*)() EntryPoint</div><div class="ttdef"><b>Definition:</b> IGame.hpp:42</div></div>
+<div class="ttc" id="aclassarcade_1_1_i_game_html_aabd5a73fe4dd6547017b886a1d1e9f08"><div class="ttname"><a href="classarcade_1_1_i_game.html#aabd5a73fe4dd6547017b886a1d1e9f08">arcade::IGame::ENTRY_POINT</a></div><div class="ttdeci">static constexpr std::string_view ENTRY_POINT</div><div class="ttdoc">Expected name of the Game entry point.</div><div class="ttdef"><b>Definition:</b> IGame.hpp:44</div></div>
+<div class="ttc" id="aclassarcade_1_1_i_game_html_a4c56412b9ff9a69bddada6ea628e83e0"><div class="ttname"><a href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0">arcade::IGame::State</a></div><div class="ttdeci">State</div><div class="ttdoc">A game's state.</div><div class="ttdef"><b>Definition:</b> IGame.hpp:29</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_game_html_a4c56412b9ff9a69bddada6ea628e83e0ae99180abf47a8b3a856e0bcb2656990a"><div class="ttname"><a href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0ae99180abf47a8b3a856e0bcb2656990a">arcade::IGame::State::Paused</a></div><div class="ttdeci">@ Paused</div><div class="ttdoc">When a previously running game is paused.</div></div>
-<div class="ttc" id="aclassarcade_1_1_i_display_html"><div class="ttname"><a href="classarcade_1_1_i_display.html">arcade::IDisplay</a></div><div class="ttdef"><b>Definition:</b> IDisplay.hpp:29</div></div>
+<div class="ttc" id="aclassarcade_1_1_i_display_html"><div class="ttname"><a href="classarcade_1_1_i_display.html">arcade::IDisplay</a></div><div class="ttdef"><b>Definition:</b> IDisplay.hpp:32</div></div>
+<div class="ttc" id="aclassarcade_1_1_i_game_html_a235fe6afa971aa40c14eeb22ea9f82f2"><div class="ttname"><a href="classarcade_1_1_i_game.html#a235fe6afa971aa40c14eeb22ea9f82f2">arcade::IGame::draw</a></div><div class="ttdeci">virtual void draw()=0</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_game_html_a6333182860ca49dcf35fddf4e929d190"><div class="ttname"><a href="classarcade_1_1_i_game.html#a6333182860ca49dcf35fddf4e929d190">arcade::IGame::getScore</a></div><div class="ttdeci">virtual unsigned int getScore() const =0</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_game_html_af7ea7eb63d2dc8adf4b7fd7fe72c5eee"><div class="ttname"><a href="classarcade_1_1_i_game.html#af7ea7eb63d2dc8adf4b7fd7fe72c5eee">arcade::IGame::update</a></div><div class="ttdeci">virtual void update(float delta)=0</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_game_html_a270f874ef2ac72109561fb19fabc7a36"><div class="ttname"><a href="classarcade_1_1_i_game.html#a270f874ef2ac72109561fb19fabc7a36">arcade::IGame::setup</a></div><div class="ttdeci">virtual void setup(IDisplay &amp;display)=0</div></div>
@@ -148,7 +160,7 @@ $(document).ready(function(){initNavTree('_i_game_8hpp_source.html',''); initRes
 <div class="ttc" id="aclassarcade_1_1_i_game_html_ab5c3c6583f3f5787b9bfb32955a299e2"><div class="ttname"><a href="classarcade_1_1_i_game.html#ab5c3c6583f3f5787b9bfb32955a299e2">arcade::IGame::setDisplay</a></div><div class="ttdeci">virtual void setDisplay(IDisplay &amp;display)=0</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_game_html_a13fcbd865301bf154a7901b36a021bd4"><div class="ttname"><a href="classarcade_1_1_i_game.html#a13fcbd865301bf154a7901b36a021bd4">arcade::IGame::getState</a></div><div class="ttdeci">virtual State getState() const =0</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_game_html_aa46cf332a053cdbbcc248be278e068c2"><div class="ttname"><a href="classarcade_1_1_i_game.html#aa46cf332a053cdbbcc248be278e068c2">arcade::IGame::close</a></div><div class="ttdeci">virtual void close()=0</div></div>
-<div class="ttc" id="astructarcade_1_1_event_html"><div class="ttname"><a href="structarcade_1_1_event.html">arcade::Event</a></div><div class="ttdef"><b>Definition:</b> Event.hpp:20</div></div>
+<div class="ttc" id="astructarcade_1_1_event_html"><div class="ttname"><a href="structarcade_1_1_event.html">arcade::Event</a></div><div class="ttdef"><b>Definition:</b> Event.hpp:22</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_game_html_a4c56412b9ff9a69bddada6ea628e83e0a0157fbb99be9622bdaa6e544270c0622"><div class="ttname"><a href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0a0157fbb99be9622bdaa6e544270c0622">arcade::IGame::State::Ended</a></div><div class="ttdeci">@ Ended</div><div class="ttdoc">When the game is ended.</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_game_html_a4c56412b9ff9a69bddada6ea628e83e0a5bda814c4aedb126839228f1a3d92f09"><div class="ttname"><a href="classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0a5bda814c4aedb126839228f1a3d92f09">arcade::IGame::State::Running</a></div><div class="ttdeci">@ Running</div><div class="ttdoc">After the first update.</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_game_html_ad1ff960f214fda9022b353c6a17b143f"><div class="ttname"><a href="classarcade_1_1_i_game.html#ad1ff960f214fda9022b353c6a17b143f">arcade::IGame::setState</a></div><div class="ttdeci">virtual void setState(State state)=0</div></div>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['pollevent_111',['pollEvent',['../classarcade_1_1_sdl2_display.html#acd58aebedf97bf6b0eea751b5525b3db',1,'arcade::Sdl2Display::pollEvent()'],['../classarcade_1_1_i_display.html#a650424e0b07da29ebe86baf4bc691a26',1,'arcade::IDisplay::pollEvent()']]]
+  ['operator_20vec2_3c_20u_20_3e_138',['operator vec2&lt; U &gt;',['../structarcade_1_1vec2.html#a24b43c3f564170983acf43ce9b87202c',1,'arcade::vec2']]],
+  ['operator_2a_139',['operator*',['../structarcade_1_1vec2.html#a271d467b6fabb82c6eea2fe5b4a3a6ba',1,'arcade::vec2']]]
 ];

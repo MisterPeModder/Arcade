@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['keypressed_146',['KeyPressed',['../structarcade_1_1_event.html#a9a6cd2f128954ddd8eedf418109af076ac17e6984c1e5a887a49831beadee6bca',1,'arcade::Event']]],
-  ['keyreleased_147',['KeyReleased',['../structarcade_1_1_event.html#a9a6cd2f128954ddd8eedf418109af076a4a77f07c8ad223b71ab4ce78a63841ab',1,'arcade::Event']]]
+  ['keypressed_194',['KeyPressed',['../structarcade_1_1_event.html#a6815a7d96992ea58d942f46e69582078ac17e6984c1e5a887a49831beadee6bca',1,'arcade::Event']]],
+  ['keyreleased_195',['KeyReleased',['../structarcade_1_1_event.html#a6815a7d96992ea58d942f46e69582078a4a77f07c8ad223b71ab4ce78a63841ab',1,'arcade::Event']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['vec2i_134',['vec2i',['../types_8hpp.html#a8eb1c23ef11fddb9a63c3dc65a7f636a',1,'arcade']]],
-  ['vec2u_135',['vec2u',['../types_8hpp.html#a9030af5de12a940030414fb458cad430',1,'arcade']]]
+  ['key_181',['Key',['../structarcade_1_1_event.html#ac694e663d8b1eb622cb533fb08a1c804',1,'arcade::Event']]]
 ];

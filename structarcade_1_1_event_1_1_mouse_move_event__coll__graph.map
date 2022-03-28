@@ -1,0 +1,4 @@
+<map id="arcade::Event::MouseMoveEvent" name="arcade::Event::MouseMoveEvent">
+<area shape="rect" id="node1" title="Mouse move event parameters (Event::Type::MouseMoved)" alt="" coords="5,95,204,136"/>
+<area shape="rect" id="node2" href="$structarcade_1_1vec2.html" title=" " alt="" coords="29,5,181,32"/>
+</map>

@@ -1,5 +1,5 @@
 var structarcade_1_1_event_1_1_size_event =
 [
-    [ "height", "structarcade_1_1_event_1_1_size_event.html#a8274919b17d02b87e3685d288f53f2da", null ],
-    [ "width", "structarcade_1_1_event_1_1_size_event.html#a43bfa9f350131f6e558b3ef910549240", null ]
+    [ "newSize", "structarcade_1_1_event_1_1_size_event.html#a84bb1198f52dced0cfebe060a4a623e0", null ],
+    [ "oldSize", "structarcade_1_1_event_1_1_size_event.html#a239383206f48d2be726eb809f6265292", null ]
 ];

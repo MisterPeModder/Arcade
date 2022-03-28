@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Arcane: src/interface/include/arcade/IDisplay.hpp Source File</title>
+<title>Arcade: src/interface/include/arcade/IDisplay.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Arcane
+   <div id="projectname">Arcade
    &#160;<span id="projectnumber">0.1.0</span>
    </div>
    <div id="projectbrief">The Arcade Project at EPITECH School</div>
@@ -100,72 +100,80 @@ $(document).ready(function(){initNavTree('_i_display_8hpp_source.html',''); init
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef IDISPLAY_HPP_</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define IDISPLAY_HPP_</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;string_view&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="_i_display_8hpp.html#a63f004c6386745fe3523df4c8b3d7b9e">   16</a></span>&#160;<span class="preprocessor">#define ARCADE_DISPLAY_ENTRY_POINT extern &quot;C&quot; ::arcade::IDisplay *arcade_DisplayEntryPoint()</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_i_asset_8hpp.html">IAsset.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">types.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;string_view&gt;</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">namespace </span>arcade</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">class </span>IGameObject;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">struct </span>Event;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classarcade_1_1_i_display.html">   29</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classarcade_1_1_i_display.html">IDisplay</a> {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;      <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">   32</a></span>&#160;        <span class="keyword">enum class</span> <a class="code" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">Type</a> {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <a class="code" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378a514d8a494f087c0d549b9536c2ef3bd9">Terminal</a>,</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <a class="code" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378aef38566fb7526f9b2d3ed0411249b532">Graphical2D</a>,</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        };</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">virtual</span> ~<a class="code" href="classarcade_1_1_i_display.html">IDisplay</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">setup</a>() = 0;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_display.html#a103bb51dca12a2ace9aa23bcc3703800">close</a>() = 0;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">Type</a> <a class="code" href="classarcade_1_1_i_display.html#a5d015d7fbe88cdf66d5eca4183c2df08">getType</a>() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keyword">virtual</span> std::unique_ptr&lt;IAsset&gt; <a class="code" href="classarcade_1_1_i_display.html#a63bf0cd8ed338bdd7791099d3fffed54">loadAsset</a>(std::string_view name, <a class="code" href="classarcade_1_1_i_asset.html#ae3a66b9e4eab80bac718dfcc6bcf71b5">IAsset::Type</a> type) = 0;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="structarcade_1_1vec2.html">vec2u</a> <a class="code" href="classarcade_1_1_i_display.html#a2cbd526578e6f85d4f7714a2b6230ebf">getSize</a>() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classarcade_1_1_i_display.html#a650424e0b07da29ebe86baf4bc691a26">pollEvent</a>(<a class="code" href="structarcade_1_1_event.html">Event</a> &amp;event) = 0;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_i_asset_8hpp.html">IAsset.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">types.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">namespace </span>arcade</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">class </span>IGameObject;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">struct </span>Event;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classarcade_1_1_i_display.html">   32</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classarcade_1_1_i_display.html">IDisplay</a> {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;      <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">   35</a></span>&#160;        <span class="keyword">enum class</span> <a class="code" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">Type</a> {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <a class="code" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378a514d8a494f087c0d549b9536c2ef3bd9">Terminal</a>,</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <a class="code" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378aef38566fb7526f9b2d3ed0411249b532">Graphical2D</a>,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        };</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classarcade_1_1_i_display.html#a699bc6f970bc8f5ecb4c571a395d2243">   44</a></span>&#160;        <span class="keyword">using</span> <a class="code" href="classarcade_1_1_i_display.html#a699bc6f970bc8f5ecb4c571a395d2243">EntryPoint</a> = <a class="code" href="classarcade_1_1_i_display.html">IDisplay</a> *(*)();</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classarcade_1_1_i_display.html#ae59f3dfc836dd34f2995286940442eea">   46</a></span>&#160;        <span class="keyword">static</span> constexpr std::string_view <a class="code" href="classarcade_1_1_i_display.html#ae59f3dfc836dd34f2995286940442eea">ENTRY_POINT</a> = <span class="stringliteral">&quot;arcade_DisplayEntryPoint&quot;</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keyword">virtual</span> ~<a class="code" href="classarcade_1_1_i_display.html">IDisplay</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">setup</a>() = 0;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_display.html#a103bb51dca12a2ace9aa23bcc3703800">close</a>() = 0;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">Type</a> <a class="code" href="classarcade_1_1_i_display.html#a5d015d7fbe88cdf66d5eca4183c2df08">getType</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keyword">virtual</span> std::unique_ptr&lt;IAsset&gt; <a class="code" href="classarcade_1_1_i_display.html#a63bf0cd8ed338bdd7791099d3fffed54">loadAsset</a>(std::string_view name, <a class="code" href="classarcade_1_1_i_asset.html#ae3a66b9e4eab80bac718dfcc6bcf71b5">IAsset::Type</a> type) = 0;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="structarcade_1_1vec2.html">vec2u</a> <a class="code" href="classarcade_1_1_i_display.html#a2cbd526578e6f85d4f7714a2b6230ebf">getSize</a>() <span class="keyword">const</span> = 0;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_display.html#ab4c1b8b7c91798dc355a3f1f4102aaf2">render</a>() = 0;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_display.html#a78db24c9bd6b6822b54918bd38ea5285">drawGameObject</a>(<span class="keyword">const</span> <a class="code" href="classarcade_1_1_i_game_object.html">IGameObject</a> &amp;<span class="keywordtype">object</span>) = 0;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classarcade_1_1_i_display.html#a650424e0b07da29ebe86baf4bc691a26">pollEvent</a>(<a class="code" href="structarcade_1_1_event.html">Event</a> &amp;event) = 0;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_display.html#ab4c1b8b7c91798dc355a3f1f4102aaf2">render</a>() = 0;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="keyword">virtual</span> std::unique_ptr&lt;IGameObject&gt; <a class="code" href="classarcade_1_1_i_display.html#a08e8c40d467e666ac4ceee795b310f04">createTextObject</a>(std::string_view text, <a class="code" href="classarcade_1_1_i_asset.html">IAsset</a> <span class="keyword">const</span> &amp;font) <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keyword">virtual</span> std::unique_ptr&lt;IGameObject&gt; <a class="code" href="classarcade_1_1_i_display.html#adce4297fa6cdde470c1a2c8871c1cbdc">createRectObject</a>(<a class="code" href="structarcade_1_1vec2.html">vec2u</a> size, <a class="code" href="classarcade_1_1_i_asset.html">IAsset</a> <span class="keyword">const</span> &amp;texture) <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    };</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;} <span class="comment">// namespace arcade</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor">#endif // !defined(ARCADE_DISPLAY_HPP_)</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classarcade_1_1_i_display.html#a78db24c9bd6b6822b54918bd38ea5285">drawGameObject</a>(<span class="keyword">const</span> <a class="code" href="classarcade_1_1_i_game_object.html">IGameObject</a> &amp;<span class="keywordtype">object</span>) = 0;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keyword">virtual</span> std::unique_ptr&lt;IGameObject&gt; <a class="code" href="classarcade_1_1_i_display.html#af26a81c8d57e58d39e1387b30af75ca8">createTextObject</a>(</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            std::string_view text, <a class="code" href="classarcade_1_1_i_asset.html">IAsset</a> <span class="keyword">const</span> *font = <span class="keyword">nullptr</span>) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="keyword">virtual</span> std::unique_ptr&lt;IGameObject&gt; <a class="code" href="classarcade_1_1_i_display.html#a4ae7d4a1eb4732962225fb3257dd375b">createRectObject</a>(<a class="code" href="structarcade_1_1vec2.html">vec2u</a> size, <a class="code" href="classarcade_1_1_i_asset.html">IAsset</a> <span class="keyword">const</span> *texture = <span class="keyword">nullptr</span>) <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    };</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;} <span class="comment">// namespace arcade</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#endif // !defined(ARCADE_DISPLAY_HPP_)</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclassarcade_1_1_i_display_html_ab4c1b8b7c91798dc355a3f1f4102aaf2"><div class="ttname"><a href="classarcade_1_1_i_display.html#ab4c1b8b7c91798dc355a3f1f4102aaf2">arcade::IDisplay::render</a></div><div class="ttdeci">virtual void render()=0</div></div>
+<div class="ttc" id="aclassarcade_1_1_i_display_html_ae59f3dfc836dd34f2995286940442eea"><div class="ttname"><a href="classarcade_1_1_i_display.html#ae59f3dfc836dd34f2995286940442eea">arcade::IDisplay::ENTRY_POINT</a></div><div class="ttdeci">static constexpr std::string_view ENTRY_POINT</div><div class="ttdoc">Expected name of the Display entry point.</div><div class="ttdef"><b>Definition:</b> IDisplay.hpp:46</div></div>
 <div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div></div>
 <div class="ttc" id="aclassarcade_1_1_i_display_html_a650424e0b07da29ebe86baf4bc691a26"><div class="ttname"><a href="classarcade_1_1_i_display.html#a650424e0b07da29ebe86baf4bc691a26">arcade::IDisplay::pollEvent</a></div><div class="ttdeci">virtual bool pollEvent(Event &amp;event)=0</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_asset_html_ae3a66b9e4eab80bac718dfcc6bcf71b5"><div class="ttname"><a href="classarcade_1_1_i_asset.html#ae3a66b9e4eab80bac718dfcc6bcf71b5">arcade::IAsset::Type</a></div><div class="ttdeci">Type</div><div class="ttdoc">The type of an asset.</div><div class="ttdef"><b>Definition:</b> IAsset.hpp:23</div></div>
-<div class="ttc" id="astructarcade_1_1vec2_html"><div class="ttname"><a href="structarcade_1_1vec2.html">arcade::vec2</a></div><div class="ttdoc">A 2D vector.</div><div class="ttdef"><b>Definition:</b> types.hpp:18</div></div>
-<div class="ttc" id="aclassarcade_1_1_i_display_html"><div class="ttname"><a href="classarcade_1_1_i_display.html">arcade::IDisplay</a></div><div class="ttdef"><b>Definition:</b> IDisplay.hpp:29</div></div>
+<div class="ttc" id="astructarcade_1_1vec2_html"><div class="ttname"><a href="structarcade_1_1vec2.html">arcade::vec2&lt; unsigned int &gt;</a></div></div>
+<div class="ttc" id="aclassarcade_1_1_i_display_html"><div class="ttname"><a href="classarcade_1_1_i_display.html">arcade::IDisplay</a></div><div class="ttdef"><b>Definition:</b> IDisplay.hpp:32</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_display_html_a103bb51dca12a2ace9aa23bcc3703800"><div class="ttname"><a href="classarcade_1_1_i_display.html#a103bb51dca12a2ace9aa23bcc3703800">arcade::IDisplay::close</a></div><div class="ttdeci">virtual void close()=0</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_display_html_a63bf0cd8ed338bdd7791099d3fffed54"><div class="ttname"><a href="classarcade_1_1_i_display.html#a63bf0cd8ed338bdd7791099d3fffed54">arcade::IDisplay::loadAsset</a></div><div class="ttdeci">virtual std::unique_ptr&lt; IAsset &gt; loadAsset(std::string_view name, IAsset::Type type)=0</div></div>
-<div class="ttc" id="aclassarcade_1_1_i_display_html_adce4297fa6cdde470c1a2c8871c1cbdc"><div class="ttname"><a href="classarcade_1_1_i_display.html#adce4297fa6cdde470c1a2c8871c1cbdc">arcade::IDisplay::createRectObject</a></div><div class="ttdeci">virtual std::unique_ptr&lt; IGameObject &gt; createRectObject(vec2u size, IAsset const &amp;texture) const =0</div></div>
-<div class="ttc" id="aclassarcade_1_1_i_display_html_a7b525d2efd4000d4ec42407221759378"><div class="ttname"><a href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">arcade::IDisplay::Type</a></div><div class="ttdeci">Type</div><div class="ttdoc">The graphics mode.</div><div class="ttdef"><b>Definition:</b> IDisplay.hpp:32</div></div>
-<div class="ttc" id="aclassarcade_1_1_i_game_object_html"><div class="ttname"><a href="classarcade_1_1_i_game_object.html">arcade::IGameObject</a></div><div class="ttdoc">A movable, drawable game object such as text or sprites.</div><div class="ttdef"><b>Definition:</b> IGameObject.hpp:20</div></div>
-<div class="ttc" id="astructarcade_1_1_event_html"><div class="ttname"><a href="structarcade_1_1_event.html">arcade::Event</a></div><div class="ttdef"><b>Definition:</b> Event.hpp:20</div></div>
+<div class="ttc" id="aclassarcade_1_1_i_display_html_af26a81c8d57e58d39e1387b30af75ca8"><div class="ttname"><a href="classarcade_1_1_i_display.html#af26a81c8d57e58d39e1387b30af75ca8">arcade::IDisplay::createTextObject</a></div><div class="ttdeci">virtual std::unique_ptr&lt; IGameObject &gt; createTextObject(std::string_view text, IAsset const *font=nullptr) const =0</div></div>
+<div class="ttc" id="aclassarcade_1_1_i_display_html_a7b525d2efd4000d4ec42407221759378"><div class="ttname"><a href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">arcade::IDisplay::Type</a></div><div class="ttdeci">Type</div><div class="ttdoc">The graphics mode.</div><div class="ttdef"><b>Definition:</b> IDisplay.hpp:35</div></div>
+<div class="ttc" id="aclassarcade_1_1_i_game_object_html"><div class="ttname"><a href="classarcade_1_1_i_game_object.html">arcade::IGameObject</a></div><div class="ttdoc">A movable, drawable game object such as text or sprites.</div><div class="ttdef"><b>Definition:</b> IGameObject.hpp:21</div></div>
+<div class="ttc" id="astructarcade_1_1_event_html"><div class="ttname"><a href="structarcade_1_1_event.html">arcade::Event</a></div><div class="ttdef"><b>Definition:</b> Event.hpp:22</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_display_html_a7b525d2efd4000d4ec42407221759378aef38566fb7526f9b2d3ed0411249b532"><div class="ttname"><a href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378aef38566fb7526f9b2d3ed0411249b532">arcade::IDisplay::Type::Graphical2D</a></div><div class="ttdeci">@ Graphical2D</div><div class="ttdoc">Flat graphical output.</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_display_html_a3c024465a1ecd427e521487087e22da0"><div class="ttname"><a href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">arcade::IDisplay::setup</a></div><div class="ttdeci">virtual void setup()=0</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_display_html_a2cbd526578e6f85d4f7714a2b6230ebf"><div class="ttname"><a href="classarcade_1_1_i_display.html#a2cbd526578e6f85d4f7714a2b6230ebf">arcade::IDisplay::getSize</a></div><div class="ttdeci">virtual vec2u getSize() const =0</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_display_html_a7b525d2efd4000d4ec42407221759378a514d8a494f087c0d549b9536c2ef3bd9"><div class="ttname"><a href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378a514d8a494f087c0d549b9536c2ef3bd9">arcade::IDisplay::Type::Terminal</a></div><div class="ttdeci">@ Terminal</div><div class="ttdoc">Text-only output.</div></div>
 <div class="ttc" id="a_i_asset_8hpp_html"><div class="ttname"><a href="_i_asset_8hpp.html">IAsset.hpp</a></div></div>
-<div class="ttc" id="aclassarcade_1_1_i_display_html_a08e8c40d467e666ac4ceee795b310f04"><div class="ttname"><a href="classarcade_1_1_i_display.html#a08e8c40d467e666ac4ceee795b310f04">arcade::IDisplay::createTextObject</a></div><div class="ttdeci">virtual std::unique_ptr&lt; IGameObject &gt; createTextObject(std::string_view text, IAsset const &amp;font) const =0</div></div>
+<div class="ttc" id="aclassarcade_1_1_i_display_html_a4ae7d4a1eb4732962225fb3257dd375b"><div class="ttname"><a href="classarcade_1_1_i_display.html#a4ae7d4a1eb4732962225fb3257dd375b">arcade::IDisplay::createRectObject</a></div><div class="ttdeci">virtual std::unique_ptr&lt; IGameObject &gt; createRectObject(vec2u size, IAsset const *texture=nullptr) const =0</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_display_html_a5d015d7fbe88cdf66d5eca4183c2df08"><div class="ttname"><a href="classarcade_1_1_i_display.html#a5d015d7fbe88cdf66d5eca4183c2df08">arcade::IDisplay::getType</a></div><div class="ttdeci">virtual Type getType() const =0</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_asset_html"><div class="ttname"><a href="classarcade_1_1_i_asset.html">arcade::IAsset</a></div><div class="ttdef"><b>Definition:</b> IAsset.hpp:20</div></div>
 <div class="ttc" id="aclassarcade_1_1_i_display_html_a78db24c9bd6b6822b54918bd38ea5285"><div class="ttname"><a href="classarcade_1_1_i_display.html#a78db24c9bd6b6822b54918bd38ea5285">arcade::IDisplay::drawGameObject</a></div><div class="ttdeci">virtual void drawGameObject(const IGameObject &amp;object)=0</div></div>
+<div class="ttc" id="aclassarcade_1_1_i_display_html_a699bc6f970bc8f5ecb4c571a395d2243"><div class="ttname"><a href="classarcade_1_1_i_display.html#a699bc6f970bc8f5ecb4c571a395d2243">arcade::IDisplay::EntryPoint</a></div><div class="ttdeci">IDisplay *(*)() EntryPoint</div><div class="ttdef"><b>Definition:</b> IDisplay.hpp:44</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

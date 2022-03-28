@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['y_132',['y',['../structarcade_1_1_event_1_1_mouse_move_event.html#ae773b1be190d89561231217744c6eee3',1,'arcade::Event::MouseMoveEvent::y()'],['../structarcade_1_1_event_1_1_mouse_button_event.html#ae08313a636b363bce8e7a2a7b0806219',1,'arcade::Event::MouseButtonEvent::y()'],['../structarcade_1_1vec2.html#abac66fd8fde80ffd64d95a9626cd74b9',1,'arcade::vec2::y()']]]
+  ['r_169',['r',['../classarcade_1_1_color.html#a4b3cf4785b3f91a83095364883d8d950',1,'arcade::Color']]],
+  ['red_170',['Red',['../classarcade_1_1_color.html#a87ed6e50a233e170faecda969de4f210',1,'arcade::Color']]]
 ];

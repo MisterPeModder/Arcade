@@ -1,0 +1,4 @@
+<map id="arcade::Event::MouseButtonEvent" name="arcade::Event::MouseButtonEvent">
+<area shape="rect" id="node1" title="Mouse buttons events parameters (Event::Type::MouseButtonPressed, Event::Type::MouseButtonReleased)." alt="" coords="5,95,211,136"/>
+<area shape="rect" id="node2" href="$structarcade_1_1vec2.html" title=" " alt="" coords="32,5,184,32"/>
+</map>

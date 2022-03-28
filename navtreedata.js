@@ -22,7 +22,7 @@ for the JavaScript code in this file
 */
 var NAVTREE =
 [
-  [ "Arcane", "index.html", [
+  [ "Arcade", "index.html", [
     [ "<a href=\"https://github.com/MisterPeModder/Arcade-Interface\"><img src=\"https://img.shields.io/github/license/MisterPeModder/Arcade-Interface\" alt=\"License\"/></a>", "index.html#autotoc_md5", null ],
     [ "Building", "index.html#autotoc_md6", [
       [ "Command Line (via CMake)", "index.html#autotoc_md7", null ]
@@ -30,11 +30,20 @@ var NAVTREE =
     [ "Documentation", "index.html#autotoc_md8", [
       [ "Local Docs", "index.html#autotoc_md9", null ]
     ] ],
+    [ "Implemententing a Game or a Graphics Backend", "creating_a_game_implementation.html", [
+      [ "Game Implementation", "creating_a_game_implementation.html#game", [
+        [ "Explanation", "creating_a_game_implementation.html#game_impl", null ],
+        [ "Full Code", "creating_a_game_implementation.html#game_full_code", null ]
+      ] ],
+      [ "Display Implementation", "creating_a_game_implementation.html#display", [
+        [ "Explanation", "creating_a_game_implementation.html#dispalay_impl", null ],
+        [ "Full Code", "creating_a_game_implementation.html#display_full_code", null ]
+      ] ]
+    ] ],
     [ "How to contribute", "md_src_interface__c_o_n_t_r_i_b_u_t_i_n_g.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
-      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
         [ "Functions", "functions_func.html", null ],
@@ -44,7 +53,11 @@ var NAVTREE =
       ] ]
     ] ],
     [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ]
+      [ "File List", "files.html", "files_dup" ],
+      [ "File Members", "globals.html", [
+        [ "All", "globals.html", null ],
+        [ "Macros", "globals_defs.html", null ]
+      ] ]
     ] ]
   ] ]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['sdl2display_90',['Sdl2Display',['../classarcade_1_1_sdl2_display.html',1,'arcade']]],
-  ['sizeevent_91',['SizeEvent',['../structarcade_1_1_event_1_1_size_event.html',1,'arcade::Event']]]
+  ['vec2_115',['vec2',['../structarcade_1_1vec2.html',1,'arcade']]],
+  ['vec2_3c_20int_20_3e_116',['vec2&lt; int &gt;',['../structarcade_1_1vec2.html',1,'arcade']]],
+  ['vec2_3c_20unsigned_20int_20_3e_117',['vec2&lt; unsigned int &gt;',['../structarcade_1_1vec2.html',1,'arcade']]]
 ];

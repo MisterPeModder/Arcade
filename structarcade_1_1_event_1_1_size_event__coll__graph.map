@@ -1,0 +1,4 @@
+<map id="arcade::Event::SizeEvent" name="arcade::Event::SizeEvent">
+<area shape="rect" id="node1" title="Size events parameters (Event::Type::Resized)." alt="" coords="5,124,188,151"/>
+<area shape="rect" id="node2" href="$structarcade_1_1vec2.html" title=" " alt="" coords="7,5,186,47"/>
+</map>

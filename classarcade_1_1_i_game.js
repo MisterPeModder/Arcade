@@ -1,5 +1,6 @@
 var classarcade_1_1_i_game =
 [
+    [ "EntryPoint", "classarcade_1_1_i_game.html#a50c14b480f3858c6e3ec22a02c39c817", null ],
     [ "State", "classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0", [
       [ "Loaded", "classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0a7381d487d18845b379422325c0a768d6", null ],
       [ "Running", "classarcade_1_1_i_game.html#a4c56412b9ff9a69bddada6ea628e83e0a5bda814c4aedb126839228f1a3d92f09", null ],
@@ -8,6 +9,7 @@ var classarcade_1_1_i_game =
     ] ],
     [ "~IGame", "classarcade_1_1_i_game.html#ab574ce2236870266790e003ff511e9a7", null ],
     [ "close", "classarcade_1_1_i_game.html#aa46cf332a053cdbbcc248be278e068c2", null ],
+    [ "draw", "classarcade_1_1_i_game.html#a235fe6afa971aa40c14eeb22ea9f82f2", null ],
     [ "getScore", "classarcade_1_1_i_game.html#a6333182860ca49dcf35fddf4e929d190", null ],
     [ "getState", "classarcade_1_1_i_game.html#a13fcbd865301bf154a7901b36a021bd4", null ],
     [ "handleEvent", "classarcade_1_1_i_game.html#a59a38fac94e9ab1d071761880853bfce", null ],

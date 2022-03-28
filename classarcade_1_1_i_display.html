@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Arcane: arcade::IDisplay Class Reference</title>
+<title>Arcade: arcade::IDisplay Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Arcane
+   <div id="projectname">Arcade
    &#160;<span id="projectnumber">0.1.0</span>
    </div>
    <div id="projectbrief">The Arcade Project at EPITECH School</div>
@@ -88,6 +88,7 @@ $(document).ready(function(){initNavTree('classarcade_1_1_i_display.html',''); i
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classarcade_1_1_i_display-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">arcade::IDisplay Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -95,15 +96,6 @@ $(document).ready(function(){initNavTree('classarcade_1_1_i_display.html',''); i
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="_i_display_8hpp_source.html">IDisplay.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for arcade::IDisplay:</div>
-<div class="dyncontent">
-<div class="center"><img src="classarcade_1_1_i_display__inherit__graph.png" border="0" usemap="#arcade_1_1_i_display_inherit__map" alt="Inheritance graph"/></div>
-<map name="arcade_1_1_i_display_inherit__map" id="arcade_1_1_i_display_inherit__map">
-<area shape="rect" title=" " alt="" coords="17,5,144,32"/>
-<area shape="rect" href="classarcade_1_1_sdl2_display.html" title=" " alt="" coords="5,80,156,107"/>
-</map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -112,6 +104,8 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:a7b525d2efd4000d4ec42407221759378"><td class="mdescLeft">&#160;</td><td class="mdescRight">The graphics mode.  <a href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">More...</a><br /></td></tr>
 <tr class="separator:a7b525d2efd4000d4ec42407221759378"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a699bc6f970bc8f5ecb4c571a395d2243"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#a699bc6f970bc8f5ecb4c571a395d2243">EntryPoint</a> = <a class="el" href="classarcade_1_1_i_display.html">IDisplay</a> *(*)()</td></tr>
+<tr class="separator:a699bc6f970bc8f5ecb4c571a395d2243"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -131,15 +125,38 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab4c1b8b7c91798dc355a3f1f4102aaf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78db24c9bd6b6822b54918bd38ea5285"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#a78db24c9bd6b6822b54918bd38ea5285">drawGameObject</a> (const <a class="el" href="classarcade_1_1_i_game_object.html">IGameObject</a> &amp;object)=0</td></tr>
 <tr class="separator:a78db24c9bd6b6822b54918bd38ea5285"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08e8c40d467e666ac4ceee795b310f04"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="classarcade_1_1_i_game_object.html">IGameObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#a08e8c40d467e666ac4ceee795b310f04">createTextObject</a> (std::string_view text, <a class="el" href="classarcade_1_1_i_asset.html">IAsset</a> const &amp;font) const =0</td></tr>
-<tr class="separator:a08e8c40d467e666ac4ceee795b310f04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adce4297fa6cdde470c1a2c8871c1cbdc"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="classarcade_1_1_i_game_object.html">IGameObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#adce4297fa6cdde470c1a2c8871c1cbdc">createRectObject</a> (<a class="el" href="types_8hpp.html#a9030af5de12a940030414fb458cad430">vec2u</a> size, <a class="el" href="classarcade_1_1_i_asset.html">IAsset</a> const &amp;texture) const =0</td></tr>
-<tr class="separator:adce4297fa6cdde470c1a2c8871c1cbdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af26a81c8d57e58d39e1387b30af75ca8"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="classarcade_1_1_i_game_object.html">IGameObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#af26a81c8d57e58d39e1387b30af75ca8">createTextObject</a> (std::string_view text, <a class="el" href="classarcade_1_1_i_asset.html">IAsset</a> const *font=nullptr) const =0</td></tr>
+<tr class="separator:af26a81c8d57e58d39e1387b30af75ca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ae7d4a1eb4732962225fb3257dd375b"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="classarcade_1_1_i_game_object.html">IGameObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#a4ae7d4a1eb4732962225fb3257dd375b">createRectObject</a> (<a class="el" href="types_8hpp.html#a9030af5de12a940030414fb458cad430">vec2u</a> size, <a class="el" href="classarcade_1_1_i_asset.html">IAsset</a> const *texture=nullptr) const =0</td></tr>
+<tr class="separator:a4ae7d4a1eb4732962225fb3257dd375b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ae59f3dfc836dd34f2995286940442eea"><td class="memItemLeft" align="right" valign="top"><a id="ae59f3dfc836dd34f2995286940442eea"></a>
+static constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#ae59f3dfc836dd34f2995286940442eea">ENTRY_POINT</a> = &quot;arcade_DisplayEntryPoint&quot;</td></tr>
+<tr class="memdesc:ae59f3dfc836dd34f2995286940442eea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expected name of the Display entry point. <br /></td></tr>
+<tr class="separator:ae59f3dfc836dd34f2995286940442eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Graphics backend.</p>
 <p>Instances of <a class="el" href="classarcade_1_1_i_display.html">IDisplay</a> are reponsible for managing the display, events and assets of <a class="el" href="classarcade_1_1_i_game.html" title="A game instance.">IGame</a> instances. </p>
-</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a699bc6f970bc8f5ecb4c571a395d2243"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a699bc6f970bc8f5ecb4c571a395d2243">&#9670;&nbsp;</a></span>EntryPoint</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classarcade_1_1_i_display.html#a699bc6f970bc8f5ecb4c571a395d2243">arcade::IDisplay::EntryPoint</a> =  <a class="el" href="classarcade_1_1_i_display.html">IDisplay</a> *(*)()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type of the entry point of the library to get an instance of <a class="el" href="classarcade_1_1_i_game.html" title="A game instance.">IGame</a>. The function used as EntryPoint must be named as the DisplayEntryPointName below. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a7b525d2efd4000d4ec42407221759378"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7b525d2efd4000d4ec42407221759378">&#9670;&nbsp;</a></span>Type</h2>
 
@@ -196,12 +213,10 @@ Public Member Functions</h2></td></tr>
 <p>Releases the ressources allocated by this graphics backend.</p>
 <p>Each call to <a class="el" href="classarcade_1_1_i_display.html#a103bb51dca12a2ace9aa23bcc3703800">IDisplay::close()</a> <b>must</b> be preceded by a call to <a class="el" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">IDisplay::setup()</a>. Calling this function again without calling <a class="el" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">IDisplay::setup()</a> leads to <b>undefined behavior</b>. </p>
 
-<p>Implemented in <a class="el" href="classarcade_1_1_sdl2_display.html#a54d5fece9f64d89074de464a4320f8e3">arcade::Sdl2Display</a>.</p>
-
 </div>
 </div>
-<a id="adce4297fa6cdde470c1a2c8871c1cbdc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adce4297fa6cdde470c1a2c8871c1cbdc">&#9670;&nbsp;</a></span>createRectObject()</h2>
+<a id="a4ae7d4a1eb4732962225fb3257dd375b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ae7d4a1eb4732962225fb3257dd375b">&#9670;&nbsp;</a></span>createRectObject()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -218,8 +233,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classarcade_1_1_i_asset.html">IAsset</a> const &amp;&#160;</td>
-          <td class="paramname"><em>texture</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="classarcade_1_1_i_asset.html">IAsset</a> const *&#160;</td>
+          <td class="paramname"><em>texture</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -238,24 +253,23 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">size</td><td>The dimensions (in units) of the rectangle. </td></tr>
-    <tr><td class="paramname">texture</td><td>The texture to use.</td></tr>
+    <tr><td class="paramname">texture</td><td>The texture to use. If <code>nullptr</code>, the texture isn't used.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">std::logic_error</td><td>When <code>texture</code> is not a texture asset.</td></tr>
+    <tr><td class="paramname">std::logic_error</td><td>When <code>texture</code> is not a texture asset. </td></tr>
+    <tr><td class="paramname">std::logic_error</td><td>When <code>texture</code> is <code>nullptr</code> and a RectObject can't be created without a texture.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A boxed <a class="el" href="classarcade_1_1_i_game_object.html" title="A movable, drawable game object such as text or sprites.">IGameObject</a> instance. </dd></dl>
 
-<p>Implemented in <a class="el" href="classarcade_1_1_sdl2_display.html#aaf896c6e4176d71ecf617aaf1b0c1b9a">arcade::Sdl2Display</a>.</p>
-
 </div>
 </div>
-<a id="a08e8c40d467e666ac4ceee795b310f04"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a08e8c40d467e666ac4ceee795b310f04">&#9670;&nbsp;</a></span>createTextObject()</h2>
+<a id="af26a81c8d57e58d39e1387b30af75ca8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af26a81c8d57e58d39e1387b30af75ca8">&#9670;&nbsp;</a></span>createTextObject()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -272,8 +286,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classarcade_1_1_i_asset.html">IAsset</a> const &amp;&#160;</td>
-          <td class="paramname"><em>font</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="classarcade_1_1_i_asset.html">IAsset</a> const *&#160;</td>
+          <td class="paramname"><em>font</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -292,19 +306,18 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">text</td><td>The string to display. </td></tr>
-    <tr><td class="paramname">font</td><td>The font to use.</td></tr>
+    <tr><td class="paramname">font</td><td>The font to use. If <code>nullptr</code>, the font isn't used.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">std::logic_error</td><td>When <code>font</code> is not a font asset.</td></tr>
+    <tr><td class="paramname">std::logic_error</td><td>When <code>font</code> is not a font asset. </td></tr>
+    <tr><td class="paramname">std::logic_error</td><td>When <code>font</code> is <code>nulltptr</code> and a TextObject can't be created without a font.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A boxed <a class="el" href="classarcade_1_1_i_game_object.html" title="A movable, drawable game object such as text or sprites.">IGameObject</a> instance. </dd></dl>
-
-<p>Implemented in <a class="el" href="classarcade_1_1_sdl2_display.html#aa482924e0b2cdc3ee0833e943965d06d">arcade::Sdl2Display</a>.</p>
 
 </div>
 </div>
@@ -341,8 +354,6 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classarcade_1_1_sdl2_display.html#a51a77db1ebaef27b2fa6cf9c59201a5b">arcade::Sdl2Display</a>.</p>
-
 </div>
 </div>
 <a id="a2cbd526578e6f85d4f7714a2b6230ebf"></a>
@@ -370,8 +381,6 @@ Public Member Functions</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>Calling this method without calling <a class="el" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">IDisplay::setup()</a> leads to <b>undefined behavior</b>.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The size of the display, in units. </dd></dl>
 
-<p>Implemented in <a class="el" href="classarcade_1_1_sdl2_display.html#ae7d3a14162b53ab6e5aaa7b3b96553b2">arcade::Sdl2Display</a>.</p>
-
 </div>
 </div>
 <a id="a5d015d7fbe88cdf66d5eca4183c2df08"></a>
@@ -398,8 +407,6 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="section note"><dt>Note</dt><dd>Calling this method without calling <a class="el" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">IDisplay::setup()</a> leads to <b>undefined behavior</b>.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The type of display output. </dd></dl>
-
-<p>Implemented in <a class="el" href="classarcade_1_1_sdl2_display.html#a21e81b98b078021b8fdde520cc1140c8">arcade::Sdl2Display</a>.</p>
 
 </div>
 </div>
@@ -448,8 +455,6 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the loaded asset, or a null reference if the requested asset failed to load. </dd></dl>
 
-<p>Implemented in <a class="el" href="classarcade_1_1_sdl2_display.html#a14d3d77abb71e622a57ef9e3720c5e17">arcade::Sdl2Display</a>.</p>
-
 </div>
 </div>
 <a id="a650424e0b07da29ebe86baf4bc691a26"></a>
@@ -485,8 +490,6 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether an event was loaded into <code>event</code>, false means that the event queue is currently empty. </dd></dl>
 
-<p>Implemented in <a class="el" href="classarcade_1_1_sdl2_display.html#acd58aebedf97bf6b0eea751b5525b3db">arcade::Sdl2Display</a>.</p>
-
 </div>
 </div>
 <a id="ab4c1b8b7c91798dc355a3f1f4102aaf2"></a>
@@ -515,8 +518,6 @@ Public Member Functions</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>Calling this method without calling <a class="el" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">IDisplay::setup()</a> leads to <b>undefined behavior</b>.</dd></dl>
 <p>The rendered frame is immediately shown to the user at the end of the call. </p>
 
-<p>Implemented in <a class="el" href="classarcade_1_1_sdl2_display.html#a40fd51e99c82376956494994902dc8e9">arcade::Sdl2Display</a>.</p>
-
 </div>
 </div>
 <a id="a3c024465a1ecd427e521487087e22da0"></a>
@@ -543,8 +544,6 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Intializes this graphics backend.</p>
 <p>Each call to <a class="el" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">IDisplay::setup()</a> <b>must</b> be followed by a call to <a class="el" href="classarcade_1_1_i_display.html#a103bb51dca12a2ace9aa23bcc3703800">IDisplay::close()</a>. Calling this function again without calling <a class="el" href="classarcade_1_1_i_display.html#a103bb51dca12a2ace9aa23bcc3703800">IDisplay::close()</a> leads to <b>undefined behavior</b>. </p>
-
-<p>Implemented in <a class="el" href="classarcade_1_1_sdl2_display.html#a9f9a2b45553ea7d5a1a2257cc5e18c25">arcade::Sdl2Display</a>.</p>
 
 </div>
 </div>

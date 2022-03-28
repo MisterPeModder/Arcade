@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['height_122',['height',['../structarcade_1_1_event_1_1_size_event.html#a8274919b17d02b87e3685d288f53f2da',1,'arcade::Event::SizeEvent']]]
+  ['entry_5fpoint_159',['ENTRY_POINT',['../classarcade_1_1_i_display.html#ae59f3dfc836dd34f2995286940442eea',1,'arcade::IDisplay::ENTRY_POINT()'],['../classarcade_1_1_i_game.html#aabd5a73fe4dd6547017b886a1d1e9f08',1,'arcade::IGame::ENTRY_POINT()']]]
 ];

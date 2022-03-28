@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['shift_126',['shift',['../structarcade_1_1_event_1_1_key_event.html#afb2504ad1ec7d55994763204c02165d1',1,'arcade::Event::KeyEvent']]],
-  ['size_127',['size',['../structarcade_1_1_event.html#a419b3a356f8b9f943860f24c0679c1a5',1,'arcade::Event']]],
-  ['system_128',['system',['../structarcade_1_1_event_1_1_key_event.html#af5a303f9b27c42a1d7ff576a56999554',1,'arcade::Event::KeyEvent']]]
+  ['magenta_163',['Magenta',['../classarcade_1_1_color.html#a28d2d2815e698a40e9396b87313f6864',1,'arcade::Color']]],
+  ['mousebutton_164',['mouseButton',['../structarcade_1_1_event.html#a48ae736a7847906fcdc93edf4833bfaa',1,'arcade::Event']]],
+  ['mousemove_165',['mouseMove',['../structarcade_1_1_event.html#a947c31ebda95446588ef8d19f5d178fb',1,'arcade::Event']]]
 ];

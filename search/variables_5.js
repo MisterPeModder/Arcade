@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['mousebutton_124',['mouseButton',['../structarcade_1_1_event.html#a48ae736a7847906fcdc93edf4833bfaa',1,'arcade::Event']]],
-  ['mousemove_125',['mouseMove',['../structarcade_1_1_event.html#a947c31ebda95446588ef8d19f5d178fb',1,'arcade::Event']]]
+  ['key_162',['key',['../structarcade_1_1_event.html#af8b0fafc18fb965ed838b1d20972d607',1,'arcade::Event']]]
 ];
