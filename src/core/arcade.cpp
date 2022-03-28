@@ -1,81 +1,49 @@
 #include <iostream>
+#include <span>
+#include <stdexcept>
+#include <string>
 
 #include <arcade/IDisplay.hpp>
-#include <arcade/IGame.hpp>
 
-#include "core.hpp"
-
-extern "C"
-{
-#include <dlfcn.h>
-}
+#include "Core.hpp"
+#include "arcade.hpp"
+#include "util/DynamicLibrary.hpp"
 
 namespace arcade
 {
-    class DummyGame : public IGame {
-    };
-
     int arcade(std::span<std::string> args)
     {
-        std::cout << "starting arcade...\n";
-        std::cout << "args: \n";
+        // Argument checking
+        if (args.size() != 2)
+            throw std::runtime_error("expected graphics backend argument");
 
-        for (auto arg : args)
-            std::cout << "- " << arg << '\n';
-        std::cout.flush();
+        // declare where the libraries will be stored
+        DynamicLibrary::Registry libs;
 
-        if (args.size() != 3) {
-            std::cerr << args[0] << ": expected two arguments" << std::endl;
-            return 84;
+        // Attempt to load the requested path as a dynamic library first...
+        DynamicLibrary &defaultGraphicsLib(DynamicLibrary::load(args[1], libs));
+        IDisplay *defaultGraphics;
+
+        // ... then try load it as a graphics lib.
+        try {
+            defaultGraphics = defaultGraphicsLib.symbol<IDisplay::EntryPoint>(IDisplay::ENTRY_POINT)();
+        } catch (DynamicLibrary::UnknownSymbolError &) {
+            std::ostringstream msg;
+
+            msg << '\'' << args[1] << "' is not a valid graphics backend";
+            throw std::runtime_error(msg.str());
         }
 
-        void *displayLib(dlopen(args[1].c_str(), RTLD_NOW));
+        // Load all the remaining libs in the default folder (the lib in args[1] may not be in this dir)
+        DynamicLibrary::loadDirectory("./lib", libs);
 
-        if (displayLib == nullptr) {
-            std::cerr << args[0] << ": " << dlerror() << std::endl;
-            return 84;
+        {
+            Core core(libs, defaultGraphics);
+
+            // Run the game(s)
+            core.eventLoop();
         }
 
-        void *gameLib(dlopen(args[2].c_str(), RTLD_NOW));
-
-        if (gameLib == nullptr) {
-            std::cerr << args[0] << ": " << dlerror() << std::endl;
-            dlclose(displayLib);
-            return 84;
-        }
-
-        IDisplay *(*displayEntry)()(reinterpret_cast<IDisplay *(*)()>(dlsym(displayLib, "arcade_DisplayEntryPoint")));
-
-        if (displayEntry == nullptr) {
-            std::cerr << args[0] << ": " << dlerror() << std::endl;
-            dlclose(gameLib);
-            dlclose(displayLib);
-            return 84;
-        }
-
-        IGame *(*gameEntry)()(reinterpret_cast<IGame *(*)()>(dlsym(gameLib, "arcade_GameEntryPoint")));
-
-        if (gameEntry == nullptr) {
-            std::cerr << args[0] << ": " << dlerror() << std::endl;
-            dlclose(gameLib);
-            dlclose(displayLib);
-            return 84;
-        }
-
-        IDisplay *display((*displayEntry)());
-        IGame *game((*gameEntry)());
-
-        display->setup();
-
-        game->setup(*display);
-        game->setState(IGame::State::Running);
-        game->update(42.21);
-        game->close();
-
-        display->close();
-
-        dlclose(gameLib);
-        dlclose(displayLib);
         return 0;
     }
 } // namespace arcade

@@ -1,23 +1,13 @@
 #include <arcade/IGame.hpp>
 #include <iostream>
 
-extern "C"
-{
-    arcade::IGame *ARCADE_GAME_INSTANCE = nullptr;
-
-    arcade::IGame *arcade_GameEntryPoint(void)
-    {
-        std::cout << "[centipede]: called entry point" << std::endl;
-        return ARCADE_GAME_INSTANCE;
-    }
-}
-
 namespace arcade
 {
+    class IDisplay;
+    struct Event;
+
     class Centipede : public IGame {
       public:
-        static IGame *INSTANCE;
-
         Centipede()
         {
             // ...
@@ -60,7 +50,12 @@ namespace arcade
             // ...
         }
 
-        void handleEvent(Event &event)
+        void draw() override final
+        {
+            // ...
+        }
+
+        void handleEvent(Event &event) override final
         {
             (void)event;
             // ...
@@ -71,16 +66,24 @@ namespace arcade
         IDisplay *_display;
     };
 
+    static arcade::IGame *GAME_INSTANCE = nullptr;
+
+    ARCADE_GAME_ENTRY_POINT
+    {
+        std::cout << "[centipede]: called entry point" << std::endl;
+        return GAME_INSTANCE;
+    }
+
     [[gnu::constructor]] void onConstruct()
     {
-        ARCADE_GAME_INSTANCE = new Centipede();
+        GAME_INSTANCE = new Centipede();
         std::cout << "[centipede]: constructed" << std::endl;
     }
 
     [[gnu::destructor]] void onDestroy()
     {
-        delete ARCADE_GAME_INSTANCE;
-        ARCADE_GAME_INSTANCE = nullptr;
+        delete GAME_INSTANCE;
+        GAME_INSTANCE = nullptr;
         std::cout << "[centipede]: destroyed" << std::endl;
     }
 } // namespace arcade

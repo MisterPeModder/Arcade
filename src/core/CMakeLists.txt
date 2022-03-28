@@ -2,11 +2,15 @@ set(INCROOT ${PROJECT_SOURCE_DIR}/src/core)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/core)
 
 set(SRC
-    ${INCROOT}/core.hpp
     ${SRCROOT}/arcade.cpp
+    ${INCROOT}/arcade.hpp
+    ${SRCROOT}/Core.cpp
+    ${INCROOT}/Core.hpp
 )
 
 set(INCDIRS ${INCROOT})
+
+add_subdirectory(util)
 
 source_group("" FILES ${SRC})
 

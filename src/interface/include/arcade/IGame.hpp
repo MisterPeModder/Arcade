@@ -12,6 +12,11 @@
 #ifndef ARCADE_IGAME_HPP_
 #define ARCADE_IGAME_HPP_
 
+/// Entry point to get an instance of IGame
+#define ARCADE_GAME_ENTRY_POINT extern "C" ::arcade::IGame *arcade_GameEntryPoint()
+
+#include <string_view>
+
 namespace arcade
 {
     class IDisplay;
@@ -31,6 +36,12 @@ namespace arcade
             /// When the game is ended.
             Ended,
         };
+
+        /// Type of the entry point of the library to get an instance of IGame.
+        /// The function used as EntryPoint must be named as the GameEntryPointName below.
+        using EntryPoint = IGame *(*)();
+        /// Expected name of the Game entry point.
+        static constexpr std::string_view ENTRY_POINT = "arcade_GameEntryPoint";
 
         virtual ~IGame() = default;
 
@@ -75,6 +86,7 @@ namespace arcade
 
         /// @note Calling this method without calling IGame::setup() leads to <b>undefined behavior</b>.
         ///
+        /// @returns The current score of the player.
         virtual unsigned int getScore() const = 0;
 
         /// Updates the game logic.
@@ -83,6 +95,11 @@ namespace arcade
         ///
         /// @param delta The time (in seconds) elapsed since the last update.
         virtual void update(float delta) = 0;
+
+        /// Draw the game GameObjects.
+        ///
+        /// @note Calling this method without calling IGame::setup() leads to <b>undefined behavior</b>.
+        virtual void draw() = 0;
 
         /// Handles the given event.
         ///

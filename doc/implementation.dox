@@ -1,0 +1,70 @@
+/// @page creating_a_game_implementation Implemententing a Game or a Graphics Backend
+///
+/// @tableofcontents
+///
+///
+///
+/// @section game Game Implementation
+/// @subsection game_impl Explanation
+///
+/// @dontinclude ExampleGame.cpp
+/// First, include the IGame interface, (and iostream too, for this example).
+/// @line include
+/// @line include
+///
+/// Then, create implement the IGame interface:
+/// @skip class ExampleGame
+/// @until {
+///
+/// Store the game state and display adapter as private fields:
+/// @until display;
+///
+/// Create the setup methods:
+/// @skip public
+/// @until close
+/// @until }
+///
+/// Then implement all the remaining methods:
+/// @until end_game_impl
+///
+/// Declare the game's entry point
+/// @skip ARCADE_GAME_ENTRY_POINT
+/// @until }
+///
+/// Finally, initialize the game instance on library load and destroy the instance on unload.
+/// @skip constructor
+/// @until destructor
+/// @until }
+///
+/// @subsection game_full_code Full Code
+/// @include ExampleGame.cpp
+///
+///
+///
+/// @section display Display Implementation
+/// @subsection dispalay_impl Explanation
+///
+/// @dontinclude ExampleDisplay.cpp
+/// First, include the IDisplay interface, (and iostream too, for this example).
+/// @line include
+/// @line include
+/// @line include
+///
+/// Then, create implement the IDisplay interface:
+/// @skip class ExampleDisplay
+/// @until {
+///
+/// Then implement the needed methods:
+/// @until end_display_impl
+///
+/// Declare the display's entry point
+/// @skip ARCADE_DISPLAY_ENTRY_POINT
+/// @until }
+///
+/// Finally, initialize the display instance on library load and destroy the instance on unload.
+/// @skip constructor
+/// @until destructor
+/// @until }
+///
+/// @subsection display_full_code Full Code
+/// @include ExampleDisplay.cpp
