@@ -18,6 +18,7 @@
 #include <memory>
 #include <string_view>
 
+#include "Color.hpp"
 #include "IAsset.hpp"
 #include "types.hpp"
 
@@ -90,6 +91,16 @@ namespace arcade
         ///
         /// @returns Whether an event was loaded into @c event, false means that the event queue is currently empty.
         virtual bool pollEvent(Event &event) = 0;
+
+        /// Clears the render target by filling with the given color.
+        ///
+        /// @note This function must be called before IDisplay::render().
+        /// @note Calling this method without calling IDisplay::setup() leads to <b>undefined behavior</b>.
+        ///
+        /// @param color 32-bit ARGB color to set.
+        /// @param backup color to set if the display doesn't support 32-bit ARGB colors.
+        ///
+        virtual void clear(Color color, DefaultColor backup) = 0;
 
         /// Renders a frame and displays it.
         ///
