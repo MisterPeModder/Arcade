@@ -10,9 +10,11 @@
 #include <stdexcept>
 #include <string_view>
 
+#include <SDL_error.h>
 #include <SDL_render.h>
 #include <SDL_video.h>
 
+#include <arcade/Color.hpp>
 #include <arcade/IAsset.hpp>
 #include <arcade/IDisplay.hpp>
 #include <arcade/types.hpp>

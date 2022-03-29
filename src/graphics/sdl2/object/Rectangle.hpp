@@ -5,6 +5,7 @@
 #define ARCADE_GRAPHICS_SDL2_OBJECT_RECTANGLE_HPP_
 
 #include <memory>
+#include <string_view>
 
 #include <SDL_rect.h>
 #include <SDL_render.h>

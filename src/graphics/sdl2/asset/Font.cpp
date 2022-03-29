@@ -1,3 +1,7 @@
+#include <SDL_pixels.h>
+#include <SDL_surface.h>
+
+#include <arcade/IAsset.hpp>
 #include <arcade/graphics/units.hpp>
 
 #include "Font.hpp"

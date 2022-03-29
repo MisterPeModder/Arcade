@@ -10,7 +10,6 @@
 #include <arcade/graphics/units.hpp>
 #include <arcade/types.hpp>
 
-#include "Sdl2Display.hpp"
 #include "event.hpp"
 
 namespace arcade
