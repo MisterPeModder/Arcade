@@ -5,7 +5,7 @@
 #include <string>
 
 #include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 #include <arcade/Event.hpp>
 #include <arcade/IAsset.hpp>
@@ -25,8 +25,8 @@ namespace arcade
 
     void SfmlDisplay::setup()
     {
-        this->_window =
-            std::make_unique<sf::Window>(sf::VideoMode(WINDOW_SIZE_PIXELS.x, WINDOW_SIZE_PIXELS.y), "Arcade (SFML)");
+        this->_window = std::make_unique<sf::RenderWindow>(
+            sf::VideoMode(WINDOW_SIZE_PIXELS.x, WINDOW_SIZE_PIXELS.y), "Arcade (SFML)");
         std::cout << "[sfml]: setup" << std::endl;
     }
 
@@ -61,7 +61,8 @@ namespace arcade
 
     void SfmlDisplay::clear(Color color, DefaultColor)
     {
-        (void)color;
+        this->_window->clear(sf::Color(std::to_integer<uint8_t>(color.r), std::to_integer<uint8_t>(color.g),
+            std::to_integer<uint8_t>(color.b), 255 - std::to_integer<uint8_t>(color.a)));
     }
 
     void SfmlDisplay::render()

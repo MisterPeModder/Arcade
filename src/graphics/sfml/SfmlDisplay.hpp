@@ -16,7 +16,7 @@
 
 namespace sf
 {
-    class Window;
+    class RenderWindow;
 }
 
 namespace arcade
@@ -52,7 +52,7 @@ namespace arcade
         std::unique_ptr<IGameObject> createRectObject(vec2u size, IAsset const *texture) const override final;
 
       private:
-        std::unique_ptr<sf::Window> _window;
+        std::unique_ptr<sf::RenderWindow> _window;
         vec2u _size;
 
         void updateSize();
