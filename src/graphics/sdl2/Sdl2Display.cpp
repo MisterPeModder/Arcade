@@ -120,6 +120,22 @@ namespace arcade
         return true;
     }
 
+    void Sdl2Display::clear(Color color, DefaultColor)
+    {
+        SDL_RenderClear(this->_renderer);
+
+        // only fill the screen if the requested color is not fully transparent
+        if (color.a != Color::Transparent.a) {
+            SDL_Rect screenRect{0, 0, static_cast<int>(this->_size.x), static_cast<int>(this->_size.y)};
+
+            SDL_SetRenderDrawColor(this->_renderer, std::to_integer<uint8_t>(color.r),
+                std::to_integer<uint8_t>(color.g), std::to_integer<uint8_t>(color.b),
+                255 - std::to_integer<uint8_t>(color.a));
+            SDL_RenderFillRect(this->_renderer, &screenRect);
+            SDL_SetRenderDrawColor(this->_renderer, 0, 0, 0, 0);
+        }
+    }
+
     void Sdl2Display::render()
     {
         SDL_RenderPresent(this->_renderer);

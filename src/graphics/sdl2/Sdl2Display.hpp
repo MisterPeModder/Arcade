@@ -44,7 +44,9 @@ namespace arcade
 
         vec2u getSize() const override final;
 
-        virtual bool pollEvent(Event &event) override final;
+        bool pollEvent(Event &event) override final;
+
+        void clear(Color color, DefaultColor backup) override final;
 
         void render() override final;
 
