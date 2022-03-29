@@ -121,6 +121,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2cbd526578e6f85d4f7714a2b6230ebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a650424e0b07da29ebe86baf4bc691a26"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#a650424e0b07da29ebe86baf4bc691a26">pollEvent</a> (<a class="el" href="structarcade_1_1_event.html">Event</a> &amp;event)=0</td></tr>
 <tr class="separator:a650424e0b07da29ebe86baf4bc691a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab96c9b19cec3d37c68c05f0a8122f32c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#ab96c9b19cec3d37c68c05f0a8122f32c">clear</a> (<a class="el" href="classarcade_1_1_color.html">Color</a> color, <a class="el" href="_color_8hpp.html#a80d5823a0c22bb63d062804cc76191db">DefaultColor</a> backup)=0</td></tr>
+<tr class="separator:ab96c9b19cec3d37c68c05f0a8122f32c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4c1b8b7c91798dc355a3f1f4102aaf2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#ab4c1b8b7c91798dc355a3f1f4102aaf2">render</a> ()=0</td></tr>
 <tr class="separator:ab4c1b8b7c91798dc355a3f1f4102aaf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78db24c9bd6b6822b54918bd38ea5285"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#a78db24c9bd6b6822b54918bd38ea5285">drawGameObject</a> (const <a class="el" href="classarcade_1_1_i_game_object.html">IGameObject</a> &amp;object)=0</td></tr>
@@ -188,6 +190,53 @@ static constexpr std::string_view&#160;</td><td class="memItemRight" valign="bot
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab96c9b19cec3d37c68c05f0a8122f32c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab96c9b19cec3d37c68c05f0a8122f32c">&#9670;&nbsp;</a></span>clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void arcade::IDisplay::clear </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classarcade_1_1_color.html">Color</a>&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_color_8hpp.html#a80d5823a0c22bb63d062804cc76191db">DefaultColor</a>&#160;</td>
+          <td class="paramname"><em>backup</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Clears the render target by filling with the given color.</p>
+<dl class="section note"><dt>Note</dt><dd>This function must be called before <a class="el" href="classarcade_1_1_i_display.html#ab4c1b8b7c91798dc355a3f1f4102aaf2">IDisplay::render()</a>. </dd>
+<dd>
+Calling this method without calling <a class="el" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">IDisplay::setup()</a> leads to <b>undefined behavior</b>.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">color</td><td>32-bit ARGB color to set. </td></tr>
+    <tr><td class="paramname">backup</td><td>color to set if the display doesn't support 32-bit ARGB colors. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a103bb51dca12a2ace9aa23bcc3703800"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a103bb51dca12a2ace9aa23bcc3703800">&#9670;&nbsp;</a></span>close()</h2>
 

@@ -329,6 +329,12 @@ Explanation</h2>
 <div class="line">        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
+<div class="line">    <span class="keywordtype">void</span> clear(Color color, DefaultColor backup) <span class="keyword">override</span> <span class="keyword">final</span></div>
+<div class="line">    {</div>
+<div class="line">        (void)color;</div>
+<div class="line">        (void)backup;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
 <div class="line">    <span class="keywordtype">void</span> render() override final</div>
 <div class="line">    {</div>
 <div class="line">        <span class="comment">// ...</span></div>
@@ -378,6 +384,7 @@ Full Code</h2>
 <div class="line"><span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;string_view&gt;</span></div>
 <div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_color_8hpp.html">arcade/Color.hpp</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_i_asset_8hpp.html">arcade/IAsset.hpp</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_i_display_8hpp.html">arcade/IDisplay.hpp</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_i_game_object_8hpp.html">arcade/IGameObject.hpp</a>&gt;</span></div>
@@ -389,6 +396,8 @@ Full Code</h2>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Using &#39;using&#39; imports to keep the example clean, do not use in final code!</span></div>
+<div class="line">using ::arcade::Color;</div>
+<div class="line">using ::arcade::DefaultColor;</div>
 <div class="line">using ::arcade::Event;</div>
 <div class="line">using ::arcade::IAsset;</div>
 <div class="line">using ::arcade::IDisplay;</div>
@@ -433,6 +442,12 @@ Full Code</h2>
 <div class="line">    {</div>
 <div class="line">        (void)event;</div>
 <div class="line">        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordtype">void</span> clear(Color color, DefaultColor backup) <span class="keyword">override</span> <span class="keyword">final</span></div>
+<div class="line">    {</div>
+<div class="line">        (void)color;</div>
+<div class="line">        (void)backup;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">void</span> render() override final</div>
@@ -490,6 +505,7 @@ Full Code</h2>
 <div class="ttc" id="a_i_game_object_8hpp_html"><div class="ttname"><a href="_i_game_object_8hpp.html">IGameObject.hpp</a></div></div>
 <div class="ttc" id="a_i_game_8hpp_html_a1751ba9e6c1f5fe4d3682c518ff54317"><div class="ttname"><a href="_i_game_8hpp.html#a1751ba9e6c1f5fe4d3682c518ff54317">ARCADE_GAME_ENTRY_POINT</a></div><div class="ttdeci">#define ARCADE_GAME_ENTRY_POINT</div><div class="ttdoc">Entry point to get an instance of IGame.</div><div class="ttdef"><b>Definition:</b> IGame.hpp:16</div></div>
 <div class="ttc" id="a_i_display_8hpp_html_a63f004c6386745fe3523df4c8b3d7b9e"><div class="ttname"><a href="_i_display_8hpp.html#a63f004c6386745fe3523df4c8b3d7b9e">ARCADE_DISPLAY_ENTRY_POINT</a></div><div class="ttdeci">#define ARCADE_DISPLAY_ENTRY_POINT</div><div class="ttdoc">Entry point to get an instance of IDisplay.</div><div class="ttdef"><b>Definition:</b> IDisplay.hpp:16</div></div>
+<div class="ttc" id="a_color_8hpp_html"><div class="ttname"><a href="_color_8hpp.html">Color.hpp</a></div></div>
 <div class="ttc" id="a_i_asset_8hpp_html"><div class="ttname"><a href="_i_asset_8hpp.html">IAsset.hpp</a></div></div>
 <div class="ttc" id="a_i_display_8hpp_html"><div class="ttname"><a href="_i_display_8hpp.html">IDisplay.hpp</a></div></div>
 <!-- start footer part -->

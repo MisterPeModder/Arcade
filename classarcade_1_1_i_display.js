@@ -6,6 +6,7 @@ var classarcade_1_1_i_display =
       [ "Graphical2D", "classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378aef38566fb7526f9b2d3ed0411249b532", null ]
     ] ],
     [ "~IDisplay", "classarcade_1_1_i_display.html#a8d2a3cd8c4d11449f3eb07d307a9182e", null ],
+    [ "clear", "classarcade_1_1_i_display.html#ab96c9b19cec3d37c68c05f0a8122f32c", null ],
     [ "close", "classarcade_1_1_i_display.html#a103bb51dca12a2ace9aa23bcc3703800", null ],
     [ "createRectObject", "classarcade_1_1_i_display.html#a4ae7d4a1eb4732962225fb3257dd375b", null ],
     [ "createTextObject", "classarcade_1_1_i_display.html#af26a81c8d57e58d39e1387b30af75ca8", null ],

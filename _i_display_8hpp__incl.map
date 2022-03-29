@@ -1,7 +1,10 @@
 <map id="src/interface/include/arcade/IDisplay.hpp" name="src/interface/include/arcade/IDisplay.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="137,5,292,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="193,5,348,47"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,95,83,121"/>
 <area shape="rect" id="node3" title=" " alt="" coords="107,95,205,121"/>
-<area shape="rect" id="node4" href="$_i_asset_8hpp.html" title=" " alt="" coords="229,95,320,121"/>
-<area shape="rect" id="node5" href="$types_8hpp.html" title=" " alt="" coords="345,95,431,121"/>
+<area shape="rect" id="node4" href="$_color_8hpp.html" title=" " alt="" coords="229,95,312,121"/>
+<area shape="rect" id="node7" href="$_i_asset_8hpp.html" title=" " alt="" coords="336,95,427,121"/>
+<area shape="rect" id="node8" href="$types_8hpp.html" title=" " alt="" coords="451,95,538,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="189,169,259,196"/>
+<area shape="rect" id="node6" title=" " alt="" coords="284,169,351,196"/>
 </map>
