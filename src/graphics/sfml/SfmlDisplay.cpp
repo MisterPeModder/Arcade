@@ -15,6 +15,7 @@
 #include <arcade/types.hpp>
 
 #include "SfmlDisplay.hpp"
+#include "event.hpp"
 
 namespace arcade
 {
@@ -55,8 +56,23 @@ namespace arcade
 
     bool SfmlDisplay::pollEvent(Event &event)
     {
-        (void)event;
-        return false;
+        sf::Event rawEvent;
+
+        if (!this->_window->pollEvent(rawEvent) || !arcade::translateSfmlEvent(rawEvent, event)) {
+            if (!this->_window->isOpen()) {
+                event.type = Event::Type::Closed;
+                return true;
+            }
+            return false;
+        }
+
+        // If the window was resized, query the size of the render output and update the event before returning.
+        if (event.type == Event::Type::Resized) {
+            this->updateSize();
+            std::cout << "Resized to " << this->_size.x << "x" << this->_size.y << " units" << std::endl;
+        }
+
+        return true;
     }
 
     void SfmlDisplay::clear(Color color, DefaultColor)

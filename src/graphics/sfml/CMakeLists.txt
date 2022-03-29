@@ -5,6 +5,8 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/graphics/sfml)
 
 set(SRC
     ${SRCROOT}/entrypoint.cpp
+    ${SRCROOT}/event.cpp
+    ${INCROOT}/event.hpp
     ${SRCROOT}/SfmlDisplay.cpp
     ${INCROOT}/SfmlDisplay.hpp
 )
