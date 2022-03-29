@@ -54,6 +54,12 @@ namespace arcade
             return false;
         }
 
+        void clear(Color color, DefaultColor backup) override final
+        {
+            (void)color;
+            (void)backup;
+        }
+
         void render() override final
         {
             // ...

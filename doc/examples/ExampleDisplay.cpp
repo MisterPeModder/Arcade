@@ -2,6 +2,7 @@
 #include <memory>
 #include <string_view>
 
+#include <arcade/Color.hpp>
 #include <arcade/IAsset.hpp>
 #include <arcade/IDisplay.hpp>
 #include <arcade/IGameObject.hpp>
@@ -13,6 +14,8 @@ namespace arcade
 }
 
 // Using 'using' imports to keep the example clean, do not use in final code!
+using ::arcade::Color;
+using ::arcade::DefaultColor;
 using ::arcade::Event;
 using ::arcade::IAsset;
 using ::arcade::IDisplay;
@@ -57,6 +60,12 @@ class ExampleDisplay : public IDisplay {
     {
         (void)event;
         return false;
+    }
+
+    void clear(Color color, DefaultColor backup) override final
+    {
+        (void)color;
+        (void)backup;
     }
 
     void render() override final
