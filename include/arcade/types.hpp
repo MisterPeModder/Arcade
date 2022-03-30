@@ -114,6 +114,16 @@ namespace arcade
             y /= v;
             return *this;
         }
+
+        constexpr bool operator==(vec2<T> const &v) const
+        {
+            return x == v.x && y == v.y;
+        }
+
+        constexpr bool operator!=(vec2<T> const &v) const
+        {
+            return x != v.x || y != v.y;
+        }
     };
 
     /// A 2D vector of unsigned ints.
@@ -121,6 +131,12 @@ namespace arcade
 
     /// A 2D vector of ints.
     using vec2i = vec2<int>;
+
+    /// A 2D vector of floats.
+    using vec2f = vec2<float>;
+
+    /// A 2D vector of doubles.
+    using vec2d = vec2<double>;
 } // namespace arcade
 
 #endif // !defined(ARCADE_TYPES_HPP_)
