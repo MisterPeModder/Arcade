@@ -9,12 +9,13 @@
 ///
 /// The display interface.
 
-#ifndef IDISPLAY_HPP_
-#define IDISPLAY_HPP_
+#ifndef ARCADE_IDISPLAY_HPP_
+#define ARCADE_IDISPLAY_HPP_
 
 /// Entry point to get an instance of IDisplay
 #define ARCADE_DISPLAY_ENTRY_POINT extern "C" ::arcade::IDisplay *arcade_DisplayEntryPoint()
 
+#include <functional>
 #include <memory>
 #include <string_view>
 
@@ -26,6 +27,8 @@ namespace arcade
 {
     class IGameObject;
     struct Event;
+    class IRenderer;
+    class IAssetManager;
 
     /// Graphics backend.
     ///
@@ -65,19 +68,6 @@ namespace arcade
         /// @returns The type of display output.
         virtual Type getType() const = 0;
 
-        /// Fetches an asset by name, loading it if necessary.
-        ///
-        /// The returned IAsset instance is a reference to the real underlying asset, when switching displays, all
-        /// existing instances of IAsset will attempt to convert to equivalent assets for the new display mode.
-        ///
-        /// @note Calling this method without calling IDisplay::setup() leads to <b>undefined behavior</b>.
-        ///
-        /// @param name The name of the requested asset.
-        /// @param type Which type of asset to fetch?
-        ///
-        /// @returns A reference to the loaded asset, or a null reference if the requested asset failed to load.
-        virtual std::unique_ptr<IAsset> loadAsset(std::string_view name, IAsset::Type type) = 0;
-
         /// @note Calling this method without calling IDisplay::setup() leads to <b>undefined behavior</b>.
         ///
         /// @returns The size of the display, in units.
@@ -102,48 +92,28 @@ namespace arcade
         ///
         virtual void clear(Color color, DefaultColor backup) = 0;
 
-        /// Renders a frame and displays it.
+        /// Renders objects.
+        ///
+        /// @note Calling this method without calling IDisplay::setup() leads to <b>undefined behavior</b>.
+        ///
+        /// Nothing is shown to the user until IDisplay::display() is called.
+        ///
+        /// @param drawer A function that renders game objects using the supplied renderer.
+        virtual void render(std::function<void(IRenderer &)> drawer) = 0;
+
+        /// Displays the rendered frame to the screen
         ///
         /// @note Calling this method without calling IDisplay::setup() leads to <b>undefined behavior</b>.
         ///
         /// The rendered frame is immediately shown to the user at the end of the call.
-        virtual void render() = 0;
+        virtual void display() = 0;
 
-        /// Draws a game object to the display's internal buffer(s).
-        ///
-        /// Drawn IGameObject instances will not display until the next call to IDisplay::render().
+        /// Calls a game's asset loading function.
         ///
         /// @note Calling this method without calling IDisplay::setup() leads to <b>undefined behavior</b>.
         ///
-        /// @param object The object to draw.
-        virtual void drawGameObject(const IGameObject &object) = 0;
-
-        /// Creates a text (as in string) object instance.
-        ///
-        /// @note Calling this method without calling IDisplay::setup() leads to <b>undefined behavior</b>.
-        ///
-        /// @param text The string to display.
-        /// @param font The font to use. If @c nullptr, the font isn't used.
-        ///
-        /// @throws std::logic_error When @c font is not a font asset.
-        /// @throws std::logic_error When @c font is @c nulltptr and a TextObject can't be created without a font.
-        ///
-        /// @returns A boxed IGameObject instance.
-        virtual std::unique_ptr<IGameObject> createTextObject(
-            std::string_view text, IAsset const *font = nullptr) const = 0;
-
-        /// Creates a textured rectangle object.
-        ///
-        /// @note Calling this method without calling IDisplay::setup() leads to <b>undefined behavior</b>.
-        ///
-        /// @param size The dimensions (in units) of the rectangle.
-        /// @param texture The texture to use. If @c nullptr, the texture isn't used.
-        ///
-        /// @throws std::logic_error When @c texture is not a texture asset.
-        /// @throws std::logic_error When @c texture is @c nullptr and a RectObject can't be created without a texture.
-        ///
-        /// @returns A boxed IGameObject instance.
-        virtual std::unique_ptr<IGameObject> createRectObject(vec2u size, IAsset const *texture = nullptr) const = 0;
+        /// @param loader A function that loads assets and game objects using the supplied asset manager.
+        virtual void loadAssets(std::function<void(IAssetManager &)> loader) = 0;
     };
 } // namespace arcade
 
