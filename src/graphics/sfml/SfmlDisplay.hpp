@@ -7,17 +7,15 @@
 #define ARCADE_GRAPHICS_SFML_SFML_DISPLAY_HPP_
 
 #include <memory>
-#include <stdexcept>
 #include <string_view>
 
+#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+
+#include <arcade/Color.hpp>
 #include <arcade/IAsset.hpp>
 #include <arcade/IDisplay.hpp>
 #include <arcade/types.hpp>
-
-namespace sf
-{
-    class RenderWindow;
-}
 
 namespace arcade
 {
@@ -54,6 +52,7 @@ namespace arcade
       private:
         std::unique_ptr<sf::RenderWindow> _window;
         vec2u _size;
+        sf::RenderStates _renderStates;
 
         void updateSize();
     };

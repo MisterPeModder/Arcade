@@ -13,6 +13,9 @@ set(SRC
 
 set(INCDIRS ${INCROOT})
 
+add_subdirectory(asset)
+add_subdirectory(object)
+
 add_arcade_graphics(
     NAME sfml
     INCLUDE_DIRS ${SRCROOT} ${INCROOT}
