@@ -1,12 +1,11 @@
-#include <algorithm>
-
 #include <SFML/Window/Event.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include <SFML/Window/Mouse.hpp>
 
 #include <arcade/Event.hpp>
 #include <arcade/graphics/units.hpp>
 #include <arcade/types.hpp>
 
-#include "SfmlDisplay.hpp"
 #include "event.hpp"
 
 using sfEventType = sf::Event::EventType;

@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <cstddef>
 #include <cstdint>
-#include <iostream>
 #include <stdexcept>
 #include <string>
 #include <utility>
@@ -56,7 +55,6 @@ namespace arcade
         sf::Text inner(sf::String(std::string(text)), font->getInner());
 
         inner.setCharacterSize(PIXELS_PER_UNIT);
-        std::cout << "char size: " << inner.getCharacterSize() << std::endl;
         inner.setScale({0.9, 0.9});
 
         return std::unique_ptr<Text>(new Text(std::move(inner)));
