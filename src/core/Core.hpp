@@ -15,6 +15,9 @@
 
 namespace arcade
 {
+    /// Frames per second limit.
+    constexpr unsigned int FRAMERATE_LIMIT = 60;
+
     class Core {
       public:
         Core(DynamicLibrary::Registry &libs, IDisplay *startingDisplay);

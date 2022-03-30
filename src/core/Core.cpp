@@ -1,5 +1,6 @@
 #include <chrono>
 #include <iostream>
+#include <thread>
 
 #include <arcade/Event.hpp>
 #include <arcade/IDisplay.hpp>
@@ -52,9 +53,12 @@ namespace arcade
 
     void Core::eventLoop()
     {
+        using namespace std::chrono_literals;
+
         Event event;
         std::chrono::steady_clock clock;
         auto lastUpdate(clock.now());
+        auto frameTime(1s / static_cast<double>(FRAMERATE_LIMIT)); // the duration of a frame
 
         if (this->_game)
             this->_game->setState(IGame::State::Running);
@@ -68,6 +72,9 @@ namespace arcade
                     return;
             }
 
+            auto currentUpdate(clock.now());
+            std::chrono::duration<double> elapsed(currentUpdate - lastUpdate);
+
             if (this->_game) {
                 IGame::State state(this->_game->getState());
 
@@ -75,12 +82,8 @@ namespace arcade
                     std::cout << "Game ended, final score: " << this->_game->getScore() << std::endl;
                     return;
                 } else if (state == IGame::State::Running) {
-                    auto currentUpdate(clock.now());
-                    std::chrono::duration<double> elapsed(currentUpdate - lastUpdate);
-
                     // Update the game's logic
                     this->_game->update(elapsed.count());
-                    lastUpdate = currentUpdate;
                 }
 
                 // Render the game
@@ -89,6 +92,10 @@ namespace arcade
 
             // Update the display
             this->_display->render();
+
+            // Wait for the next frame
+            lastUpdate = currentUpdate;
+            std::this_thread::sleep_for(frameTime - elapsed);
         }
     }
 } // namespace arcade
