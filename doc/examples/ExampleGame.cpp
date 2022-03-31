@@ -3,19 +3,20 @@
 
 namespace arcade
 {
-    class IDisplay;
     struct Event;
+    class IRenderer;
+    class IAssetManager;
 } // namespace arcade
 
 // Using 'using' imports to keep the example clean, do not use in final code!
 using ::arcade::Event;
-using ::arcade::IDisplay;
+using ::arcade::IAssetManager;
 using ::arcade::IGame;
+using ::arcade::IRenderer;
 
 class ExampleGame : public IGame {
   private:
     State _state;
-    IDisplay *_display;
 
   public:
     ExampleGame()
@@ -23,15 +24,14 @@ class ExampleGame : public IGame {
         // ...
     }
 
-    void setup(IDisplay &display) override final
+    void setup() override final
     {
         this->_state = State::Loaded;
-        this->_display = &display;
     }
 
-    void setDisplay(IDisplay &display) override final
+    void loadAssets(IAssetManager &manager) override final
     {
-        this->_display = &display;
+        (void)manager;
     }
 
     void close() override final
@@ -62,9 +62,9 @@ class ExampleGame : public IGame {
         // ...
     }
 
-    void draw() override final
+    void render(IRenderer &renderer) override final
     {
-        // ...
+        (void)renderer;
     }
 
     void handleEvent(Event &event) override final
