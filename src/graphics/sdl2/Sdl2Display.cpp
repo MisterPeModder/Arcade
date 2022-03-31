@@ -118,7 +118,8 @@ namespace arcade
 
         // only fill the screen if the requested color is not fully transparent
         if (color.a != Color::Transparent.a) {
-            SDL_Rect screenRect{0, 0, static_cast<int>(this->_size.x), static_cast<int>(this->_size.y)};
+            vec2i scaledSize = static_cast<vec2i>(toPixels(this->_size));
+            SDL_Rect screenRect{0, 0, scaledSize.x, scaledSize.y};
 
             SDL_SetRenderDrawColor(this->_renderer, std::to_integer<uint8_t>(color.r),
                 std::to_integer<uint8_t>(color.g), std::to_integer<uint8_t>(color.b),
