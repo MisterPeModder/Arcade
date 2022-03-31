@@ -1,7 +1,7 @@
 # Adds a new Arcade graphics backend
 function(add_arcade_graphics)
     set(oneValueArgs NAME)
-    set(multiValueArgs INCLUDE_DIRS SOURCES)
+    set(multiValueArgs INCLUDE_DIRS SOURCES DEPENDS_ON)
     cmake_parse_arguments(ADD_ARCADE_GRAPHICS "" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
 
@@ -16,6 +16,7 @@ function(add_arcade_graphics)
     set(SRC ${ADD_ARCADE_GRAPHICS_SOURCES})
     set(TARGET_NAME arcade_${ADD_ARCADE_GRAPHICS_NAME})
     set(INCDIRS ${ADD_ARCADE_GRAPHICS_INCLUDE_DIRS})
+    set(DEPENDENCIES ${ADD_ARCADE_GRAPHICS_DEPENDS_ON})
 
     source_group("" FILES ${SRC})
 
@@ -28,7 +29,7 @@ function(add_arcade_graphics)
     # Add ${INCDIRS} and ${SRCROOT} to the lib's private include path
     target_include_directories(${TARGET_NAME} PRIVATE ${INCDIRS} ${SRCROOT})
 
-    target_link_libraries(${TARGET_NAME} PRIVATE arcade_interface)
+    target_link_libraries(${TARGET_NAME} PRIVATE arcade_interface arcade_graphics_common ${DEPENDENCIES})
 
     # Copy the library to lib/${TARGET_NAME}
     add_custom_command(TARGET ${TARGET_NAME} 
@@ -36,6 +37,9 @@ function(add_arcade_graphics)
     	COMMAND ${CMAKE_COMMAND} -E make_directory ${PROJECT_SOURCE_DIR}/lib
     	COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TARGET_NAME}> ${PROJECT_SOURCE_DIR}/lib)
 endfunction()
+
+# Common Graphics Library
+add_subdirectory(common)
 
 # Graphics Backends
 add_subdirectory(ncurses)
