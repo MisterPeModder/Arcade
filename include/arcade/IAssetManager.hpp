@@ -16,6 +16,7 @@
 #include <string_view>
 
 #include "IAsset.hpp"
+#include "IDisplay.hpp"
 #include "types.hpp"
 
 namespace arcade
@@ -26,6 +27,9 @@ namespace arcade
     class IAssetManager {
       public:
         virtual ~IAssetManager() = default;
+
+        /// @returns The type of the linked display output.
+        virtual IDisplay::Type getType() const = 0;
 
         /// Fetches an asset by name, loading it if necessary.
         ///
