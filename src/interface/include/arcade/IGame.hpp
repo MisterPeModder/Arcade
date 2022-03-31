@@ -19,8 +19,9 @@
 
 namespace arcade
 {
-    class IDisplay;
     struct Event;
+    class IAssetManager;
+    class IRenderer;
 
     /// A game instance.
     class IGame {
@@ -53,7 +54,14 @@ namespace arcade
         /// @note Calling this method without calling IGame::setup() leads to <b>undefined behavior</b>.
         ///
         /// @param display The starting display manager.
-        virtual void setup(IDisplay &display) = 0;
+        virtual void setup() = 0;
+
+        /// (Re)-loads assets and game objects.
+        ///
+        /// This method is called each time the underlying graphics backend is switched.
+        ///
+        /// @param manager The assets manager.
+        virtual void loadAssets(IAssetManager &manager) = 0;
 
         /// Releases the ressources allocated by this game.
         ///
@@ -62,15 +70,6 @@ namespace arcade
         ///
         /// @note Calling this method without calling IGame::setup() leads to <b>undefined behavior</b>.
         virtual void close() = 0;
-
-        /// Changes the display of the game.
-        ///
-        /// Changes in display must not interrupt the game.
-        ///
-        /// @note Calling this method without calling IGame::setup() leads to <b>undefined behavior</b>.
-        ///
-        /// @param display The new display manager.
-        virtual void setDisplay(IDisplay &display) = 0;
 
         /// Alters the state of the game.
         ///
@@ -99,7 +98,9 @@ namespace arcade
         /// Draw the game GameObjects.
         ///
         /// @note Calling this method without calling IGame::setup() leads to <b>undefined behavior</b>.
-        virtual void draw() = 0;
+        ///
+        /// @param renderer The renderer.
+        virtual void render(IRenderer &renderer) = 0;
 
         /// Handles the given event.
         ///
