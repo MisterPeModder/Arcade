@@ -41,11 +41,14 @@ namespace arcade
         this->_display.set(startingDisplay);
 
         // Load first game available
-        auto first = this->_games.begin();
+        auto firstGame = this->_games.begin();
 
-        if (first != this->_games.end()) {
+        if (firstGame != this->_games.end()) {
             std::cout << "\nLoading graphics..." << std::endl;
-            this->_game.set<IDisplay &>(first->second, *this->_display);
+            this->_game.set(firstGame->second);
+            this->_display->loadAssets([&](auto &manager) {
+                firstGame->second->loadAssets(manager);
+            });
         } else {
             std::cout << "\nNo game available!" << std::endl;
         }
@@ -62,6 +65,10 @@ namespace arcade
 
         if (this->_game)
             this->_game->setState(IGame::State::Running);
+
+        // Inform the game about the current screen size
+        this->updateGameSize();
+
         std::cout << "\nRunning..." << std::endl;
         for (;;) {
             // Poll all event and forward each to the current game (if any)
@@ -71,6 +78,8 @@ namespace arcade
                 if (event.type == Event::Type::Closed)
                     return;
             }
+
+            this->_display->clear(Color::Black, DefaultColor::Black);
 
             auto currentUpdate(clock.now());
             std::chrono::duration<double> elapsed(currentUpdate - lastUpdate);
@@ -86,16 +95,28 @@ namespace arcade
                     this->_game->update(elapsed.count());
                 }
 
-                // Render the game
-                this->_game->draw();
+                this->_display->render([&](auto &renderer) {
+                    this->_game->render(renderer);
+                });
             }
 
-            // Update the display
-            this->_display->render();
+            this->_display->display();
 
-            // Wait for the next frame
+            // Wait for the next frame if needed
             lastUpdate = currentUpdate;
             std::this_thread::sleep_for(frameTime - elapsed);
         }
+    }
+
+    void Core::updateGameSize()
+    {
+        if (!this->_game)
+            return;
+        Event resizeEvent;
+
+        resizeEvent.type = Event::Type::Resized;
+        resizeEvent.size.oldSize = {0, 0};
+        resizeEvent.size.newSize = this->_display->getSize();
+        this->_game->handleEvent(resizeEvent);
     }
 } // namespace arcade
