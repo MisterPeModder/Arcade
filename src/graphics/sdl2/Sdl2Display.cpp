@@ -1,15 +1,19 @@
 #include <algorithm>
+#include <cstddef>
+#include <cstdint>
 #include <filesystem>
 #include <iostream>
 #include <stdexcept>
 #include <string>
 
 #include <SDL.h>
-#include <SDL_error.h>
+#include <SDL_blendmode.h>
 #include <SDL_events.h>
 #include <SDL_image.h>
+#include <SDL_rect.h>
 #include <SDL_ttf.h>
 
+#include <arcade/Color.hpp>
 #include <arcade/Event.hpp>
 #include <arcade/IAsset.hpp>
 #include <arcade/IDisplay.hpp>

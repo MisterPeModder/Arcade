@@ -1,5 +1,6 @@
 #include <cstddef>
 #include <cstdint>
+#include <stdexcept>
 
 #include <arcade/Color.hpp>
 #include <arcade/IGameObject.hpp>
@@ -66,7 +67,6 @@ namespace arcade
     {
         if (!this->_renderer) [[unlikely]]
             return; // just in case...
-        Color color(this->_backgroundColor);
 
         // Draw background, if present
         if (this->_backgroundColor.toInteger() != Color::Transparent.toInteger())

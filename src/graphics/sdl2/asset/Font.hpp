@@ -6,7 +6,9 @@
 
 #include <filesystem>
 #include <memory>
+#include <string_view>
 
+#include <SDL_render.h>
 #include <SDL_ttf.h>
 
 #include <arcade/IAsset.hpp>

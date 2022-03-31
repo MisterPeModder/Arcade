@@ -1,6 +1,7 @@
 #include <iostream>
 #include <memory>
 
+#include <arcade/Color.hpp>
 #include <arcade/Event.hpp>
 #include <arcade/IAsset.hpp>
 #include <arcade/IDisplay.hpp>
