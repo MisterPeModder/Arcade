@@ -20,6 +20,7 @@
 namespace arcade
 {
     struct Event;
+    struct vec2u;
     class IAssetManager;
     class IRenderer;
 
@@ -61,7 +62,8 @@ namespace arcade
         /// This method is called each time the underlying graphics backend is switched.
         ///
         /// @param manager The assets manager.
-        virtual void loadAssets(IAssetManager &manager) = 0;
+        /// @param displaySize The size of the display.
+        virtual void loadAssets(IAssetManager &manager, vec2u displaySize) = 0;
 
         /// Releases the ressources allocated by this game.
         ///
