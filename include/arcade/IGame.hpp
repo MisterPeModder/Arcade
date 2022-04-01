@@ -63,7 +63,7 @@ namespace arcade
         ///
         /// @param manager The assets manager.
         /// @param displaySize The size of the display.
-        virtual void loadAssets(IAssetManager &manager, const vec2u displaySize) = 0;
+        virtual void loadAssets(IAssetManager &manager, vec2u displaySize) = 0;
 
         /// Releases the ressources allocated by this game.
         ///
