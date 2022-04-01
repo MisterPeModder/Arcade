@@ -15,8 +15,8 @@
 /// Entry point to get an instance of IGame
 #define ARCADE_GAME_ENTRY_POINT extern "C" ::arcade::IGame *arcade_GameEntryPoint()
 
-#include <string_view>
 #include "types.hpp"
+#include <string_view>
 
 namespace arcade
 {
