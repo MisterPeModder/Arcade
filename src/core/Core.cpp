@@ -47,7 +47,7 @@ namespace arcade
             std::cout << "\nLoading graphics..." << std::endl;
             this->_game.set(firstGame->second);
             this->_display->loadAssets([&](auto &manager) {
-                firstGame->second->loadAssets(manager);
+                firstGame->second->loadAssets(manager, this->_display->getSize());
             });
         } else {
             std::cout << "\nNo game available!" << std::endl;
