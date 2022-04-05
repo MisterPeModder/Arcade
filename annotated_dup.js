@@ -9,9 +9,11 @@ var annotated_dup =
       [ "Color", "classarcade_1_1_color.html", "classarcade_1_1_color" ],
       [ "Event", "structarcade_1_1_event.html", "structarcade_1_1_event" ],
       [ "IAsset", "classarcade_1_1_i_asset.html", "classarcade_1_1_i_asset" ],
+      [ "IAssetManager", "classarcade_1_1_i_asset_manager.html", "classarcade_1_1_i_asset_manager" ],
       [ "IDisplay", "classarcade_1_1_i_display.html", "classarcade_1_1_i_display" ],
       [ "IGame", "classarcade_1_1_i_game.html", "classarcade_1_1_i_game" ],
       [ "IGameObject", "classarcade_1_1_i_game_object.html", "classarcade_1_1_i_game_object" ],
+      [ "IRenderer", "classarcade_1_1_i_renderer.html", "classarcade_1_1_i_renderer" ],
       [ "vec2", "structarcade_1_1vec2.html", "structarcade_1_1vec2" ]
     ] ]
 ];

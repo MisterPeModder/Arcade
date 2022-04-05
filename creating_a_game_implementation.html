@@ -107,24 +107,23 @@ Explanation</h2>
 <p> First, include the IGame interface, (and iostream too, for this example). </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_i_game_8hpp.html">arcade/IGame.hpp</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 </div><!-- fragment --><p>Then, create implement the IGame interface: </p><div class="fragment"><div class="line"><span class="keyword">class </span>ExampleGame : <span class="keyword">public</span> IGame {</div>
-</div><!-- fragment --><p>Store the game state and display adapter as private fields: </p><div class="fragment"><div class="line">  <span class="keyword">private</span>:</div>
+</div><!-- fragment --><p>Store the game state as private fields: </p><div class="fragment"><div class="line">  <span class="keyword">private</span>:</div>
 <div class="line">    State _state;</div>
-<div class="line">    IDisplay *_display;</div>
 </div><!-- fragment --><p>Create the setup methods: </p><div class="fragment"><div class="line">  <span class="keyword">public</span>:</div>
 <div class="line">    ExampleGame()</div>
 <div class="line">    {</div>
 <div class="line">        <span class="comment">// ...</span></div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> setup(IDisplay &amp;display) <span class="keyword">override</span> <span class="keyword">final</span></div>
+<div class="line">    <span class="keywordtype">void</span> setup() override final</div>
 <div class="line">    {</div>
 <div class="line">        this-&gt;_state = State::Loaded;</div>
-<div class="line">        this-&gt;_display = &amp;display;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> setDisplay(IDisplay &amp;display) <span class="keyword">override</span> <span class="keyword">final</span></div>
+<div class="line">    <span class="keywordtype">void</span> loadAssets(IAssetManager &amp;manager, vec2u displaySize) <span class="keyword">override</span> <span class="keyword">final</span></div>
 <div class="line">    {</div>
-<div class="line">        this-&gt;_display = &amp;display;</div>
+<div class="line">        (void)manager;</div>
+<div class="line">        (void)displaySize;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">void</span> close() override final</div>
@@ -155,9 +154,9 @@ Explanation</h2>
 <div class="line">        <span class="comment">// ...</span></div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> draw() override final</div>
+<div class="line">    <span class="keywordtype">void</span> render(IRenderer &amp;renderer) <span class="keyword">override</span> <span class="keyword">final</span></div>
 <div class="line">    {</div>
-<div class="line">        <span class="comment">// ...</span></div>
+<div class="line">        (void)renderer;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">void</span> handleEvent(Event &amp;event) <span class="keyword">override</span> <span class="keyword">final</span></div>
@@ -191,19 +190,21 @@ Full Code</h2>
 <div class="line"> </div>
 <div class="line"><span class="keyword">namespace </span>arcade</div>
 <div class="line">{</div>
-<div class="line">    <span class="keyword">class </span>IDisplay;</div>
 <div class="line">    <span class="keyword">struct </span>Event;</div>
+<div class="line">    <span class="keyword">class </span>IRenderer;</div>
+<div class="line">    <span class="keyword">class </span>IAssetManager;</div>
 <div class="line">} <span class="comment">// namespace arcade</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Using &#39;using&#39; imports to keep the example clean, do not use in final code!</span></div>
 <div class="line">using ::arcade::Event;</div>
-<div class="line">using ::arcade::IDisplay;</div>
+<div class="line">using ::arcade::IAssetManager;</div>
 <div class="line">using ::arcade::IGame;</div>
+<div class="line">using ::arcade::IRenderer;</div>
+<div class="line">using ::arcade::vec2u;</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">class </span>ExampleGame : <span class="keyword">public</span> IGame {</div>
 <div class="line">  <span class="keyword">private</span>:</div>
 <div class="line">    State _state;</div>
-<div class="line">    IDisplay *_display;</div>
 <div class="line"> </div>
 <div class="line">  <span class="keyword">public</span>:</div>
 <div class="line">    ExampleGame()</div>
@@ -211,15 +212,15 @@ Full Code</h2>
 <div class="line">        <span class="comment">// ...</span></div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> setup(IDisplay &amp;display) <span class="keyword">override</span> <span class="keyword">final</span></div>
+<div class="line">    <span class="keywordtype">void</span> setup() override final</div>
 <div class="line">    {</div>
 <div class="line">        this-&gt;_state = State::Loaded;</div>
-<div class="line">        this-&gt;_display = &amp;display;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> setDisplay(IDisplay &amp;display) <span class="keyword">override</span> <span class="keyword">final</span></div>
+<div class="line">    <span class="keywordtype">void</span> loadAssets(IAssetManager &amp;manager, vec2u displaySize) <span class="keyword">override</span> <span class="keyword">final</span></div>
 <div class="line">    {</div>
-<div class="line">        this-&gt;_display = &amp;display;</div>
+<div class="line">        (void)manager;</div>
+<div class="line">        (void)displaySize;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">void</span> close() override final</div>
@@ -250,9 +251,9 @@ Full Code</h2>
 <div class="line">        <span class="comment">// ...</span></div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> draw() override final</div>
+<div class="line">    <span class="keywordtype">void</span> render(IRenderer &amp;renderer) <span class="keyword">override</span> <span class="keyword">final</span></div>
 <div class="line">    {</div>
-<div class="line">        <span class="comment">// ...</span></div>
+<div class="line">        (void)renderer;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">void</span> handleEvent(Event &amp;event) <span class="keyword">override</span> <span class="keyword">final</span></div>
@@ -286,9 +287,9 @@ Full Code</h2>
 Display Implementation</h1>
 <h2><a class="anchor" id="dispalay_impl"></a>
 Explanation</h2>
-<p> First, include the IDisplay interface, (and iostream too, for this example). </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;string_view&gt;</span></div>
+<p> First, include the IDisplay interface, (and iostream too, for this example). </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_color_8hpp.html">arcade/Color.hpp</a>&gt;</span></div>
 </div><!-- fragment --><p>Then, create implement the IDisplay interface: </p><div class="fragment"><div class="line"><span class="keyword">class </span>ExampleDisplay : <span class="keyword">public</span> IDisplay {</div>
 </div><!-- fragment --><p>Then implement the needed methods: </p><div class="fragment"><div class="line">  <span class="keyword">public</span>:</div>
 <div class="line">    ExampleDisplay()</div>
@@ -311,13 +312,6 @@ Explanation</h2>
 <div class="line">        <span class="keywordflow">return</span> Type::Graphical2D;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    std::unique_ptr&lt;IAsset&gt; loadAsset(std::string_view name, IAsset::Type type) <span class="keyword">override</span> <span class="keyword">final</span></div>
-<div class="line">    {</div>
-<div class="line">        (void)name;</div>
-<div class="line">        (void)type;</div>
-<div class="line">        <span class="keywordflow">return</span> std::unique_ptr&lt;IAsset&gt;(<span class="keyword">nullptr</span>);</div>
-<div class="line">    }</div>
-<div class="line"> </div>
 <div class="line">    <a class="code" href="types_8hpp.html#a9030af5de12a940030414fb458cad430">vec2u</a> getSize() const override final</div>
 <div class="line">    {</div>
 <div class="line">        <span class="keywordflow">return</span> {0, 0};</div>
@@ -335,29 +329,19 @@ Explanation</h2>
 <div class="line">        (void)backup;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> render() override final</div>
+<div class="line">    <span class="keywordtype">void</span> render(std::function&lt;<span class="keywordtype">void</span>(IRenderer &amp;)&gt; drawer) <span class="keyword">override</span> <span class="keyword">final</span></div>
+<div class="line">    {</div>
+<div class="line">        (void)drawer;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordtype">void</span> display() override final</div>
 <div class="line">    {</div>
 <div class="line">        <span class="comment">// ...</span></div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> drawGameObject(<span class="keyword">const</span> IGameObject &amp;<span class="keywordtype">object</span>) <span class="keyword">override</span> <span class="keyword">final</span></div>
+<div class="line">    <span class="keywordtype">void</span> loadAssets(std::function&lt;<span class="keywordtype">void</span>(IAssetManager &amp;)&gt; loader) <span class="keyword">override</span> <span class="keyword">final</span></div>
 <div class="line">    {</div>
-<div class="line">        (void)<span class="keywordtype">object</span>;</div>
-<div class="line">        <span class="comment">// ...</span></div>
-<div class="line">    }</div>
-<div class="line"> </div>
-<div class="line">    std::unique_ptr&lt;IGameObject&gt; createTextObject(std::string_view text, IAsset <span class="keyword">const</span> *font) <span class="keyword">const</span> <span class="keyword">override</span> <span class="keyword">final</span></div>
-<div class="line">    {</div>
-<div class="line">        (void)text;</div>
-<div class="line">        (void)font;</div>
-<div class="line">        <span class="keywordflow">return</span> std::unique_ptr&lt;IGameObject&gt;(<span class="keyword">nullptr</span>);</div>
-<div class="line">    }</div>
-<div class="line"> </div>
-<div class="line">    std::unique_ptr&lt;IGameObject&gt; createRectObject(vec2u size, IAsset <span class="keyword">const</span> *texture) <span class="keyword">const</span> <span class="keyword">override</span> <span class="keyword">final</span></div>
-<div class="line">    {</div>
-<div class="line">        (void)size;</div>
-<div class="line">        (void)texture;</div>
-<div class="line">        <span class="keywordflow">return</span> std::unique_ptr&lt;IGameObject&gt;(<span class="keyword">nullptr</span>);</div>
+<div class="line">        (void)loader;</div>
 <div class="line">    }</div>
 <div class="line">};</div>
 <div class="line"><span class="comment">/// end_display_impl</span></div>
@@ -380,28 +364,31 @@ Explanation</h2>
 <div class="line">}</div>
 </div><!-- fragment --><h2><a class="anchor" id="display_full_code"></a>
 Full Code</h2>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;string_view&gt;</span></div>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_color_8hpp.html">arcade/Color.hpp</a>&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_i_asset_8hpp.html">arcade/IAsset.hpp</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_i_display_8hpp.html">arcade/IDisplay.hpp</a>&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_i_game_object_8hpp.html">arcade/IGameObject.hpp</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="types_8hpp.html">arcade/types.hpp</a>&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">namespace </span>arcade</div>
 <div class="line">{</div>
 <div class="line">    <span class="keyword">struct </span>Event;</div>
-<div class="line">}</div>
+<div class="line">    <span class="keyword">class </span>IAsset;</div>
+<div class="line">    <span class="keyword">class </span>IAssetManager;</div>
+<div class="line">    <span class="keyword">class </span>IGameObject;</div>
+<div class="line">    <span class="keyword">class </span>IRenderer;</div>
+<div class="line">} <span class="comment">// namespace arcade</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Using &#39;using&#39; imports to keep the example clean, do not use in final code!</span></div>
 <div class="line">using ::arcade::Color;</div>
 <div class="line">using ::arcade::DefaultColor;</div>
 <div class="line">using ::arcade::Event;</div>
 <div class="line">using ::arcade::IAsset;</div>
+<div class="line">using ::arcade::IAssetManager;</div>
 <div class="line">using ::arcade::IDisplay;</div>
 <div class="line">using ::arcade::IGameObject;</div>
+<div class="line">using ::arcade::IRenderer;</div>
 <div class="line">using ::arcade::vec2u;</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">class </span>ExampleDisplay : <span class="keyword">public</span> IDisplay {</div>
@@ -426,13 +413,6 @@ Full Code</h2>
 <div class="line">        <span class="keywordflow">return</span> Type::Graphical2D;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    std::unique_ptr&lt;IAsset&gt; loadAsset(std::string_view name, IAsset::Type type) <span class="keyword">override</span> <span class="keyword">final</span></div>
-<div class="line">    {</div>
-<div class="line">        (void)name;</div>
-<div class="line">        (void)type;</div>
-<div class="line">        <span class="keywordflow">return</span> std::unique_ptr&lt;IAsset&gt;(<span class="keyword">nullptr</span>);</div>
-<div class="line">    }</div>
-<div class="line"> </div>
 <div class="line">    <a class="code" href="types_8hpp.html#a9030af5de12a940030414fb458cad430">vec2u</a> getSize() const override final</div>
 <div class="line">    {</div>
 <div class="line">        <span class="keywordflow">return</span> {0, 0};</div>
@@ -450,29 +430,19 @@ Full Code</h2>
 <div class="line">        (void)backup;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> render() override final</div>
+<div class="line">    <span class="keywordtype">void</span> render(std::function&lt;<span class="keywordtype">void</span>(IRenderer &amp;)&gt; drawer) <span class="keyword">override</span> <span class="keyword">final</span></div>
+<div class="line">    {</div>
+<div class="line">        (void)drawer;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordtype">void</span> display() override final</div>
 <div class="line">    {</div>
 <div class="line">        <span class="comment">// ...</span></div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> drawGameObject(<span class="keyword">const</span> IGameObject &amp;<span class="keywordtype">object</span>) <span class="keyword">override</span> <span class="keyword">final</span></div>
+<div class="line">    <span class="keywordtype">void</span> loadAssets(std::function&lt;<span class="keywordtype">void</span>(IAssetManager &amp;)&gt; loader) <span class="keyword">override</span> <span class="keyword">final</span></div>
 <div class="line">    {</div>
-<div class="line">        (void)<span class="keywordtype">object</span>;</div>
-<div class="line">        <span class="comment">// ...</span></div>
-<div class="line">    }</div>
-<div class="line"> </div>
-<div class="line">    std::unique_ptr&lt;IGameObject&gt; createTextObject(std::string_view text, IAsset <span class="keyword">const</span> *font) <span class="keyword">const</span> <span class="keyword">override</span> <span class="keyword">final</span></div>
-<div class="line">    {</div>
-<div class="line">        (void)text;</div>
-<div class="line">        (void)font;</div>
-<div class="line">        <span class="keywordflow">return</span> std::unique_ptr&lt;IGameObject&gt;(<span class="keyword">nullptr</span>);</div>
-<div class="line">    }</div>
-<div class="line"> </div>
-<div class="line">    std::unique_ptr&lt;IGameObject&gt; createRectObject(vec2u size, IAsset <span class="keyword">const</span> *texture) <span class="keyword">const</span> <span class="keyword">override</span> <span class="keyword">final</span></div>
-<div class="line">    {</div>
-<div class="line">        (void)size;</div>
-<div class="line">        (void)texture;</div>
-<div class="line">        <span class="keywordflow">return</span> std::unique_ptr&lt;IGameObject&gt;(<span class="keyword">nullptr</span>);</div>
+<div class="line">        (void)loader;</div>
 <div class="line">    }</div>
 <div class="line">};</div>
 <div class="line"> </div>
@@ -500,13 +470,11 @@ Full Code</h2>
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <div class="ttc" id="a_i_game_8hpp_html"><div class="ttname"><a href="_i_game_8hpp.html">IGame.hpp</a></div></div>
-<div class="ttc" id="atypes_8hpp_html_a9030af5de12a940030414fb458cad430"><div class="ttname"><a href="types_8hpp.html#a9030af5de12a940030414fb458cad430">arcade::vec2u</a></div><div class="ttdeci">vec2&lt; unsigned int &gt; vec2u</div><div class="ttdoc">A 2D vector of unsigned ints.</div><div class="ttdef"><b>Definition:</b> types.hpp:120</div></div>
+<div class="ttc" id="atypes_8hpp_html_a9030af5de12a940030414fb458cad430"><div class="ttname"><a href="types_8hpp.html#a9030af5de12a940030414fb458cad430">arcade::vec2u</a></div><div class="ttdeci">vec2&lt; unsigned int &gt; vec2u</div><div class="ttdoc">A 2D vector of unsigned ints.</div><div class="ttdef"><b>Definition:</b> types.hpp:130</div></div>
 <div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div></div>
-<div class="ttc" id="a_i_game_object_8hpp_html"><div class="ttname"><a href="_i_game_object_8hpp.html">IGameObject.hpp</a></div></div>
 <div class="ttc" id="a_i_game_8hpp_html_a1751ba9e6c1f5fe4d3682c518ff54317"><div class="ttname"><a href="_i_game_8hpp.html#a1751ba9e6c1f5fe4d3682c518ff54317">ARCADE_GAME_ENTRY_POINT</a></div><div class="ttdeci">#define ARCADE_GAME_ENTRY_POINT</div><div class="ttdoc">Entry point to get an instance of IGame.</div><div class="ttdef"><b>Definition:</b> IGame.hpp:16</div></div>
 <div class="ttc" id="a_i_display_8hpp_html_a63f004c6386745fe3523df4c8b3d7b9e"><div class="ttname"><a href="_i_display_8hpp.html#a63f004c6386745fe3523df4c8b3d7b9e">ARCADE_DISPLAY_ENTRY_POINT</a></div><div class="ttdeci">#define ARCADE_DISPLAY_ENTRY_POINT</div><div class="ttdoc">Entry point to get an instance of IDisplay.</div><div class="ttdef"><b>Definition:</b> IDisplay.hpp:16</div></div>
 <div class="ttc" id="a_color_8hpp_html"><div class="ttname"><a href="_color_8hpp.html">Color.hpp</a></div></div>
-<div class="ttc" id="a_i_asset_8hpp_html"><div class="ttname"><a href="_i_asset_8hpp.html">IAsset.hpp</a></div></div>
 <div class="ttc" id="a_i_display_8hpp_html"><div class="ttname"><a href="_i_display_8hpp.html">IDisplay.hpp</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

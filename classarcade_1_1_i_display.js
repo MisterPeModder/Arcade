@@ -8,13 +8,11 @@ var classarcade_1_1_i_display =
     [ "~IDisplay", "classarcade_1_1_i_display.html#a8d2a3cd8c4d11449f3eb07d307a9182e", null ],
     [ "clear", "classarcade_1_1_i_display.html#ab96c9b19cec3d37c68c05f0a8122f32c", null ],
     [ "close", "classarcade_1_1_i_display.html#a103bb51dca12a2ace9aa23bcc3703800", null ],
-    [ "createRectObject", "classarcade_1_1_i_display.html#a4ae7d4a1eb4732962225fb3257dd375b", null ],
-    [ "createTextObject", "classarcade_1_1_i_display.html#af26a81c8d57e58d39e1387b30af75ca8", null ],
-    [ "drawGameObject", "classarcade_1_1_i_display.html#a78db24c9bd6b6822b54918bd38ea5285", null ],
+    [ "display", "classarcade_1_1_i_display.html#a41472e2ba4a6d75d41787e76dbbdde63", null ],
     [ "getSize", "classarcade_1_1_i_display.html#a2cbd526578e6f85d4f7714a2b6230ebf", null ],
     [ "getType", "classarcade_1_1_i_display.html#a5d015d7fbe88cdf66d5eca4183c2df08", null ],
-    [ "loadAsset", "classarcade_1_1_i_display.html#a63bf0cd8ed338bdd7791099d3fffed54", null ],
+    [ "loadAssets", "classarcade_1_1_i_display.html#a75cb5aab07d6a97acf0856a384dbc0ed", null ],
     [ "pollEvent", "classarcade_1_1_i_display.html#a650424e0b07da29ebe86baf4bc691a26", null ],
-    [ "render", "classarcade_1_1_i_display.html#ab4c1b8b7c91798dc355a3f1f4102aaf2", null ],
+    [ "render", "classarcade_1_1_i_display.html#ae095327d4cd428ca8c48706fb85aae62", null ],
     [ "setup", "classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0", null ]
 ];

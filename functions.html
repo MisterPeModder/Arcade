@@ -131,10 +131,10 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 : <a class="el" href="structarcade_1_1_event_1_1_key_event.html#a208ba309f968169ecb1759203e38d558">arcade::Event::KeyEvent</a>
 </li>
 <li>createRectObject()
-: <a class="el" href="classarcade_1_1_i_display.html#a4ae7d4a1eb4732962225fb3257dd375b">arcade::IDisplay</a>
+: <a class="el" href="classarcade_1_1_i_asset_manager.html#a2027e624c9f3b49345966e56badca9a7">arcade::IAssetManager</a>
 </li>
 <li>createTextObject()
-: <a class="el" href="classarcade_1_1_i_display.html#af26a81c8d57e58d39e1387b30af75ca8">arcade::IDisplay</a>
+: <a class="el" href="classarcade_1_1_i_asset_manager.html#a50dff8862a60d4f786ffce97fbe34ee2">arcade::IAssetManager</a>
 </li>
 <li>Cyan
 : <a class="el" href="classarcade_1_1_color.html#af839a41cd06959ce754b309c1d905343">arcade::Color</a>
@@ -143,11 +143,11 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 
 
 <h3><a id="index_d"></a>- d -</h3><ul>
-<li>draw()
-: <a class="el" href="classarcade_1_1_i_game.html#a235fe6afa971aa40c14eeb22ea9f82f2">arcade::IGame</a>
+<li>display()
+: <a class="el" href="classarcade_1_1_i_display.html#a41472e2ba4a6d75d41787e76dbbdde63">arcade::IDisplay</a>
 </li>
-<li>drawGameObject()
-: <a class="el" href="classarcade_1_1_i_display.html#a78db24c9bd6b6822b54918bd38ea5285">arcade::IDisplay</a>
+<li>draw()
+: <a class="el" href="classarcade_1_1_i_renderer.html#a3c497ae2710d7fc2ec40aacd89b4931d">arcade::IRenderer</a>
 </li>
 </ul>
 
@@ -183,6 +183,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 </li>
 <li>getType()
 : <a class="el" href="classarcade_1_1_i_asset.html#a2b8633cbe2e5b7812e930a8f2672482d">arcade::IAsset</a>
+, <a class="el" href="classarcade_1_1_i_asset_manager.html#aae01318c9608a98930db1163efc2172d">arcade::IAssetManager</a>
 , <a class="el" href="classarcade_1_1_i_display.html#a5d015d7fbe88cdf66d5eca4183c2df08">arcade::IDisplay</a>
 , <a class="el" href="classarcade_1_1_i_game_object.html#ac7a0f59aab4e3339fc13a7538c544867">arcade::IGameObject</a>
 </li>
@@ -211,7 +212,11 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 
 <h3><a id="index_l"></a>- l -</h3><ul>
 <li>loadAsset()
-: <a class="el" href="classarcade_1_1_i_display.html#a63bf0cd8ed338bdd7791099d3fffed54">arcade::IDisplay</a>
+: <a class="el" href="classarcade_1_1_i_asset_manager.html#a02683b022c5fb12b62cdd6c4392133ba">arcade::IAssetManager</a>
+</li>
+<li>loadAssets()
+: <a class="el" href="classarcade_1_1_i_display.html#a75cb5aab07d6a97acf0856a384dbc0ed">arcade::IDisplay</a>
+, <a class="el" href="classarcade_1_1_i_game.html#a0a913997f4b0b061b9b2fe2668898dd4">arcade::IGame</a>
 </li>
 </ul>
 
@@ -220,11 +225,11 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>Magenta
 : <a class="el" href="classarcade_1_1_color.html#a28d2d2815e698a40e9396b87313f6864">arcade::Color</a>
 </li>
-<li>mouseButton
-: <a class="el" href="structarcade_1_1_event.html#a48ae736a7847906fcdc93edf4833bfaa">arcade::Event</a>
-</li>
 <li>MouseButton
 : <a class="el" href="structarcade_1_1_event.html#a2607b2fd68c5ce2482b8b918c4f718f2">arcade::Event</a>
+</li>
+<li>mouseButton
+: <a class="el" href="structarcade_1_1_event.html#a48ae736a7847906fcdc93edf4833bfaa">arcade::Event</a>
 </li>
 <li>mouseMove
 : <a class="el" href="structarcade_1_1_event.html#a947c31ebda95446588ef8d19f5d178fb">arcade::Event</a>
@@ -271,7 +276,8 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 : <a class="el" href="classarcade_1_1_color.html#a87ed6e50a233e170faecda969de4f210">arcade::Color</a>
 </li>
 <li>render()
-: <a class="el" href="classarcade_1_1_i_display.html#ab4c1b8b7c91798dc355a3f1f4102aaf2">arcade::IDisplay</a>
+: <a class="el" href="classarcade_1_1_i_display.html#ae095327d4cd428ca8c48706fb85aae62">arcade::IDisplay</a>
+, <a class="el" href="classarcade_1_1_i_game.html#a9118453cf1eb7e0994e33f857aaa663e">arcade::IGame</a>
 </li>
 </ul>
 
@@ -279,9 +285,6 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <h3><a id="index_s"></a>- s -</h3><ul>
 <li>setBackground()
 : <a class="el" href="classarcade_1_1_i_game_object.html#aee0ca0d80bc45bcce1631180d57850cd">arcade::IGameObject</a>
-</li>
-<li>setDisplay()
-: <a class="el" href="classarcade_1_1_i_game.html#ab5c3c6583f3f5787b9bfb32955a299e2">arcade::IGame</a>
 </li>
 <li>setForeground()
 : <a class="el" href="classarcade_1_1_i_game_object.html#ab5b19f17058dfc22ee7afc7a7986a5d9">arcade::IGameObject</a>
@@ -294,7 +297,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 </li>
 <li>setup()
 : <a class="el" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">arcade::IDisplay</a>
-, <a class="el" href="classarcade_1_1_i_game.html#a270f874ef2ac72109561fb19fabc7a36">arcade::IGame</a>
+, <a class="el" href="classarcade_1_1_i_game.html#abc6ea53935c8c4df1746e860149887f9">arcade::IGame</a>
 </li>
 <li>shift
 : <a class="el" href="structarcade_1_1_event_1_1_key_event.html#afb2504ad1ec7d55994763204c02165d1">arcade::Event::KeyEvent</a>
@@ -318,12 +321,14 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>Transparent
 : <a class="el" href="classarcade_1_1_color.html#a285ed9e4ad7a785a480b16eeef252810">arcade::Color</a>
 </li>
+<li>Type
+: <a class="el" href="structarcade_1_1_event.html#a6815a7d96992ea58d942f46e69582078">arcade::Event</a>
+</li>
 <li>type
 : <a class="el" href="structarcade_1_1_event.html#a26319d4b522d882fe100f6315afca985">arcade::Event</a>
 </li>
 <li>Type
-: <a class="el" href="structarcade_1_1_event.html#a6815a7d96992ea58d942f46e69582078">arcade::Event</a>
-, <a class="el" href="classarcade_1_1_i_asset.html#ae3a66b9e4eab80bac718dfcc6bcf71b5">arcade::IAsset</a>
+: <a class="el" href="classarcade_1_1_i_asset.html#ae3a66b9e4eab80bac718dfcc6bcf71b5">arcade::IAsset</a>
 , <a class="el" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">arcade::IDisplay</a>
 , <a class="el" href="classarcade_1_1_i_game_object.html#aaa2a506c67deb0e5c9f85aababebed91">arcade::IGameObject</a>
 </li>

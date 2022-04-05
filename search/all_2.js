@@ -9,7 +9,7 @@ var searchData=
   ['color_2ehpp_14',['Color.hpp',['../_color_8hpp.html',1,'']]],
   ['control_15',['control',['../structarcade_1_1_event_1_1_key_event.html#a208ba309f968169ecb1759203e38d558',1,'arcade::Event::KeyEvent']]],
   ['count_16',['Count',['../structarcade_1_1_event.html#a2607b2fd68c5ce2482b8b918c4f718f2ae93f994f01c537c4e2f7d8528c3eb5e9',1,'arcade::Event::Count()'],['../structarcade_1_1_event.html#a6815a7d96992ea58d942f46e69582078ae93f994f01c537c4e2f7d8528c3eb5e9',1,'arcade::Event::Count()']]],
-  ['createrectobject_17',['createRectObject',['../classarcade_1_1_i_display.html#a4ae7d4a1eb4732962225fb3257dd375b',1,'arcade::IDisplay']]],
-  ['createtextobject_18',['createTextObject',['../classarcade_1_1_i_display.html#af26a81c8d57e58d39e1387b30af75ca8',1,'arcade::IDisplay']]],
+  ['createrectobject_17',['createRectObject',['../classarcade_1_1_i_asset_manager.html#a2027e624c9f3b49345966e56badca9a7',1,'arcade::IAssetManager']]],
+  ['createtextobject_18',['createTextObject',['../classarcade_1_1_i_asset_manager.html#a50dff8862a60d4f786ffce97fbe34ee2',1,'arcade::IAssetManager']]],
   ['cyan_19',['Cyan',['../classarcade_1_1_color.html#af839a41cd06959ce754b309c1d905343',1,'arcade::Color']]]
 ];

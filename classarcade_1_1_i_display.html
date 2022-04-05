@@ -115,22 +115,18 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a103bb51dca12a2ace9aa23bcc3703800"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d015d7fbe88cdf66d5eca4183c2df08"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classarcade_1_1_i_display.html#a7b525d2efd4000d4ec42407221759378">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#a5d015d7fbe88cdf66d5eca4183c2df08">getType</a> () const =0</td></tr>
 <tr class="separator:a5d015d7fbe88cdf66d5eca4183c2df08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63bf0cd8ed338bdd7791099d3fffed54"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="classarcade_1_1_i_asset.html">IAsset</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#a63bf0cd8ed338bdd7791099d3fffed54">loadAsset</a> (std::string_view name, <a class="el" href="classarcade_1_1_i_asset.html#ae3a66b9e4eab80bac718dfcc6bcf71b5">IAsset::Type</a> type)=0</td></tr>
-<tr class="separator:a63bf0cd8ed338bdd7791099d3fffed54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cbd526578e6f85d4f7714a2b6230ebf"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="types_8hpp.html#a9030af5de12a940030414fb458cad430">vec2u</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#a2cbd526578e6f85d4f7714a2b6230ebf">getSize</a> () const =0</td></tr>
 <tr class="separator:a2cbd526578e6f85d4f7714a2b6230ebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a650424e0b07da29ebe86baf4bc691a26"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#a650424e0b07da29ebe86baf4bc691a26">pollEvent</a> (<a class="el" href="structarcade_1_1_event.html">Event</a> &amp;event)=0</td></tr>
 <tr class="separator:a650424e0b07da29ebe86baf4bc691a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab96c9b19cec3d37c68c05f0a8122f32c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#ab96c9b19cec3d37c68c05f0a8122f32c">clear</a> (<a class="el" href="classarcade_1_1_color.html">Color</a> color, <a class="el" href="_color_8hpp.html#a80d5823a0c22bb63d062804cc76191db">DefaultColor</a> backup)=0</td></tr>
 <tr class="separator:ab96c9b19cec3d37c68c05f0a8122f32c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4c1b8b7c91798dc355a3f1f4102aaf2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#ab4c1b8b7c91798dc355a3f1f4102aaf2">render</a> ()=0</td></tr>
-<tr class="separator:ab4c1b8b7c91798dc355a3f1f4102aaf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78db24c9bd6b6822b54918bd38ea5285"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#a78db24c9bd6b6822b54918bd38ea5285">drawGameObject</a> (const <a class="el" href="classarcade_1_1_i_game_object.html">IGameObject</a> &amp;object)=0</td></tr>
-<tr class="separator:a78db24c9bd6b6822b54918bd38ea5285"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af26a81c8d57e58d39e1387b30af75ca8"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="classarcade_1_1_i_game_object.html">IGameObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#af26a81c8d57e58d39e1387b30af75ca8">createTextObject</a> (std::string_view text, <a class="el" href="classarcade_1_1_i_asset.html">IAsset</a> const *font=nullptr) const =0</td></tr>
-<tr class="separator:af26a81c8d57e58d39e1387b30af75ca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ae7d4a1eb4732962225fb3257dd375b"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="classarcade_1_1_i_game_object.html">IGameObject</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#a4ae7d4a1eb4732962225fb3257dd375b">createRectObject</a> (<a class="el" href="types_8hpp.html#a9030af5de12a940030414fb458cad430">vec2u</a> size, <a class="el" href="classarcade_1_1_i_asset.html">IAsset</a> const *texture=nullptr) const =0</td></tr>
-<tr class="separator:a4ae7d4a1eb4732962225fb3257dd375b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae095327d4cd428ca8c48706fb85aae62"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#ae095327d4cd428ca8c48706fb85aae62">render</a> (std::function&lt; void(<a class="el" href="classarcade_1_1_i_renderer.html">IRenderer</a> &amp;)&gt; drawer)=0</td></tr>
+<tr class="separator:ae095327d4cd428ca8c48706fb85aae62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41472e2ba4a6d75d41787e76dbbdde63"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#a41472e2ba4a6d75d41787e76dbbdde63">display</a> ()=0</td></tr>
+<tr class="separator:a41472e2ba4a6d75d41787e76dbbdde63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75cb5aab07d6a97acf0856a384dbc0ed"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classarcade_1_1_i_display.html#a75cb5aab07d6a97acf0856a384dbc0ed">loadAssets</a> (std::function&lt; void(<a class="el" href="classarcade_1_1_i_asset_manager.html">IAssetManager</a> &amp;)&gt; loader)=0</td></tr>
+<tr class="separator:a75cb5aab07d6a97acf0856a384dbc0ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -224,7 +220,7 @@ static constexpr std::string_view&#160;</td><td class="memItemRight" valign="bot
 </table>
 </div><div class="memdoc">
 <p>Clears the render target by filling with the given color.</p>
-<dl class="section note"><dt>Note</dt><dd>This function must be called before <a class="el" href="classarcade_1_1_i_display.html#ab4c1b8b7c91798dc355a3f1f4102aaf2">IDisplay::render()</a>. </dd>
+<dl class="section note"><dt>Note</dt><dd>This function must be called before <a class="el" href="classarcade_1_1_i_display.html#ae095327d4cd428ca8c48706fb85aae62">IDisplay::render()</a>. </dd>
 <dd>
 Calling this method without calling <a class="el" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">IDisplay::setup()</a> leads to <b>undefined behavior</b>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -264,8 +260,8 @@ Calling this method without calling <a class="el" href="classarcade_1_1_i_displa
 
 </div>
 </div>
-<a id="a4ae7d4a1eb4732962225fb3257dd375b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4ae7d4a1eb4732962225fb3257dd375b">&#9670;&nbsp;</a></span>createRectObject()</h2>
+<a id="a41472e2ba4a6d75d41787e76dbbdde63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41472e2ba4a6d75d41787e76dbbdde63">&#9670;&nbsp;</a></span>display()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -274,116 +270,9 @@ Calling this method without calling <a class="el" href="classarcade_1_1_i_displa
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::unique_ptr&lt;<a class="el" href="classarcade_1_1_i_game_object.html">IGameObject</a>&gt; arcade::IDisplay::createRectObject </td>
+          <td class="memname">virtual void arcade::IDisplay::display </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="types_8hpp.html#a9030af5de12a940030414fb458cad430">vec2u</a>&#160;</td>
-          <td class="paramname"><em>size</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classarcade_1_1_i_asset.html">IAsset</a> const *&#160;</td>
-          <td class="paramname"><em>texture</em> = <code>nullptr</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Creates a textured rectangle object.</p>
-<dl class="section note"><dt>Note</dt><dd>Calling this method without calling <a class="el" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">IDisplay::setup()</a> leads to <b>undefined behavior</b>.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">size</td><td>The dimensions (in units) of the rectangle. </td></tr>
-    <tr><td class="paramname">texture</td><td>The texture to use. If <code>nullptr</code>, the texture isn't used.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::logic_error</td><td>When <code>texture</code> is not a texture asset. </td></tr>
-    <tr><td class="paramname">std::logic_error</td><td>When <code>texture</code> is <code>nullptr</code> and a RectObject can't be created without a texture.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A boxed <a class="el" href="classarcade_1_1_i_game_object.html" title="A movable, drawable game object such as text or sprites.">IGameObject</a> instance. </dd></dl>
-
-</div>
-</div>
-<a id="af26a81c8d57e58d39e1387b30af75ca8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af26a81c8d57e58d39e1387b30af75ca8">&#9670;&nbsp;</a></span>createTextObject()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual std::unique_ptr&lt;<a class="el" href="classarcade_1_1_i_game_object.html">IGameObject</a>&gt; arcade::IDisplay::createTextObject </td>
-          <td>(</td>
-          <td class="paramtype">std::string_view&#160;</td>
-          <td class="paramname"><em>text</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classarcade_1_1_i_asset.html">IAsset</a> const *&#160;</td>
-          <td class="paramname"><em>font</em> = <code>nullptr</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Creates a text (as in string) object instance.</p>
-<dl class="section note"><dt>Note</dt><dd>Calling this method without calling <a class="el" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">IDisplay::setup()</a> leads to <b>undefined behavior</b>.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">text</td><td>The string to display. </td></tr>
-    <tr><td class="paramname">font</td><td>The font to use. If <code>nullptr</code>, the font isn't used.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::logic_error</td><td>When <code>font</code> is not a font asset. </td></tr>
-    <tr><td class="paramname">std::logic_error</td><td>When <code>font</code> is <code>nulltptr</code> and a TextObject can't be created without a font.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A boxed <a class="el" href="classarcade_1_1_i_game_object.html" title="A movable, drawable game object such as text or sprites.">IGameObject</a> instance. </dd></dl>
-
-</div>
-</div>
-<a id="a78db24c9bd6b6822b54918bd38ea5285"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78db24c9bd6b6822b54918bd38ea5285">&#9670;&nbsp;</a></span>drawGameObject()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void arcade::IDisplay::drawGameObject </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classarcade_1_1_i_game_object.html">IGameObject</a> &amp;&#160;</td>
-          <td class="paramname"><em>object</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -393,15 +282,9 @@ Calling this method without calling <a class="el" href="classarcade_1_1_i_displa
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Draws a game object to the display's internal buffer(s).</p>
-<p>Drawn <a class="el" href="classarcade_1_1_i_game_object.html" title="A movable, drawable game object such as text or sprites.">IGameObject</a> instances will not display until the next call to <a class="el" href="classarcade_1_1_i_display.html#ab4c1b8b7c91798dc355a3f1f4102aaf2">IDisplay::render()</a>.</p>
+<p>Displays the rendered frame to the screen</p>
 <dl class="section note"><dt>Note</dt><dd>Calling this method without calling <a class="el" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">IDisplay::setup()</a> leads to <b>undefined behavior</b>.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">object</td><td>The object to draw. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>The rendered frame is immediately shown to the user at the end of the call. </p>
 
 </div>
 </div>
@@ -459,8 +342,8 @@ Calling this method without calling <a class="el" href="classarcade_1_1_i_displa
 
 </div>
 </div>
-<a id="a63bf0cd8ed338bdd7791099d3fffed54"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63bf0cd8ed338bdd7791099d3fffed54">&#9670;&nbsp;</a></span>loadAsset()</h2>
+<a id="a75cb5aab07d6a97acf0856a384dbc0ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75cb5aab07d6a97acf0856a384dbc0ed">&#9670;&nbsp;</a></span>loadAssets()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -469,21 +352,11 @@ Calling this method without calling <a class="el" href="classarcade_1_1_i_displa
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::unique_ptr&lt;<a class="el" href="classarcade_1_1_i_asset.html">IAsset</a>&gt; arcade::IDisplay::loadAsset </td>
+          <td class="memname">virtual void arcade::IDisplay::loadAssets </td>
           <td>(</td>
-          <td class="paramtype">std::string_view&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">std::function&lt; void(<a class="el" href="classarcade_1_1_i_asset_manager.html">IAssetManager</a> &amp;)&gt;&#160;</td>
+          <td class="paramname"><em>loader</em></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classarcade_1_1_i_asset.html#ae3a66b9e4eab80bac718dfcc6bcf71b5">IAsset::Type</a>&#160;</td>
-          <td class="paramname"><em>type</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -492,17 +365,14 @@ Calling this method without calling <a class="el" href="classarcade_1_1_i_displa
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Fetches an asset by name, loading it if necessary.</p>
-<p>The returned <a class="el" href="classarcade_1_1_i_asset.html">IAsset</a> instance is a reference to the real underlying asset, when switching displays, all existing instances of <a class="el" href="classarcade_1_1_i_asset.html">IAsset</a> will attempt to convert to equivalent assets for the new display mode.</p>
+<p>Calls a game's asset loading function.</p>
 <dl class="section note"><dt>Note</dt><dd>Calling this method without calling <a class="el" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">IDisplay::setup()</a> leads to <b>undefined behavior</b>.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>The name of the requested asset. </td></tr>
-    <tr><td class="paramname">type</td><td>Which type of asset to fetch?</td></tr>
+    <tr><td class="paramname">loader</td><td>A function that loads assets and game objects using the supplied asset manager. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A reference to the loaded asset, or a null reference if the requested asset failed to load. </dd></dl>
 
 </div>
 </div>
@@ -541,8 +411,8 @@ Calling this method without calling <a class="el" href="classarcade_1_1_i_displa
 
 </div>
 </div>
-<a id="ab4c1b8b7c91798dc355a3f1f4102aaf2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4c1b8b7c91798dc355a3f1f4102aaf2">&#9670;&nbsp;</a></span>render()</h2>
+<a id="ae095327d4cd428ca8c48706fb85aae62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae095327d4cd428ca8c48706fb85aae62">&#9670;&nbsp;</a></span>render()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -553,7 +423,8 @@ Calling this method without calling <a class="el" href="classarcade_1_1_i_displa
         <tr>
           <td class="memname">virtual void arcade::IDisplay::render </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">std::function&lt; void(<a class="el" href="classarcade_1_1_i_renderer.html">IRenderer</a> &amp;)&gt;&#160;</td>
+          <td class="paramname"><em>drawer</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -563,9 +434,15 @@ Calling this method without calling <a class="el" href="classarcade_1_1_i_displa
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Renders a frame and displays it.</p>
+<p>Renders objects.</p>
 <dl class="section note"><dt>Note</dt><dd>Calling this method without calling <a class="el" href="classarcade_1_1_i_display.html#a3c024465a1ecd427e521487087e22da0">IDisplay::setup()</a> leads to <b>undefined behavior</b>.</dd></dl>
-<p>The rendered frame is immediately shown to the user at the end of the call. </p>
+<p>Nothing is shown to the user until <a class="el" href="classarcade_1_1_i_display.html#a41472e2ba4a6d75d41787e76dbbdde63">IDisplay::display()</a> is called.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">drawer</td><td>A function that renders game objects using the supplied renderer. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

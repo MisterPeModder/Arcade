@@ -11,10 +11,16 @@ var dir_b262df93c89ba15ea05453c3ed652e4e =
     [ "IAsset.hpp", "_i_asset_8hpp.html", [
       [ "IAsset", "classarcade_1_1_i_asset.html", "classarcade_1_1_i_asset" ]
     ] ],
+    [ "IAssetManager.hpp", "_i_asset_manager_8hpp.html", [
+      [ "IAssetManager", "classarcade_1_1_i_asset_manager.html", "classarcade_1_1_i_asset_manager" ]
+    ] ],
     [ "IDisplay.hpp", "_i_display_8hpp.html", "_i_display_8hpp" ],
     [ "IGame.hpp", "_i_game_8hpp.html", "_i_game_8hpp" ],
     [ "IGameObject.hpp", "_i_game_object_8hpp.html", [
       [ "IGameObject", "classarcade_1_1_i_game_object.html", "classarcade_1_1_i_game_object" ]
+    ] ],
+    [ "IRenderer.hpp", "_i_renderer_8hpp.html", [
+      [ "IRenderer", "classarcade_1_1_i_renderer.html", "classarcade_1_1_i_renderer" ]
     ] ],
     [ "types.hpp", "types_8hpp.html", "types_8hpp" ]
 ];

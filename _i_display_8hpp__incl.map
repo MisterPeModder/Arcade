@@ -1,10 +1,11 @@
 <map id="src/interface/include/arcade/IDisplay.hpp" name="src/interface/include/arcade/IDisplay.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="193,5,348,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,95,83,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="107,95,205,121"/>
-<area shape="rect" id="node4" href="$_color_8hpp.html" title=" " alt="" coords="229,95,312,121"/>
-<area shape="rect" id="node7" href="$_i_asset_8hpp.html" title=" " alt="" coords="336,95,427,121"/>
-<area shape="rect" id="node8" href="$types_8hpp.html" title=" " alt="" coords="451,95,538,121"/>
-<area shape="rect" id="node5" title=" " alt="" coords="189,169,259,196"/>
-<area shape="rect" id="node6" title=" " alt="" coords="284,169,351,196"/>
+<area shape="rect" id="node1" title=" " alt="" coords="247,5,402,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,92,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="117,95,194,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="219,95,316,121"/>
+<area shape="rect" id="node5" href="$_color_8hpp.html" title=" " alt="" coords="341,95,423,121"/>
+<area shape="rect" id="node8" href="$_i_asset_8hpp.html" title=" " alt="" coords="447,95,538,121"/>
+<area shape="rect" id="node9" href="$types_8hpp.html" title=" " alt="" coords="563,95,649,121"/>
+<area shape="rect" id="node6" title=" " alt="" coords="300,169,371,196"/>
+<area shape="rect" id="node7" title=" " alt="" coords="395,169,462,196"/>
 </map>
