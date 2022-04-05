@@ -23,7 +23,7 @@ namespace arcade
         {
         }
 
-        void loadAssets(IAssetManager &manager) override final
+        void loadAssets(IAssetManager &manager, vec2u displaySize) override final
         {
             this->_logoTexture = manager.loadAsset("./doc/logo.png", IAsset::Type::Texture);
             this->_font = manager.loadAsset("./assets/fonts/roboto_regular.ttf", IAsset::Type::Font);
@@ -36,6 +36,8 @@ namespace arcade
             this->_logo->setForeground(Color(0xccccff));
             this->_title->setForeground(Color(0x2a9d8f));
             this->_title->setBackground(Color::Green);
+
+            this->_logo->setPosition(static_cast<vec2i>(displaySize / 2 - this->_logo->getSize() / 2));
         }
 
         void close() override final
