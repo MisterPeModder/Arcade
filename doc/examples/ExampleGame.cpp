@@ -13,6 +13,7 @@ using ::arcade::Event;
 using ::arcade::IAssetManager;
 using ::arcade::IGame;
 using ::arcade::IRenderer;
+using ::arcade::vec2u;
 
 class ExampleGame : public IGame {
   private:
@@ -29,9 +30,10 @@ class ExampleGame : public IGame {
         this->_state = State::Loaded;
     }
 
-    void loadAssets(IAssetManager &manager) override final
+    void loadAssets(IAssetManager &manager, vec2u displaySize) override final
     {
         (void)manager;
+        (void)displaySize;
     }
 
     void close() override final
