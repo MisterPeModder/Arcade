@@ -1,25 +1,28 @@
+#include <functional>
 #include <iostream>
-#include <memory>
-#include <string_view>
 
 #include <arcade/Color.hpp>
-#include <arcade/IAsset.hpp>
 #include <arcade/IDisplay.hpp>
-#include <arcade/IGameObject.hpp>
 #include <arcade/types.hpp>
 
 namespace arcade
 {
     struct Event;
-}
+    class IAsset;
+    class IAssetManager;
+    class IGameObject;
+    class IRenderer;
+} // namespace arcade
 
 // Using 'using' imports to keep the example clean, do not use in final code!
 using ::arcade::Color;
 using ::arcade::DefaultColor;
 using ::arcade::Event;
 using ::arcade::IAsset;
+using ::arcade::IAssetManager;
 using ::arcade::IDisplay;
 using ::arcade::IGameObject;
+using ::arcade::IRenderer;
 using ::arcade::vec2u;
 
 class ExampleDisplay : public IDisplay {
@@ -44,13 +47,6 @@ class ExampleDisplay : public IDisplay {
         return Type::Graphical2D;
     }
 
-    std::unique_ptr<IAsset> loadAsset(std::string_view name, IAsset::Type type) override final
-    {
-        (void)name;
-        (void)type;
-        return std::unique_ptr<IAsset>(nullptr);
-    }
-
     vec2u getSize() const override final
     {
         return {0, 0};
@@ -68,29 +64,19 @@ class ExampleDisplay : public IDisplay {
         (void)backup;
     }
 
-    void render() override final
+    void render(std::function<void(IRenderer &)> drawer) override final
+    {
+        (void)drawer;
+    }
+
+    void display() override final
     {
         // ...
     }
 
-    void drawGameObject(const IGameObject &object) override final
+    void loadAssets(std::function<void(IAssetManager &)> loader) override final
     {
-        (void)object;
-        // ...
-    }
-
-    std::unique_ptr<IGameObject> createTextObject(std::string_view text, IAsset const *font) const override final
-    {
-        (void)text;
-        (void)font;
-        return std::unique_ptr<IGameObject>(nullptr);
-    }
-
-    std::unique_ptr<IGameObject> createRectObject(vec2u size, IAsset const *texture) const override final
-    {
-        (void)size;
-        (void)texture;
-        return std::unique_ptr<IGameObject>(nullptr);
+        (void)loader;
     }
 };
 /// end_display_impl

@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <cstddef>
 #include <cstdint>
-#include <filesystem>
 #include <iostream>
 #include <stdexcept>
 #include <string>
@@ -15,20 +14,20 @@
 
 #include <arcade/Color.hpp>
 #include <arcade/Event.hpp>
-#include <arcade/IAsset.hpp>
 #include <arcade/IDisplay.hpp>
-#include <arcade/IGameObject.hpp>
 #include <arcade/graphics/units.hpp>
 #include <arcade/types.hpp>
 
+#include "AssetManager.hpp"
+#include "Renderer.hpp"
 #include "Sdl2Display.hpp"
-#include "asset/Font.hpp"
-#include "asset/Texture.hpp"
 #include "event.hpp"
-#include "object/Rectangle.hpp"
 
 namespace arcade
 {
+    class IAssetManager;
+    class IRenderer;
+
     Sdl2Display::Error::Error(std::string_view cause, char const *(*getError)())
         : std::runtime_error(std::string(cause) + ": " + (*getError)())
     {
@@ -89,17 +88,6 @@ namespace arcade
         return IDisplay::Type::Graphical2D;
     }
 
-    std::unique_ptr<IAsset> Sdl2Display::loadAsset(std::string_view name, IAsset::Type type)
-    {
-        std::filesystem::path path(name);
-
-        switch (type) {
-            case IAsset::Type::Texture: return Texture::fromFile(path);
-            case IAsset::Type::Font: return Font::fromFile(path);
-            default: return std::unique_ptr<IAsset>();
-        }
-    }
-
     vec2u Sdl2Display::getSize() const
     {
         return this->_size;
@@ -130,7 +118,8 @@ namespace arcade
 
         // only fill the screen if the requested color is not fully transparent
         if (color.a != Color::Transparent.a) {
-            SDL_Rect screenRect{0, 0, static_cast<int>(this->_size.x), static_cast<int>(this->_size.y)};
+            vec2i scaledSize = static_cast<vec2i>(toPixels(this->_size));
+            SDL_Rect screenRect{0, 0, scaledSize.x, scaledSize.y};
 
             SDL_SetRenderDrawColor(this->_renderer, std::to_integer<uint8_t>(color.r),
                 std::to_integer<uint8_t>(color.g), std::to_integer<uint8_t>(color.b),
@@ -140,36 +129,21 @@ namespace arcade
         }
     }
 
-    void Sdl2Display::render()
+    void Sdl2Display::render(std::function<void(IRenderer &)> drawer)
+    {
+        Renderer renderer;
+        drawer(renderer);
+    }
+
+    void Sdl2Display::display()
     {
         SDL_RenderPresent(this->_renderer);
-        SDL_RenderClear(this->_renderer);
     }
 
-    void Sdl2Display::drawGameObject(IGameObject const &object)
+    void Sdl2Display::loadAssets(std::function<void(IAssetManager &)> loader)
     {
-        Rectangle const *rect = dynamic_cast<Rectangle const *>(&object);
-
-        if (rect)
-            rect->draw();
-    }
-
-    std::unique_ptr<IGameObject> Sdl2Display::createTextObject(std::string_view text, IAsset const *font) const
-    {
-        Font const *f = dynamic_cast<Font const *>(font);
-
-        if (font != nullptr && f == nullptr)
-            throw std::logic_error("textObject asset must be of font type");
-        return Rectangle::create(this->_renderer, f, text);
-    }
-
-    std::unique_ptr<IGameObject> Sdl2Display::createRectObject(vec2u size, IAsset const *texture) const
-    {
-        Texture const *t = dynamic_cast<Texture const *>(texture);
-
-        if (texture != nullptr && t == nullptr)
-            throw std::logic_error("rectObject asset must be of texture type");
-        return Rectangle::create(this->_renderer, t, size);
+        AssetManager manager(this->_renderer);
+        loader(manager);
     }
 
     void Sdl2Display::updateSize(vec2u defaultSize)

@@ -34,8 +34,13 @@ namespace arcade
         std::unordered_map<std::string, IDisplay *> _displays;
         std::unordered_map<std::string, IGame *> _games;
 
+        /// The current display implementation.
         LibraryInstance<IDisplay> _display;
+        /// The current game implementation.
         LibraryInstance<IGame> _game;
+
+        /// Updates the current game's screen size by firing a synthetic @c Resized event.
+        void updateGameSize();
     };
 } // namespace arcade
 

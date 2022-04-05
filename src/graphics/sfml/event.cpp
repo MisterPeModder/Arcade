@@ -95,7 +95,7 @@ namespace arcade
     static bool translateSfmlResizeEvent(sf::Event const &raw, Event &event)
     {
         event.type = Event::Type::Resized;
-        event.size.newSize = vec2u{raw.size.width, raw.size.height};
+        event.size.newSize = toUnits(vec2u{raw.size.width, raw.size.height});
         return true;
     }
 

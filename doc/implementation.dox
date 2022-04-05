@@ -16,8 +16,8 @@
 /// @skip class ExampleGame
 /// @until {
 ///
-/// Store the game state and display adapter as private fields:
-/// @until display;
+/// Store the game state as private fields:
+/// @until state;
 ///
 /// Create the setup methods:
 /// @skip public
