@@ -1,4 +1,5 @@
 #include <arcade/IGame.hpp>
+#include <arcade/types.hpp>
 #include <iostream>
 
 namespace arcade

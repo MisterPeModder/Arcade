@@ -8,10 +8,11 @@
 
 namespace arcade
 {
+    /// Mananges the lifecycle of a library instance using its setup() and close() methods.
     template <typename T> class LibraryInstance {
       public:
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Constructors
+        // Instantiation
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// Default contructor, constructs a LibraryInstance with no instance in it.

@@ -2,6 +2,7 @@
 #include <stdexcept>
 
 #include <arcade/IAsset.hpp>
+#include <arcade/IDisplay.hpp>
 #include <arcade/types.hpp>
 
 #include "AssetManager.hpp"
@@ -13,6 +14,10 @@ namespace arcade
 {
     class IGameObject;
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Instantiation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     AssetManager::AssetManager(SDL_Renderer *renderer) : _renderer(renderer) {}
 
     AssetManager::AssetManager(AssetManager &&other) : _renderer(other._renderer) { other._renderer = nullptr; }
@@ -23,6 +28,10 @@ namespace arcade
         other._renderer = nullptr;
         return *this;
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // IAssetManager Implementation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     IDisplay::Type AssetManager::getType() const { return IDisplay::Type::Graphical2D; }
 

@@ -8,6 +8,10 @@
 
 namespace arcade
 {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Instantiation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     Texture::Texture() : _surface(nullptr) {}
 
     Texture::Texture(SDL_Surface *surface) : _surface(surface) {}
@@ -30,13 +34,6 @@ namespace arcade
         this->_surface = nullptr;
     }
 
-    IAsset::Type Texture::getType() const { return IAsset::Type::Texture; }
-
-    SDL_Texture *Texture::createSprite(SDL_Renderer *renderer) const
-    {
-        return SDL_CreateTextureFromSurface(renderer, this->_surface);
-    }
-
     std::unique_ptr<Texture> Texture::fromFile(std::filesystem::path const &path)
     {
         SDL_Surface *surface(IMG_Load(path.c_str()));
@@ -45,4 +42,20 @@ namespace arcade
             return std::unique_ptr<Texture>();
         return std::unique_ptr<Texture>(new Texture(surface));
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // IAsset Implementation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    IAsset::Type Texture::getType() const { return IAsset::Type::Texture; }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Miscellaneous
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    SDL_Texture *Texture::createSprite(SDL_Renderer *renderer) const
+    {
+        return SDL_CreateTextureFromSurface(renderer, this->_surface);
+    }
+
 } // namespace arcade

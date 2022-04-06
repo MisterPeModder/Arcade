@@ -13,6 +13,10 @@
 
 namespace arcade
 {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Instantiation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     Rectangle::Rectangle()
         : _dims({0, 0, 0, 0}), _renderer(nullptr), _sprite(nullptr), _foregroundColor(Color::Transparent),
           _backgroundColor(Color::Transparent)
@@ -63,30 +67,6 @@ namespace arcade
         this->_backgroundColor = 0;
     }
 
-    void Rectangle::draw() const
-    {
-        if (!this->_renderer) [[unlikely]]
-            return; // just in case...
-
-        // Draw background, if present
-        if (this->_backgroundColor.toInteger() != Color::Transparent.toInteger())
-            this->drawColor(this->_backgroundColor);
-
-        // Draw foreground, if present
-        if (this->_sprite)
-            SDL_RenderCopy(this->_renderer, this->_sprite, nullptr, &this->_dims);
-        else
-            this->drawColor(this->_foregroundColor);
-    }
-
-    void Rectangle::drawColor(Color color) const
-    {
-        SDL_SetRenderDrawColor(this->_renderer, std::to_integer<uint8_t>(color.r), std::to_integer<uint8_t>(color.g),
-            std::to_integer<uint8_t>(color.b), 255 - std::to_integer<uint8_t>(color.a));
-        SDL_RenderFillRect(this->_renderer, &this->_dims);
-        SDL_SetRenderDrawColor(this->_renderer, 0, 0, 0, 0);
-    }
-
     std::unique_ptr<Rectangle> Rectangle::create(SDL_Renderer *renderer, Texture const *texture, vec2u size)
     {
         if (texture) {
@@ -113,6 +93,38 @@ namespace arcade
         vec2u size = toUnits(static_cast<vec2u>(textureSize));
         return std::unique_ptr<Rectangle>(new Rectangle(renderer, sprite, size));
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Rendering
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void Rectangle::draw() const
+    {
+        if (!this->_renderer) [[unlikely]]
+            return; // just in case...
+
+        // Draw background, if present
+        if (this->_backgroundColor.toInteger() != Color::Transparent.toInteger())
+            this->drawColor(this->_backgroundColor);
+
+        // Draw foreground, if present
+        if (this->_sprite)
+            SDL_RenderCopy(this->_renderer, this->_sprite, nullptr, &this->_dims);
+        else
+            this->drawColor(this->_foregroundColor);
+    }
+
+    void Rectangle::drawColor(Color color) const
+    {
+        SDL_SetRenderDrawColor(this->_renderer, std::to_integer<uint8_t>(color.r), std::to_integer<uint8_t>(color.g),
+            std::to_integer<uint8_t>(color.b), 255 - std::to_integer<uint8_t>(color.a));
+        SDL_RenderFillRect(this->_renderer, &this->_dims);
+        SDL_SetRenderDrawColor(this->_renderer, 0, 0, 0, 0);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // IGameObject Implementation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     IGameObject::Type Rectangle::getType() const { return IGameObject::Type::Rect; }
 

@@ -8,6 +8,10 @@
 
 namespace arcade
 {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Instantiation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     Font::Font() : _font(nullptr) {}
 
     Font::Font(TTF_Font *font) : _font(font) {}
@@ -28,7 +32,24 @@ namespace arcade
         this->_font = nullptr;
     }
 
+    std::unique_ptr<Font> Font::fromFile(std::filesystem::path const &path)
+    {
+        TTF_Font *font(TTF_OpenFont(path.c_str(), PIXELS_PER_UNIT));
+
+        if (!font)
+            return std::unique_ptr<Font>();
+        return std::unique_ptr<Font>(new Font(font));
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // IAsset Implementation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     IAsset::Type Font::getType() const { return Type::Font; }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Miscellaneous
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     SDL_Texture *Font::render(SDL_Renderer *renderer, std::string_view text) const
     {
@@ -42,14 +63,5 @@ namespace arcade
 
         SDL_FreeSurface(surface);
         return texture;
-    }
-
-    std::unique_ptr<Font> Font::fromFile(std::filesystem::path const &path)
-    {
-        TTF_Font *font(TTF_OpenFont(path.c_str(), PIXELS_PER_UNIT));
-
-        if (!font)
-            return std::unique_ptr<Font>();
-        return std::unique_ptr<Font>(new Font(font));
     }
 } // namespace arcade

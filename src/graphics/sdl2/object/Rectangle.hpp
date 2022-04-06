@@ -21,19 +21,36 @@ namespace arcade
 
     class Rectangle : public IGameObject {
       public:
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Instantiation
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         Rectangle();
 
+        /// Cannot copy rectangle.
         Rectangle(Rectangle const &) = delete;
 
+        /// Move constructor.
         Rectangle(Rectangle &&);
+
+        /// Move assingment operator.
         Rectangle &operator=(Rectangle &&);
 
+        /// Destructor.
         ~Rectangle();
-
-        void draw() const;
 
         static std::unique_ptr<Rectangle> create(SDL_Renderer *renderer, Texture const *texture, vec2u size);
         static std::unique_ptr<Rectangle> create(SDL_Renderer *renderer, Font const *font, std::string_view text);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Rendering
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        void draw() const;
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // IGameObject Implementation
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         Type getType() const override final;
         vec2u getSize() const override final;
@@ -51,7 +68,7 @@ namespace arcade
         Color _foregroundColor;
         Color _backgroundColor;
 
-        Rectangle(SDL_Renderer *renderer, SDL_Texture *sprite, vec2u size);
+        explicit Rectangle(SDL_Renderer *renderer, SDL_Texture *sprite, vec2u size);
 
         void drawColor(Color color) const;
     };

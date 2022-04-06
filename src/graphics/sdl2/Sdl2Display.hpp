@@ -27,6 +27,10 @@ namespace arcade
     /// SDL2 Graphics implementation.
     class Sdl2Display : public IDisplay {
       public:
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Errors
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         class Error : public std::runtime_error {
           private:
             Error(std::string_view cause, char const *(*getError)() = &SDL_GetError);
@@ -34,24 +38,25 @@ namespace arcade
             friend Sdl2Display;
         };
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Instantiation
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /// Default constructor.
         Sdl2Display();
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // IDisplay Implementation
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         void setup() override final;
-
         void close() override final;
-
         Type getType() const override final;
-
         vec2u getSize() const override final;
-
         bool pollEvent(Event &event) override final;
-
         void clear(Color color, DefaultColor backup) override final;
-
         void render(std::function<void(IRenderer &)> drawer) override final;
-
         void display() override final;
-
         void loadAssets(std::function<void(IAssetManager &)> loader) override final;
 
       private:
