@@ -21,9 +21,7 @@
 
 namespace arcade
 {
-    Text::Text() : _size{0, 0}, _pos{0, 0}, _inner(), _background()
-    {
-    }
+    Text::Text() : _size{0, 0}, _pos{0, 0}, _inner(), _background() {}
 
     Text::Text(sf::Text &&inner) : _inner(inner), _background()
     {
@@ -60,15 +58,9 @@ namespace arcade
         return std::unique_ptr<Text>(new Text(std::move(inner)));
     }
 
-    IGameObject::Type Text::getType() const
-    {
-        return Type::Text;
-    }
+    IGameObject::Type Text::getType() const { return Type::Text; }
 
-    vec2u Text::getSize() const
-    {
-        return this->_size;
-    }
+    vec2u Text::getSize() const { return this->_size; }
 
     void Text::updateSize()
     {
@@ -79,10 +71,7 @@ namespace arcade
         this->_size = static_cast<vec2u>(toUnits(vec2<float>{std::max(0.0f, size.x), std::max(0.0f, size.y)}));
     }
 
-    vec2i Text::getPosition() const
-    {
-        return this->_pos;
-    }
+    vec2i Text::getPosition() const { return this->_pos; }
 
     void Text::setPosition(vec2i pos)
     {

@@ -10,15 +10,15 @@ namespace arcade
 {
     template <typename T> class LibraryInstance {
       public:
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Constructors
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         /// Default contructor, constructs a LibraryInstance with no instance in it.
-        LibraryInstance() : _instance(nullptr)
-        {
-        }
+        LibraryInstance() : _instance(nullptr) {}
 
         /// Constructs a LibraryInstance with no instance in it.
-        LibraryInstance(nullptr_t) : _instance(nullptr)
-        {
-        }
+        LibraryInstance(nullptr_t) : _instance(nullptr) {}
 
         /// Constructs a LibraryInstance with the given instance and calls its setup function.
         ///
@@ -33,10 +33,7 @@ namespace arcade
         LibraryInstance(LibraryInstance const &) = delete;
 
         /// Move constructor.
-        LibraryInstance(LibraryInstance &&other) : _instance(other._instance)
-        {
-            other._instance = nullptr;
-        }
+        LibraryInstance(LibraryInstance &&other) : _instance(other._instance) { other._instance = nullptr; }
 
         /// Move assignment.
         LibraryInstance &operator=(LibraryInstance &&other)
@@ -48,10 +45,7 @@ namespace arcade
         }
 
         /// Destructor.
-        ~LibraryInstance()
-        {
-            this->clear();
-        }
+        ~LibraryInstance() { this->clear(); }
 
         /// Unloads the contained instance, if any.
         void clear()
@@ -61,6 +55,10 @@ namespace arcade
                 this->_instance = nullptr;
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Instance Query API
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// Sets the current active instance to the given one and calls its setup function.
         ///
@@ -82,58 +80,37 @@ namespace arcade
         }
 
         /// @returns The contained instance, may be null.
-        T const *get() const
-        {
-            return this->_instance;
-        }
+        T const *get() const { return this->_instance; }
 
         /// @returns The contained instance, may be null.
-        T *get()
-        {
-            return this->_instance;
-        }
+        T *get() { return this->_instance; }
 
         /// Provides constant access to the instance's members.
         ///
         /// @note Using this operator when nothing is contained results in <b>undefined behavior</b>.
-        T const *operator->() const
-        {
-            return this->_instance;
-        }
+        T const *operator->() const { return this->_instance; }
 
         /// Provides mutable access to the instance's members.
         ///
         /// @note Using this operator when nothing is contained results in <b>undefined behavior</b>.
-        T *operator->()
-        {
-            return this->_instance;
-        }
+        T *operator->() { return this->_instance; }
 
         /// Provides an immutable reference to the instance.
         ///
         /// @note Using this operator when nothing is contained results in <b>undefined behavior</b>.
         ///
         /// @returns An immutable reference to the wrapped instance.
-        T const &operator*() const
-        {
-            return *this->_instance;
-        }
+        T const &operator*() const { return *this->_instance; }
 
         /// Provides a mutable reference to the instance.
         ///
         /// @note Using this operator when nothing is contained results in <b>undefined behavior</b>.
         ///
         /// @returns A mutable reference to the wrapped instance.
-        T &operator*()
-        {
-            return *this->_instance;
-        }
+        T &operator*() { return *this->_instance; }
 
         /// @returns Whether this currently contains a loaded instance.
-        operator bool() const
-        {
-            return this->_instance != nullptr;
-        }
+        operator bool() const { return this->_instance != nullptr; }
 
       private:
         T *_instance;

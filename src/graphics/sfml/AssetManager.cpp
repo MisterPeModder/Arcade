@@ -14,14 +14,9 @@ namespace arcade
 {
     class IGameObject;
 
-    AssetManager::AssetManager()
-    {
-    }
+    AssetManager::AssetManager() {}
 
-    IDisplay::Type AssetManager::getType() const
-    {
-        return IDisplay::Type::Graphical2D;
-    }
+    IDisplay::Type AssetManager::getType() const { return IDisplay::Type::Graphical2D; }
 
     std::unique_ptr<IAsset> AssetManager::loadAsset(std::string_view name, IAsset::Type type)
     {

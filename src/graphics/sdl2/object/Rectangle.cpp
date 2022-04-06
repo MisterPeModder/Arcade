@@ -114,20 +114,11 @@ namespace arcade
         return std::unique_ptr<Rectangle>(new Rectangle(renderer, sprite, size));
     }
 
-    IGameObject::Type Rectangle::getType() const
-    {
-        return IGameObject::Type::Rect;
-    }
+    IGameObject::Type Rectangle::getType() const { return IGameObject::Type::Rect; }
 
-    vec2u Rectangle::getSize() const
-    {
-        return toUnits(static_cast<vec2u>(vec2i{this->_dims.w, this->_dims.h}));
-    }
+    vec2u Rectangle::getSize() const { return toUnits(static_cast<vec2u>(vec2i{this->_dims.w, this->_dims.h})); }
 
-    vec2i Rectangle::getPosition() const
-    {
-        return toUnits(vec2i{this->_dims.x, this->_dims.y});
-    }
+    vec2i Rectangle::getPosition() const { return toUnits(vec2i{this->_dims.x, this->_dims.y}); }
 
     void Rectangle::setPosition(vec2i pos)
     {
@@ -146,8 +137,5 @@ namespace arcade
         }
     }
 
-    void Rectangle::setBackground(Color color, DefaultColor)
-    {
-        this->_backgroundColor = color;
-    }
+    void Rectangle::setBackground(Color color, DefaultColor) { this->_backgroundColor = color; }
 } // namespace arcade

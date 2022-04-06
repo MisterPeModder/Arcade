@@ -5,9 +5,7 @@
 
 namespace arcade
 {
-    Renderer::Renderer()
-    {
-    }
+    Renderer::Renderer() {}
 
     void Renderer::draw(IGameObject const &object)
     {

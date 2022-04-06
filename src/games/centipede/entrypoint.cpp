@@ -19,9 +19,7 @@ namespace arcade
             // ...
         }
 
-        void setup() override final
-        {
-        }
+        void setup() override final {}
 
         void loadAssets(IAssetManager &manager, vec2u displaySize) override final
         {
@@ -48,20 +46,11 @@ namespace arcade
             this->_title.reset();
         }
 
-        void setState(State state) override final
-        {
-            this->_state = state;
-        }
+        void setState(State state) override final { this->_state = state; }
 
-        State getState() const override final
-        {
-            return this->_state;
-        }
+        State getState() const override final { return this->_state; }
 
-        unsigned int getScore() const override final
-        {
-            return -42;
-        }
+        unsigned int getScore() const override final { return -42; }
 
         void update(float delta) override final
         {

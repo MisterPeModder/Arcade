@@ -83,15 +83,9 @@ namespace arcade
         }
     }
 
-    IDisplay::Type Sdl2Display::getType() const
-    {
-        return IDisplay::Type::Graphical2D;
-    }
+    IDisplay::Type Sdl2Display::getType() const { return IDisplay::Type::Graphical2D; }
 
-    vec2u Sdl2Display::getSize() const
-    {
-        return this->_size;
-    }
+    vec2u Sdl2Display::getSize() const { return this->_size; }
 
     bool Sdl2Display::pollEvent(Event &event)
     {
@@ -135,10 +129,7 @@ namespace arcade
         drawer(renderer);
     }
 
-    void Sdl2Display::display()
-    {
-        SDL_RenderPresent(this->_renderer);
-    }
+    void Sdl2Display::display() { SDL_RenderPresent(this->_renderer); }
 
     void Sdl2Display::loadAssets(std::function<void(IAssetManager &)> loader)
     {

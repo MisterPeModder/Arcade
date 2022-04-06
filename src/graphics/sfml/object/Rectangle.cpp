@@ -18,9 +18,7 @@
 
 namespace arcade
 {
-    Rectangle::Rectangle() : _size{0, 0}, _pos{0, 0}, _foreground()
-    {
-    }
+    Rectangle::Rectangle() : _size{0, 0}, _pos{0, 0}, _foreground() {}
 
     Rectangle::Rectangle(sf::RectangleShape &&inner) : _foreground(inner), _background()
     {
@@ -54,15 +52,9 @@ namespace arcade
         return std::unique_ptr<Rectangle>(new Rectangle(std::move(inner)));
     }
 
-    IGameObject::Type Rectangle::getType() const
-    {
-        return Type::Rect;
-    }
+    IGameObject::Type Rectangle::getType() const { return Type::Rect; }
 
-    vec2u Rectangle::getSize() const
-    {
-        return this->_size;
-    }
+    vec2u Rectangle::getSize() const { return this->_size; }
 
     void Rectangle::updateSize()
     {
@@ -73,10 +65,7 @@ namespace arcade
         this->_size = static_cast<vec2u>(toUnits(vec2<float>{std::max(0.0f, size.x), std::max(0.0f, size.y)}));
     }
 
-    vec2i Rectangle::getPosition() const
-    {
-        return this->_pos;
-    }
+    vec2i Rectangle::getPosition() const { return this->_pos; }
 
     void Rectangle::setPosition(vec2i pos)
     {

@@ -3,24 +3,17 @@
 #===========================================================================#
 Language: Cpp
 
-
-
 #===========================================================================#
 # Column limit and wrapping rules                                           #
 #===========================================================================#
-# Rules: #
-#   + F3 #
-#   + L3 #
-#   + L4 #
-#--------#
 
-# F3 - Maximum columns count
+# Maximum columns count
 ColumnLimit: 120
 
-# F3 - Column limit wrapping for comments
+# Column limit wrapping for comments
 ReflowComments: true
 
-# L3 - Prevent alignment of wrapped names to avoid misplaced spaces
+# Prevent alignment of wrapped names to avoid misplaced spaces
 AlignAfterOpenBracket: DontAlign
 AllowAllArgumentsOnNextLine: true
 AllowAllParametersOfDeclarationOnNextLine: true
@@ -29,7 +22,7 @@ BinPackArguments: true
 BinPackParameters: true
 AlignOperands: false
 
-# L4 - Brace wrapping
+# Brace wrapping
 BreakBeforeBraces: Custom
 BraceWrapping:
     AfterCaseLabel: false
@@ -50,9 +43,6 @@ BraceWrapping:
 # Don't break after return type
 AlwaysBreakAfterReturnType: None
 
-
-
-
 #===========================================================================#
 # Indentation and spaces                                                    #
 #===========================================================================#
@@ -62,52 +52,52 @@ AlwaysBreakAfterReturnType: None
 #   + G3 #
 #--------#
 
-# L2 - Indent width and indent character
+# Indent width and indent character
 TabWidth: 4
 IndentWidth: 4
 ContinuationIndentWidth: 4
 UseTab: Never
 
-# G3 - Preprocessor
+# Preprocessor
 IndentPPDirectives: BeforeHash
 
-# L3 - Declarations and assignments
+# Declarations and assignments
 AlignConsecutiveAssignments: false
 AlignConsecutiveDeclarations: false
 
-# L3 - Disable spaces after '{' and before '}' in lists
+# Disable spaces after '{' and before '}' in lists
 Cpp11BracedListStyle: true
 
-# L3 - Place '*' and '&' next to the name of the variable
+# Place '*' and '&' next to the name of the variable
 PointerAlignment: Right
 
-# L3 - Space after a cast, but not in its parentheses
+# Space after a cast, but not in its parentheses
 SpacesInCStyleCastParentheses: false
 SpaceAfterCStyleCast: false
 
-# L3 - Space after logical not '!' (it's an unary operator)
+# Space after logical not '!' (it's an unary operator)
 SpaceAfterLogicalNot: false
 
-# L3 - Space before assignment operators '=', '+=', '|=', etc...
+# Space before assignment operators '=', '+=', '|=', etc...
 SpaceBeforeAssignmentOperators: true
 
-# L3 - Space before control statement parentheses, but not function parentheses
+# Space before control statement parentheses, but not function parentheses
 SpaceBeforeParens: ControlStatements
 
-# L3 - No space in empty blocks '{}' or parentheses '()'
+# No space in empty blocks '{}' or parentheses '()'
 # SpaceInEmptyBlock: false <- This one isn't compatible with my clang-format version
 SpaceInEmptyParentheses: false
 
-# L3 - No space between angles '<>'
+# No space between angles '<>'
 SpacesInAngles: false
 
-# L3 - No space in parentheses -- after '(' and before ')'
+# No space in parentheses -- after '(' and before ')'
 SpacesInParentheses: false
 
-# L3 - No space inb square brackets -- after '[' and before ']'
+# No space inb square brackets -- after '[' and before ']'
 SpacesInSquareBrackets: false
 
-# L3 - No space in container literals
+#  No space in container literals
 # var a = [1, 2, 3] (<- betweebn square brackets and values)
 # f({a: 1, b: 2, c: 3}) (<- before ':' caracter)
 SpacesInContainerLiterals: false
@@ -122,43 +112,32 @@ IndentCaseLabels: true
 NamespaceIndentation: All
 
 
-
-
 #===========================================================================#
 # Layout inside a function's scope                                          #
 #===========================================================================#
-# Rules: #
-#   + L1 #
-#   + G3 #
-#--------#
 
-# L1 - Disable one-line bracketted code
-AllowShortFunctionsOnASingleLine: None
+# Enable one-line bracketted code
+AllowShortFunctionsOnASingleLine: All
 AllowShortIfStatementsOnASingleLine: Never
-AllowShortLambdasOnASingleLine: None
+AllowShortLambdasOnASingleLine: All
+
+# ... but disallow one line loops
 AllowShortLoopsOnASingleLine: false
 # Except for while/for to allow counters like `while (++i < condition) {}`
-AllowShortBlocksOnASingleLine: true
+AllowShortBlocksOnASingleLine: Empty
 # A simple case case be written `case X: do_something(); break;`
 AllowShortCaseLabelsOnASingleLine: true
 
-# G3 - Remove empty line in blocks
+# Remove empty line in blocks
 KeepEmptyLinesAtTheStartOfBlocks: false
-
-
 
 
 #===========================================================================#
 # Global scope                                                              #
 #===========================================================================#
-# Rules: #
-#   + G2 #
-#--------#
 
-# G2 - Max empty lines to keep
+#  Max empty lines to keep
 MaxEmptyLinesToKeep: 1
-
-
 
 
 #===========================================================================#
@@ -180,7 +159,6 @@ BreakStringLiterals: true
 # When wrapping, keep '=' on the top right, but put operators on the new line
 BreakBeforeBinaryOperators: NonAssignment
 
-#
 BreakBeforeTernaryOperators: true
 
 # Include sorting and priority - lowest priority gets sorted at the bottom of the list

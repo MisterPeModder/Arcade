@@ -46,9 +46,8 @@ namespace arcade
         if (firstGame != this->_games.end()) {
             std::cout << "\nLoading graphics..." << std::endl;
             this->_game.set(firstGame->second);
-            this->_display->loadAssets([&](auto &manager) {
-                firstGame->second->loadAssets(manager, this->_display->getSize());
-            });
+            this->_display->loadAssets(
+                [&](auto &manager) { firstGame->second->loadAssets(manager, this->_display->getSize()); });
         } else {
             std::cout << "\nNo game available!" << std::endl;
         }
@@ -95,9 +94,7 @@ namespace arcade
                     this->_game->update(elapsed.count());
                 }
 
-                this->_display->render([&](auto &renderer) {
-                    this->_game->render(renderer);
-                });
+                this->_display->render([&](auto &renderer) { this->_game->render(renderer); });
             }
 
             this->_display->display();

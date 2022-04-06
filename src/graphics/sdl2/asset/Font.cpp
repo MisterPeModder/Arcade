@@ -8,18 +8,11 @@
 
 namespace arcade
 {
-    Font::Font() : _font(nullptr)
-    {
-    }
+    Font::Font() : _font(nullptr) {}
 
-    Font::Font(TTF_Font *font) : _font(font)
-    {
-    }
+    Font::Font(TTF_Font *font) : _font(font) {}
 
-    Font::Font(Font &&other) : _font(other._font)
-    {
-        other._font = nullptr;
-    }
+    Font::Font(Font &&other) : _font(other._font) { other._font = nullptr; }
 
     Font &Font::operator=(Font &&other)
     {
@@ -35,10 +28,7 @@ namespace arcade
         this->_font = nullptr;
     }
 
-    IAsset::Type Font::getType() const
-    {
-        return Type::Font;
-    }
+    IAsset::Type Font::getType() const { return Type::Font; }
 
     SDL_Texture *Font::render(SDL_Renderer *renderer, std::string_view text) const
     {

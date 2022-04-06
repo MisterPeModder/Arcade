@@ -8,18 +8,11 @@
 
 namespace arcade
 {
-    Texture::Texture() : _surface(nullptr)
-    {
-    }
+    Texture::Texture() : _surface(nullptr) {}
 
-    Texture::Texture(SDL_Surface *surface) : _surface(surface)
-    {
-    }
+    Texture::Texture(SDL_Surface *surface) : _surface(surface) {}
 
-    Texture::Texture(Texture &&other) : _surface(other._surface)
-    {
-        other._surface = nullptr;
-    }
+    Texture::Texture(Texture &&other) : _surface(other._surface) { other._surface = nullptr; }
 
     Texture &Texture::operator=(Texture &&other)
     {
@@ -37,10 +30,7 @@ namespace arcade
         this->_surface = nullptr;
     }
 
-    IAsset::Type Texture::getType() const
-    {
-        return IAsset::Type::Texture;
-    }
+    IAsset::Type Texture::getType() const { return IAsset::Type::Texture; }
 
     SDL_Texture *Texture::createSprite(SDL_Renderer *renderer) const
     {

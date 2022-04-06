@@ -25,10 +25,7 @@ class ExampleGame : public IGame {
         // ...
     }
 
-    void setup() override final
-    {
-        this->_state = State::Loaded;
-    }
+    void setup() override final { this->_state = State::Loaded; }
 
     void loadAssets(IAssetManager &manager, vec2u displaySize) override final
     {
@@ -43,20 +40,11 @@ class ExampleGame : public IGame {
 
     // [...]
 
-    void setState(State state) override final
-    {
-        this->_state = state;
-    }
+    void setState(State state) override final { this->_state = state; }
 
-    State getState() const override final
-    {
-        return this->_state;
-    }
+    State getState() const override final { return this->_state; }
 
-    unsigned int getScore() const override final
-    {
-        return -42;
-    }
+    unsigned int getScore() const override final { return -42; }
 
     void update(float delta) override final
     {
@@ -64,10 +52,7 @@ class ExampleGame : public IGame {
         // ...
     }
 
-    void render(IRenderer &renderer) override final
-    {
-        (void)renderer;
-    }
+    void render(IRenderer &renderer) override final { (void)renderer; }
 
     void handleEvent(Event &event) override final
     {

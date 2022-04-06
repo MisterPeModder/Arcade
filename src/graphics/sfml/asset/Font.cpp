@@ -6,17 +6,11 @@
 
 namespace arcade
 {
-    Font::Font() : _inner()
-    {
-    }
+    Font::Font() : _inner() {}
 
-    Font::Font(sf::Font &&inner) : _inner(inner)
-    {
-    }
+    Font::Font(sf::Font &&inner) : _inner(inner) {}
 
-    Font::Font(Font &&other) : _inner(std::move(other._inner))
-    {
-    }
+    Font::Font(Font &&other) : _inner(std::move(other._inner)) {}
 
     Font &Font::operator=(Font &&other)
     {
@@ -24,15 +18,9 @@ namespace arcade
         return *this;
     }
 
-    IAsset::Type Font::getType() const
-    {
-        return Type::Font;
-    }
+    IAsset::Type Font::getType() const { return Type::Font; }
 
-    sf::Font const &Font::getInner() const
-    {
-        return this->_inner;
-    }
+    sf::Font const &Font::getInner() const { return this->_inner; }
 
     std::unique_ptr<Font> Font::fromFile(std::filesystem::path const &path)
     {

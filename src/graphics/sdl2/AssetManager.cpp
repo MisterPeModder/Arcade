@@ -13,14 +13,9 @@ namespace arcade
 {
     class IGameObject;
 
-    AssetManager::AssetManager(SDL_Renderer *renderer) : _renderer(renderer)
-    {
-    }
+    AssetManager::AssetManager(SDL_Renderer *renderer) : _renderer(renderer) {}
 
-    AssetManager::AssetManager(AssetManager &&other) : _renderer(other._renderer)
-    {
-        other._renderer = nullptr;
-    }
+    AssetManager::AssetManager(AssetManager &&other) : _renderer(other._renderer) { other._renderer = nullptr; }
 
     AssetManager &AssetManager::operator=(AssetManager &&other)
     {
@@ -29,10 +24,7 @@ namespace arcade
         return *this;
     }
 
-    IDisplay::Type AssetManager::getType() const
-    {
-        return IDisplay::Type::Graphical2D;
-    }
+    IDisplay::Type AssetManager::getType() const { return IDisplay::Type::Graphical2D; }
 
     std::unique_ptr<IAsset> AssetManager::loadAsset(std::string_view name, IAsset::Type type)
     {

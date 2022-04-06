@@ -66,10 +66,7 @@ namespace arcade
         /// @returns the address where the symbol is loaded into memory.
         ///
         /// @throws DynamicLibrary::UnknownSymbolError if not found.
-        template <typename T> T symbol(std::string_view name)
-        {
-            return reinterpret_cast<T>(this->rawSymbol(name));
-        }
+        template <typename T> T symbol(std::string_view name) { return reinterpret_cast<T>(this->rawSymbol(name)); }
 
         /// @returns The path of this dynamic library.
         std::filesystem::path const &path();

@@ -6,17 +6,11 @@
 
 namespace arcade
 {
-    Texture::Texture() : _inner()
-    {
-    }
+    Texture::Texture() : _inner() {}
 
-    Texture::Texture(sf::Texture &&inner) : _inner(inner)
-    {
-    }
+    Texture::Texture(sf::Texture &&inner) : _inner(inner) {}
 
-    Texture::Texture(Texture &&other) : _inner(std::move(other._inner))
-    {
-    }
+    Texture::Texture(Texture &&other) : _inner(std::move(other._inner)) {}
 
     Texture &Texture::operator=(Texture &&other)
     {
@@ -24,15 +18,9 @@ namespace arcade
         return *this;
     }
 
-    IAsset::Type Texture::getType() const
-    {
-        return IAsset::Type::Texture;
-    }
+    IAsset::Type Texture::getType() const { return IAsset::Type::Texture; }
 
-    sf::Texture const &Texture::getInner() const
-    {
-        return this->_inner;
-    }
+    sf::Texture const &Texture::getInner() const { return this->_inner; }
 
     std::unique_ptr<Texture> Texture::fromFile(std::filesystem::path const &path)
     {
