@@ -13,6 +13,10 @@
 
 namespace arcade
 {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Instantiation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     Rectangle::Rectangle()
         : _dims({0, 0, 0, 0}), _renderer(nullptr), _sprite(nullptr), _foregroundColor(Color::Transparent),
           _backgroundColor(Color::Transparent)
@@ -63,30 +67,6 @@ namespace arcade
         this->_backgroundColor = 0;
     }
 
-    void Rectangle::draw() const
-    {
-        if (!this->_renderer) [[unlikely]]
-            return; // just in case...
-
-        // Draw background, if present
-        if (this->_backgroundColor.toInteger() != Color::Transparent.toInteger())
-            this->drawColor(this->_backgroundColor);
-
-        // Draw foreground, if present
-        if (this->_sprite)
-            SDL_RenderCopy(this->_renderer, this->_sprite, nullptr, &this->_dims);
-        else
-            this->drawColor(this->_foregroundColor);
-    }
-
-    void Rectangle::drawColor(Color color) const
-    {
-        SDL_SetRenderDrawColor(this->_renderer, std::to_integer<uint8_t>(color.r), std::to_integer<uint8_t>(color.g),
-            std::to_integer<uint8_t>(color.b), 255 - std::to_integer<uint8_t>(color.a));
-        SDL_RenderFillRect(this->_renderer, &this->_dims);
-        SDL_SetRenderDrawColor(this->_renderer, 0, 0, 0, 0);
-    }
-
     std::unique_ptr<Rectangle> Rectangle::create(SDL_Renderer *renderer, Texture const *texture, vec2u size)
     {
         if (texture) {
@@ -114,20 +94,43 @@ namespace arcade
         return std::unique_ptr<Rectangle>(new Rectangle(renderer, sprite, size));
     }
 
-    IGameObject::Type Rectangle::getType() const
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Rendering
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void Rectangle::draw() const
     {
-        return IGameObject::Type::Rect;
+        if (!this->_renderer) [[unlikely]]
+            return; // just in case...
+
+        // Draw background, if present
+        if (this->_backgroundColor.toInteger() != Color::Transparent.toInteger())
+            this->drawColor(this->_backgroundColor);
+
+        // Draw foreground, if present
+        if (this->_sprite)
+            SDL_RenderCopy(this->_renderer, this->_sprite, nullptr, &this->_dims);
+        else
+            this->drawColor(this->_foregroundColor);
     }
 
-    vec2u Rectangle::getSize() const
+    void Rectangle::drawColor(Color color) const
     {
-        return toUnits(static_cast<vec2u>(vec2i{this->_dims.w, this->_dims.h}));
+        SDL_SetRenderDrawColor(this->_renderer, std::to_integer<uint8_t>(color.r), std::to_integer<uint8_t>(color.g),
+            std::to_integer<uint8_t>(color.b), 255 - std::to_integer<uint8_t>(color.a));
+        SDL_RenderFillRect(this->_renderer, &this->_dims);
+        SDL_SetRenderDrawColor(this->_renderer, 0, 0, 0, 0);
     }
 
-    vec2i Rectangle::getPosition() const
-    {
-        return toUnits(vec2i{this->_dims.x, this->_dims.y});
-    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // IGameObject Implementation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    IGameObject::Type Rectangle::getType() const { return IGameObject::Type::Rect; }
+
+    vec2u Rectangle::getSize() const { return toUnits(static_cast<vec2u>(vec2i{this->_dims.w, this->_dims.h})); }
+
+    vec2i Rectangle::getPosition() const { return toUnits(vec2i{this->_dims.x, this->_dims.y}); }
 
     void Rectangle::setPosition(vec2i pos)
     {
@@ -146,8 +149,5 @@ namespace arcade
         }
     }
 
-    void Rectangle::setBackground(Color color, DefaultColor)
-    {
-        this->_backgroundColor = color;
-    }
+    void Rectangle::setBackground(Color color, DefaultColor) { this->_backgroundColor = color; }
 } // namespace arcade

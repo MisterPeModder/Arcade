@@ -22,10 +22,18 @@
 
 namespace arcade
 {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Instantiation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     SfmlDisplay::SfmlDisplay() : _window(), _renderStates()
     {
         // do nothing here, real init is done in ::setup()
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // IDisplay implementation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     void SfmlDisplay::setup()
     {
@@ -40,15 +48,9 @@ namespace arcade
         this->_window.close();
     }
 
-    IDisplay::Type SfmlDisplay::getType() const
-    {
-        return IDisplay::Type::Graphical2D;
-    }
+    IDisplay::Type SfmlDisplay::getType() const { return IDisplay::Type::Graphical2D; }
 
-    vec2u SfmlDisplay::getSize() const
-    {
-        return this->_size;
-    }
+    vec2u SfmlDisplay::getSize() const { return this->_size; }
 
     bool SfmlDisplay::pollEvent(Event &event)
     {
@@ -83,16 +85,17 @@ namespace arcade
         drawer(renderer);
     }
 
-    void SfmlDisplay::display()
-    {
-        this->_window.display();
-    }
+    void SfmlDisplay::display() { this->_window.display(); }
 
     void SfmlDisplay::loadAssets(std::function<void(IAssetManager &)> loader)
     {
         AssetManager manager;
         loader(manager);
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Utilities
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     void SfmlDisplay::updateSize()
     {

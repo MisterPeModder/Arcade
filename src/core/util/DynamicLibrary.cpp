@@ -7,13 +7,17 @@
 
 namespace arcade
 {
-    DynamicLibrary::LoadError::LoadError(std::string const &msg) : std::runtime_error(msg)
-    {
-    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Errors
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    DynamicLibrary::UnknownSymbolError::UnknownSymbolError(std::string const &msg) : std::runtime_error(msg)
-    {
-    }
+    DynamicLibrary::LoadError::LoadError(std::string const &msg) : std::runtime_error(msg) {}
+
+    DynamicLibrary::UnknownSymbolError::UnknownSymbolError(std::string const &msg) : std::runtime_error(msg) {}
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Instantiation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     DynamicLibrary::DynamicLibrary(std::filesystem::path const &path) : _path(path)
     {
@@ -22,10 +26,7 @@ namespace arcade
             throw LoadError(dlerror());
     }
 
-    DynamicLibrary::DynamicLibrary(DynamicLibrary &&other) : _handle(other._handle)
-    {
-        other._handle = nullptr;
-    }
+    DynamicLibrary::DynamicLibrary(DynamicLibrary &&other) : _handle(other._handle) { other._handle = nullptr; }
 
     DynamicLibrary &DynamicLibrary::operator=(DynamicLibrary &&other)
     {
@@ -41,30 +42,6 @@ namespace arcade
         if (this->_handle)
             dlclose(this->_handle);
         this->_handle = nullptr;
-    }
-
-    void *DynamicLibrary::rawSymbolUnchecked(std::string_view name) noexcept
-    {
-        return dlsym(this->_handle, name.data());
-    }
-
-    void *DynamicLibrary::rawSymbol(std::string_view name)
-    {
-        void *symbol(this->rawSymbolUnchecked(name));
-
-        if (!symbol)
-            throw UnknownSymbolError(dlerror());
-        return symbol;
-    }
-
-    std::filesystem::path const &DynamicLibrary::path()
-    {
-        return this->_path;
-    }
-
-    bool DynamicLibrary::hasSymbol(std::string_view name)
-    {
-        return dlsym(this->_handle, name.data()) != nullptr;
     }
 
     DynamicLibrary &DynamicLibrary::load(std::filesystem::path const &path, Registry &libs)
@@ -96,4 +73,30 @@ namespace arcade
         }
         return success;
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Symbol Query API
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void *DynamicLibrary::rawSymbolUnchecked(std::string_view name) noexcept
+    {
+        return dlsym(this->_handle, name.data());
+    }
+
+    void *DynamicLibrary::rawSymbol(std::string_view name)
+    {
+        void *symbol(this->rawSymbolUnchecked(name));
+
+        if (!symbol)
+            throw UnknownSymbolError(dlerror());
+        return symbol;
+    }
+
+    bool DynamicLibrary::hasSymbol(std::string_view name) { return dlsym(this->_handle, name.data()) != nullptr; }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Miscellaneous
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    std::filesystem::path const &DynamicLibrary::path() { return this->_path; }
 } // namespace arcade

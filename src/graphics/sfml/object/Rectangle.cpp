@@ -16,11 +16,15 @@
 #include "../asset/Texture.hpp"
 #include "Rectangle.hpp"
 
+// IWYU pragma: no_include <SFML/System/Vector2.inl>
+
 namespace arcade
 {
-    Rectangle::Rectangle() : _size{0, 0}, _pos{0, 0}, _foreground()
-    {
-    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Instantiation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    Rectangle::Rectangle() : _size{0, 0}, _pos{0, 0}, _foreground() {}
 
     Rectangle::Rectangle(sf::RectangleShape &&inner) : _foreground(inner), _background()
     {
@@ -54,29 +58,15 @@ namespace arcade
         return std::unique_ptr<Rectangle>(new Rectangle(std::move(inner)));
     }
 
-    IGameObject::Type Rectangle::getType() const
-    {
-        return Type::Rect;
-    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // IGameObject Implementation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    vec2u Rectangle::getSize() const
-    {
-        return this->_size;
-    }
+    IGameObject::Type Rectangle::getType() const { return Type::Rect; }
 
-    void Rectangle::updateSize()
-    {
-        sf::FloatRect bounds(this->_foreground.getGlobalBounds());
-        sf::Vector2f size{bounds.width, bounds.height};
+    vec2u Rectangle::getSize() const { return this->_size; }
 
-        this->_background.setSize(size);
-        this->_size = static_cast<vec2u>(toUnits(vec2<float>{std::max(0.0f, size.x), std::max(0.0f, size.y)}));
-    }
-
-    vec2i Rectangle::getPosition() const
-    {
-        return this->_pos;
-    }
+    vec2i Rectangle::getPosition() const { return this->_pos; }
 
     void Rectangle::setPosition(vec2i pos)
     {
@@ -84,14 +74,6 @@ namespace arcade
 
         this->_foreground.setPosition(sf::Vector2f(scaledPos.x, scaledPos.y));
         this->updatePosition();
-    }
-
-    void Rectangle::updatePosition()
-    {
-        sf::Vector2f const &pos(this->_foreground.getPosition());
-
-        this->_background.setPosition(pos);
-        this->_pos = static_cast<vec2i>(toUnits(vec2<float>{pos.x, pos.y}));
     }
 
     void Rectangle::setForeground(Color color, DefaultColor)
@@ -111,6 +93,31 @@ namespace arcade
         this->_background.setFillColor(c);
         this->_background.setOutlineColor(c);
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Utilities
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void Rectangle::updateSize()
+    {
+        sf::FloatRect bounds(this->_foreground.getGlobalBounds());
+        sf::Vector2f size{bounds.width, bounds.height};
+
+        this->_background.setSize(size);
+        this->_size = static_cast<vec2u>(toUnits(vec2<float>{std::max(0.0f, size.x), std::max(0.0f, size.y)}));
+    }
+
+    void Rectangle::updatePosition()
+    {
+        sf::Vector2f const &pos(this->_foreground.getPosition());
+
+        this->_background.setPosition(pos);
+        this->_pos = static_cast<vec2i>(toUnits(vec2<float>{pos.x, pos.y}));
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // sf::Drawable Implementation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     void Rectangle::draw(sf::RenderTarget &target, sf::RenderStates states) const
     {

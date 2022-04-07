@@ -6,32 +6,20 @@
 
 namespace arcade
 {
-    Font::Font() : _inner()
-    {
-    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Instantiation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    Font::Font(sf::Font &&inner) : _inner(inner)
-    {
-    }
+    Font::Font() : _inner() {}
 
-    Font::Font(Font &&other) : _inner(std::move(other._inner))
-    {
-    }
+    Font::Font(sf::Font &&inner) : _inner(inner) {}
+
+    Font::Font(Font &&other) : _inner(std::move(other._inner)) {}
 
     Font &Font::operator=(Font &&other)
     {
         this->_inner = std::move(other._inner);
         return *this;
-    }
-
-    IAsset::Type Font::getType() const
-    {
-        return Type::Font;
-    }
-
-    sf::Font const &Font::getInner() const
-    {
-        return this->_inner;
     }
 
     std::unique_ptr<Font> Font::fromFile(std::filesystem::path const &path)
@@ -42,4 +30,16 @@ namespace arcade
             return std::unique_ptr<Font>();
         return std::unique_ptr<Font>(new Font(std::move(inner)));
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // IAsset Implementation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    IAsset::Type Font::getType() const { return Type::Font; }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Miscellaneous
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    sf::Font const &Font::getInner() const { return this->_inner; }
 } // namespace arcade

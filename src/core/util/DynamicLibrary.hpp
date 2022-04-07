@@ -12,9 +12,14 @@
 
 namespace arcade
 {
+    /// Abstraction over raw libdl functions.
     class DynamicLibrary {
       public:
         using Registry = std::unordered_map<std::string, DynamicLibrary>;
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Errors
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         class LoadError : public std::runtime_error {
           private:
@@ -30,12 +35,38 @@ namespace arcade
             friend DynamicLibrary;
         };
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Instantiation
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         DynamicLibrary(DynamicLibrary const &) = delete;
 
         DynamicLibrary(DynamicLibrary &&);
         DynamicLibrary &operator=(DynamicLibrary &&);
 
         ~DynamicLibrary();
+
+        /// Attempts to load a dynamic library.
+        ///
+        /// @param path The path of the .so/.dll file.
+        /// @param[in, out] libs The currenly loaded libraries.
+        ///
+        /// @throws DynamicLibrary::LoadError if the library has failed to load.
+        static DynamicLibrary &load(std::filesystem::path const &path, Registry &libs);
+
+        /// Attempts to load all dynamic libraries in the given directory.
+        ///
+        /// Skips libraries that fail to load or are already present in @c libs.
+        ///
+        /// @param dir Where to load the libraries from.
+        /// @param[in, out] libs The currenly loaded libraries.
+        ///
+        /// @return Whether at least one library has successfully loaded.
+        static bool loadDirectory(std::filesystem::path const &dir, Registry &libs);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Symbol Query API
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// @param name the name of the symbol to fetch, must be null-terminated.
         ///
@@ -66,36 +97,19 @@ namespace arcade
         /// @returns the address where the symbol is loaded into memory.
         ///
         /// @throws DynamicLibrary::UnknownSymbolError if not found.
-        template <typename T> T symbol(std::string_view name)
-        {
-            return reinterpret_cast<T>(this->rawSymbol(name));
-        }
-
-        /// @returns The path of this dynamic library.
-        std::filesystem::path const &path();
+        template <typename T> T symbol(std::string_view name) { return reinterpret_cast<T>(this->rawSymbol(name)); }
 
         /// @param name the name of the symbol to query, must be null-terminated.
         ///
         /// @returns Whether the library posseses the requested symbol.
         bool hasSymbol(std::string_view name);
 
-        /// Attempts to load a dynamic library.
-        ///
-        /// @param path The path of the .so/.dll file.
-        /// @param[in, out] libs The currenly loaded libraries.
-        ///
-        /// @throws DynamicLibrary::LoadError if the library has failed to load.
-        static DynamicLibrary &load(std::filesystem::path const &path, Registry &libs);
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Miscellaneous
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        /// Attempts to load all dynamic libraries in the given directory.
-        ///
-        /// Skips libraries that fail to load or are already present in @c libs.
-        ///
-        /// @param dir Where to load the libraries from.
-        /// @param[in, out] libs The currenly loaded libraries.
-        ///
-        /// @return Whether at least one library has successfully loaded.
-        static bool loadDirectory(std::filesystem::path const &dir, Registry &libs);
+        /// @returns The path of this dynamic library.
+        std::filesystem::path const &path();
 
       private:
         std::filesystem::path _path;

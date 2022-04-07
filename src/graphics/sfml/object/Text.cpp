@@ -19,11 +19,15 @@
 #include "../asset/Font.hpp"
 #include "Text.hpp"
 
+// IWYU pragma: no_include <SFML/System/Vector2.inl>
+
 namespace arcade
 {
-    Text::Text() : _size{0, 0}, _pos{0, 0}, _inner(), _background()
-    {
-    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Instantiation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    Text::Text() : _size{0, 0}, _pos{0, 0}, _inner(), _background() {}
 
     Text::Text(sf::Text &&inner) : _inner(inner), _background()
     {
@@ -60,29 +64,15 @@ namespace arcade
         return std::unique_ptr<Text>(new Text(std::move(inner)));
     }
 
-    IGameObject::Type Text::getType() const
-    {
-        return Type::Text;
-    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // IGameObject Implementation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    vec2u Text::getSize() const
-    {
-        return this->_size;
-    }
+    IGameObject::Type Text::getType() const { return Type::Text; }
 
-    void Text::updateSize()
-    {
-        sf::FloatRect bounds(this->_inner.getGlobalBounds());
-        sf::Vector2f size{bounds.width, PIXELS_PER_UNIT};
+    vec2u Text::getSize() const { return this->_size; }
 
-        this->_background.setSize(size);
-        this->_size = static_cast<vec2u>(toUnits(vec2<float>{std::max(0.0f, size.x), std::max(0.0f, size.y)}));
-    }
-
-    vec2i Text::getPosition() const
-    {
-        return this->_pos;
-    }
+    vec2i Text::getPosition() const { return this->_pos; }
 
     void Text::setPosition(vec2i pos)
     {
@@ -90,14 +80,6 @@ namespace arcade
 
         this->_inner.setPosition(sf::Vector2f(scaledPos.x, scaledPos.y));
         this->updatePosition();
-    }
-
-    void Text::updatePosition()
-    {
-        sf::Vector2f const &pos(this->_inner.getPosition());
-
-        this->_background.setPosition(pos);
-        this->_pos = static_cast<vec2i>(toUnits(vec2<float>{pos.x, pos.y}));
     }
 
     void Text::setForeground(Color color, DefaultColor)
@@ -114,6 +96,31 @@ namespace arcade
         this->_background.setFillColor(sf::Color(std::to_integer<uint8_t>(color.r), std::to_integer<uint8_t>(color.g),
             std::to_integer<uint8_t>(color.b), 255 - std::to_integer<uint8_t>(color.a)));
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Utilities
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    void Text::updateSize()
+    {
+        sf::FloatRect bounds(this->_inner.getGlobalBounds());
+        sf::Vector2f size{bounds.width, PIXELS_PER_UNIT};
+
+        this->_background.setSize(size);
+        this->_size = static_cast<vec2u>(toUnits(vec2<float>{std::max(0.0f, size.x), std::max(0.0f, size.y)}));
+    }
+
+    void Text::updatePosition()
+    {
+        sf::Vector2f const &pos(this->_inner.getPosition());
+
+        this->_background.setPosition(pos);
+        this->_pos = static_cast<vec2i>(toUnits(vec2<float>{pos.x, pos.y}));
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // sf::Drawable Implementation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     void Text::draw(sf::RenderTarget &target, sf::RenderStates states) const
     {

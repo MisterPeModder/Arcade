@@ -42,15 +42,9 @@ class ExampleDisplay : public IDisplay {
         // ...
     }
 
-    Type getType() const override final
-    {
-        return Type::Graphical2D;
-    }
+    Type getType() const override final { return Type::Graphical2D; }
 
-    vec2u getSize() const override final
-    {
-        return {0, 0};
-    }
+    vec2u getSize() const override final { return {0, 0}; }
 
     virtual bool pollEvent(Event &event) override final
     {
@@ -64,20 +58,14 @@ class ExampleDisplay : public IDisplay {
         (void)backup;
     }
 
-    void render(std::function<void(IRenderer &)> drawer) override final
-    {
-        (void)drawer;
-    }
+    void render(std::function<void(IRenderer &)> drawer) override final { (void)drawer; }
 
     void display() override final
     {
         // ...
     }
 
-    void loadAssets(std::function<void(IAssetManager &)> loader) override final
-    {
-        (void)loader;
-    }
+    void loadAssets(std::function<void(IAssetManager &)> loader) override final { (void)loader; }
 };
 /// end_display_impl
 

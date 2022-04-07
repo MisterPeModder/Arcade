@@ -13,16 +13,10 @@ namespace arcade
     constexpr int PIXELS_PER_UNIT = 25;
 
     /// Converts a vector of pixels to a vector of units.
-    template <typename T> constexpr T toUnits(T pixels)
-    {
-        return pixels / PIXELS_PER_UNIT;
-    }
+    template <typename T> constexpr T toUnits(T pixels) { return pixels / PIXELS_PER_UNIT; }
 
     /// Converts a vector of units to a vector of pixels.
-    template <typename T> constexpr T toPixels(T units)
-    {
-        return units * PIXELS_PER_UNIT;
-    }
+    template <typename T> constexpr T toPixels(T units) { return units * PIXELS_PER_UNIT; }
 
     /// The default window size, in units.
     static constexpr vec2u WINDOW_SIZE_UNITS = {29, 35};

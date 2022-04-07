@@ -28,15 +28,27 @@ namespace arcade
     class IAssetManager;
     class IRenderer;
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Errors
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     Sdl2Display::Error::Error(std::string_view cause, char const *(*getError)())
         : std::runtime_error(std::string(cause) + ": " + (*getError)())
     {
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Instantiation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     Sdl2Display::Sdl2Display() : _window(nullptr), _renderer(nullptr), _size({0, 0})
     {
         // do nothing here, real init is done in ::setup()
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // IDisplay Implementation
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     void Sdl2Display::setup()
     {
@@ -83,15 +95,9 @@ namespace arcade
         }
     }
 
-    IDisplay::Type Sdl2Display::getType() const
-    {
-        return IDisplay::Type::Graphical2D;
-    }
+    IDisplay::Type Sdl2Display::getType() const { return IDisplay::Type::Graphical2D; }
 
-    vec2u Sdl2Display::getSize() const
-    {
-        return this->_size;
-    }
+    vec2u Sdl2Display::getSize() const { return this->_size; }
 
     bool Sdl2Display::pollEvent(Event &event)
     {
@@ -135,16 +141,17 @@ namespace arcade
         drawer(renderer);
     }
 
-    void Sdl2Display::display()
-    {
-        SDL_RenderPresent(this->_renderer);
-    }
+    void Sdl2Display::display() { SDL_RenderPresent(this->_renderer); }
 
     void Sdl2Display::loadAssets(std::function<void(IAssetManager &)> loader)
     {
         AssetManager manager(this->_renderer);
         loader(manager);
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Utilities
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     void Sdl2Display::updateSize(vec2u defaultSize)
     {
