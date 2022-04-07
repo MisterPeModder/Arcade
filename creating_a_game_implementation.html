@@ -105,7 +105,7 @@ Game Implementation</h1>
 <h2><a class="anchor" id="game_impl"></a>
 Explanation</h2>
 <p> First, include the IGame interface, (and iostream too, for this example). </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_i_game_8hpp.html">arcade/IGame.hpp</a>&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="types_8hpp.html">arcade/types.hpp</a>&gt;</span></div>
 </div><!-- fragment --><p>Then, create implement the IGame interface: </p><div class="fragment"><div class="line"><span class="keyword">class </span>ExampleGame : <span class="keyword">public</span> IGame {</div>
 </div><!-- fragment --><p>Store the game state as private fields: </p><div class="fragment"><div class="line">  <span class="keyword">private</span>:</div>
 <div class="line">    State _state;</div>
@@ -115,10 +115,7 @@ Explanation</h2>
 <div class="line">        <span class="comment">// ...</span></div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> setup() override final</div>
-<div class="line">    {</div>
-<div class="line">        this-&gt;_state = State::Loaded;</div>
-<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">void</span> setup() override final { this-&gt;_state = State::Loaded; }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">void</span> loadAssets(IAssetManager &amp;manager, vec2u displaySize) <span class="keyword">override</span> <span class="keyword">final</span></div>
 <div class="line">    {</div>
@@ -133,20 +130,11 @@ Explanation</h2>
 </div><!-- fragment --><p>Then implement all the remaining methods: </p><div class="fragment"><div class="line"> </div>
 <div class="line">    <span class="comment">// [...]</span></div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> setState(State state) <span class="keyword">override</span> <span class="keyword">final</span></div>
-<div class="line">    {</div>
-<div class="line">        this-&gt;_state = state;</div>
-<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">void</span> setState(State state) <span class="keyword">override</span> <span class="keyword">final</span> { this-&gt;_state = state; }</div>
 <div class="line"> </div>
-<div class="line">    State getState() const override final</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordflow">return</span> this-&gt;_state;</div>
-<div class="line">    }</div>
+<div class="line">    State getState() const override final { <span class="keywordflow">return</span> this-&gt;_state; }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> getScore() const override final</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordflow">return</span> -42;</div>
-<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> getScore() const override final { <span class="keywordflow">return</span> -42; }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">void</span> update(<span class="keywordtype">float</span> delta) <span class="keyword">override</span> <span class="keyword">final</span></div>
 <div class="line">    {</div>
@@ -154,10 +142,7 @@ Explanation</h2>
 <div class="line">        <span class="comment">// ...</span></div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> render(IRenderer &amp;renderer) <span class="keyword">override</span> <span class="keyword">final</span></div>
-<div class="line">    {</div>
-<div class="line">        (void)renderer;</div>
-<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">void</span> render(IRenderer &amp;renderer) <span class="keyword">override</span> <span class="keyword">final</span> { (void)renderer; }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">void</span> handleEvent(Event &amp;event) <span class="keyword">override</span> <span class="keyword">final</span></div>
 <div class="line">    {</div>
@@ -186,6 +171,7 @@ Explanation</h2>
 </div><!-- fragment --><h2><a class="anchor" id="game_full_code"></a>
 Full Code</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_i_game_8hpp.html">arcade/IGame.hpp</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="types_8hpp.html">arcade/types.hpp</a>&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">namespace </span>arcade</div>
@@ -212,10 +198,7 @@ Full Code</h2>
 <div class="line">        <span class="comment">// ...</span></div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> setup() override final</div>
-<div class="line">    {</div>
-<div class="line">        this-&gt;_state = State::Loaded;</div>
-<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">void</span> setup() override final { this-&gt;_state = State::Loaded; }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">void</span> loadAssets(IAssetManager &amp;manager, vec2u displaySize) <span class="keyword">override</span> <span class="keyword">final</span></div>
 <div class="line">    {</div>
@@ -230,20 +213,11 @@ Full Code</h2>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// [...]</span></div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> setState(State state) <span class="keyword">override</span> <span class="keyword">final</span></div>
-<div class="line">    {</div>
-<div class="line">        this-&gt;_state = state;</div>
-<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">void</span> setState(State state) <span class="keyword">override</span> <span class="keyword">final</span> { this-&gt;_state = state; }</div>
 <div class="line"> </div>
-<div class="line">    State getState() const override final</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordflow">return</span> this-&gt;_state;</div>
-<div class="line">    }</div>
+<div class="line">    State getState() const override final { <span class="keywordflow">return</span> this-&gt;_state; }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> getScore() const override final</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordflow">return</span> -42;</div>
-<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> getScore() const override final { <span class="keywordflow">return</span> -42; }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">void</span> update(<span class="keywordtype">float</span> delta) <span class="keyword">override</span> <span class="keyword">final</span></div>
 <div class="line">    {</div>
@@ -251,10 +225,7 @@ Full Code</h2>
 <div class="line">        <span class="comment">// ...</span></div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> render(IRenderer &amp;renderer) <span class="keyword">override</span> <span class="keyword">final</span></div>
-<div class="line">    {</div>
-<div class="line">        (void)renderer;</div>
-<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">void</span> render(IRenderer &amp;renderer) <span class="keyword">override</span> <span class="keyword">final</span> { (void)renderer; }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">void</span> handleEvent(Event &amp;event) <span class="keyword">override</span> <span class="keyword">final</span></div>
 <div class="line">    {</div>
@@ -307,15 +278,9 @@ Explanation</h2>
 <div class="line">        <span class="comment">// ...</span></div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    Type getType() const override final</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordflow">return</span> Type::Graphical2D;</div>
-<div class="line">    }</div>
+<div class="line">    Type getType() const override final { <span class="keywordflow">return</span> Type::Graphical2D; }</div>
 <div class="line"> </div>
-<div class="line">    <a class="code" href="types_8hpp.html#a9030af5de12a940030414fb458cad430">vec2u</a> getSize() const override final</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordflow">return</span> {0, 0};</div>
-<div class="line">    }</div>
+<div class="line">    <a class="code" href="types_8hpp.html#a9030af5de12a940030414fb458cad430">vec2u</a> getSize() const override final { <span class="keywordflow">return</span> {0, 0}; }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> pollEvent(Event &amp;event) <span class="keyword">override</span> <span class="keyword">final</span></div>
 <div class="line">    {</div>
@@ -329,20 +294,14 @@ Explanation</h2>
 <div class="line">        (void)backup;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> render(std::function&lt;<span class="keywordtype">void</span>(IRenderer &amp;)&gt; drawer) <span class="keyword">override</span> <span class="keyword">final</span></div>
-<div class="line">    {</div>
-<div class="line">        (void)drawer;</div>
-<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">void</span> render(std::function&lt;<span class="keywordtype">void</span>(IRenderer &amp;)&gt; drawer) <span class="keyword">override</span> <span class="keyword">final</span> { (void)drawer; }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">void</span> display() override final</div>
 <div class="line">    {</div>
 <div class="line">        <span class="comment">// ...</span></div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> loadAssets(std::function&lt;<span class="keywordtype">void</span>(IAssetManager &amp;)&gt; loader) <span class="keyword">override</span> <span class="keyword">final</span></div>
-<div class="line">    {</div>
-<div class="line">        (void)loader;</div>
-<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">void</span> loadAssets(std::function&lt;<span class="keywordtype">void</span>(IAssetManager &amp;)&gt; loader) <span class="keyword">override</span> <span class="keyword">final</span> { (void)loader; }</div>
 <div class="line">};</div>
 <div class="line"><span class="comment">/// end_display_impl</span></div>
 </div><!-- fragment --><p>Declare the display's entry point </p><div class="fragment"><div class="line"><a class="code" href="_i_display_8hpp.html#a63f004c6386745fe3523df4c8b3d7b9e">ARCADE_DISPLAY_ENTRY_POINT</a></div>
@@ -408,15 +367,9 @@ Full Code</h2>
 <div class="line">        <span class="comment">// ...</span></div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    Type getType() const override final</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordflow">return</span> Type::Graphical2D;</div>
-<div class="line">    }</div>
+<div class="line">    Type getType() const override final { <span class="keywordflow">return</span> Type::Graphical2D; }</div>
 <div class="line"> </div>
-<div class="line">    <a class="code" href="types_8hpp.html#a9030af5de12a940030414fb458cad430">vec2u</a> getSize() const override final</div>
-<div class="line">    {</div>
-<div class="line">        <span class="keywordflow">return</span> {0, 0};</div>
-<div class="line">    }</div>
+<div class="line">    <a class="code" href="types_8hpp.html#a9030af5de12a940030414fb458cad430">vec2u</a> getSize() const override final { <span class="keywordflow">return</span> {0, 0}; }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> pollEvent(Event &amp;event) <span class="keyword">override</span> <span class="keyword">final</span></div>
 <div class="line">    {</div>
@@ -430,20 +383,14 @@ Full Code</h2>
 <div class="line">        (void)backup;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> render(std::function&lt;<span class="keywordtype">void</span>(IRenderer &amp;)&gt; drawer) <span class="keyword">override</span> <span class="keyword">final</span></div>
-<div class="line">    {</div>
-<div class="line">        (void)drawer;</div>
-<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">void</span> render(std::function&lt;<span class="keywordtype">void</span>(IRenderer &amp;)&gt; drawer) <span class="keyword">override</span> <span class="keyword">final</span> { (void)drawer; }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">void</span> display() override final</div>
 <div class="line">    {</div>
 <div class="line">        <span class="comment">// ...</span></div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">void</span> loadAssets(std::function&lt;<span class="keywordtype">void</span>(IAssetManager &amp;)&gt; loader) <span class="keyword">override</span> <span class="keyword">final</span></div>
-<div class="line">    {</div>
-<div class="line">        (void)loader;</div>
-<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">void</span> loadAssets(std::function&lt;<span class="keywordtype">void</span>(IAssetManager &amp;)&gt; loader) <span class="keyword">override</span> <span class="keyword">final</span> { (void)loader; }</div>
 <div class="line">};</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">static</span> IDisplay *DISPLAY_INSTANCE = <span class="keyword">nullptr</span>;</div>
