@@ -122,10 +122,10 @@ namespace arcade
             int j = 0;
 
             for (int i = 0; i < this->_snakeSize; i++) { // remove the snake positions from the map
-                for (std::vector<vec2i>::iterator it = pos.begin(); it != pos.end(); it++, j++) {
+                for (std::vector<vec2i>::iterator it = pos.begin(); it != pos.end() && j < this->_snakeSize;
+                     it++, j++) {
                     if (pos[j] + this->_back->getPosition() == this->_snake[i]->getPosition()) {
                         pos.erase(it);
-                        break;
                     }
                 }
             }
@@ -134,7 +134,7 @@ namespace arcade
             this->_fruit->setPosition(pos[rand() % pos.size()] + this->_back->getPosition());
         }
 
-        bool checkSnakeMove(vec2i pos)
+        int checkSnakeMove(vec2i pos)
         {
             vec2i posSnake = this->_snake.front()->getPosition();
             vec2i posBack = this->_back->getPosition();
@@ -145,37 +145,37 @@ namespace arcade
                 this->_scoreValue += 1;
                 if (this->_snakeSize >= this->_snakeMaxSize) { // if the snake do all the map, game won
                     this->_running = false;
-                    return (true);
+                    return (0);
                 }
-                moveFruit();
 
                 this->_snakeSize += 1;
-                return (false);
+                return (2);
             }
 
             // check if the snake go out of the ground
             if (posSnake.x < posBack.x || posSnake.x > posBack.x + sizeBack.x - 1 || posSnake.y < posBack.y
                 || posSnake.y > posBack.y + sizeBack.y - 1) {
                 this->_running = false;
-                return (true);
+                return (0);
             }
 
             // check if the snake is eating himself
             for (int i = 0; i < this->_snakeSize - 1; i++) {
                 if (pos == this->_snake[i]->getPosition()) {
                     this->_running = false;
-                    return (true);
+                    return (0);
                 }
             }
-            return (false);
+            return (1);
         }
 
         void moveSnake()
         {
             vec2i pos = this->_snake.front()->getPosition();
             vec2i pos2;
+            int check = this->checkSnakeMove(pos + this->_direction);
 
-            if (this->checkSnakeMove(pos + this->_direction)) // in case of game over of win, the snake stop moving
+            if (check == 0) // in case of game over of win, the snake stop moving
                 return;
 
             this->_snake.front()->setPosition(pos + this->_direction); // move the snake
@@ -184,6 +184,8 @@ namespace arcade
                 this->_snake[i]->setPosition(pos);
                 pos = pos2;
             }
+            if (check == 2)
+                moveFruit();
         }
 
         void update(float delta) override final
