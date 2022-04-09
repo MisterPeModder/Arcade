@@ -188,8 +188,6 @@ namespace arcade
 
         void update(float delta) override final
         {
-            std::cout << std::endl;
-            std::cout << std::endl;
             if (this->_update > 0.3) { // every 0.3 seconds, the game is updated
                 this->_update = 0;
                 // check if the snake is moving and if the game is win or lost
