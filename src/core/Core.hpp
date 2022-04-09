@@ -4,14 +4,17 @@
 #ifndef ARCADE_CORE_HPP_
 #define ARCADE_CORE_HPP_
 
+#include <chrono>
 #include <string>
 #include <unordered_map>
 
 #include <arcade/IDisplay.hpp>
 #include <arcade/IGame.hpp>
 
+#include "MainMenu.hpp"
 #include "util/DynamicLibrary.hpp"
 #include "util/LibraryInstance.hpp"
+#include "util/LibrarySelector.hpp"
 
 namespace arcade
 {
@@ -32,23 +35,66 @@ namespace arcade
         ~Core() = default;
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Runtime
+        // Main Loop
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// Starts the program's main event loop.
-        void eventLoop();
+        void run();
 
       private:
-        std::unordered_map<std::string, IDisplay *> _displays;
-        std::unordered_map<std::string, IGame *> _games;
+        /// Contains every display instance in the `libs` directory, may not contain the instance requested in the
+        /// program's parameter.
+        LibrarySelector<IDisplay> _displays;
+        /// Contains every game instance in the `libs` directory.
+        LibrarySelector<IGame> _games;
+
+        /// IGame implementation used for rendering the main menu.
+        /// This is not part of a dynamic library.
+        MainMenu _mainMenu;
 
         /// The current display implementation.
         LibraryInstance<IDisplay> _display;
         /// The current game implementation.
         LibraryInstance<IGame> _game;
 
-        /// Updates the current game's screen size by firing a synthetic @c Resized event.
-        void updateGameSize();
+        std::chrono::steady_clock _clock;
+        /// Timestamp of the last call to `Core::updateGame()`.
+        std::chrono::time_point<std::chrono::steady_clock> _lastUpdate;
+        /// Timestamp of the last call to `Core::render()`.
+        std::chrono::time_point<std::chrono::steady_clock> _lastFrame;
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // State Update
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /// Updates the active display based on the current selection.
+        void updateDisplaySelection();
+
+        /// Updates the active game based on the current selection.
+        void updateGameSelection();
+
+        /// (Re-)loads the assets and game objects of the active game or main menu.
+        void reloadAssets();
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Main Loop
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /// Forwards events from the active display to the active game (or main menu if not there).
+        ///
+        /// @returns Whether the main event loop should proceed, if false, the loop is terminated.
+        bool forwardEvents();
+
+        /// Updates the active game instance, mostly though its `update()` method.
+        ///
+        /// @returns Whether the main event loop should proceed, if false, the loop skips to the next cycle.
+        bool updateGame();
+
+        /// Renders a frame of the active game to the screen.
+        void render();
+
+        /// Blocks the main thread until enough time has elapsed to limit the game to `FRAMERATE_LIMIT` fps.
+        void awaitNextFrame();
     };
 } // namespace arcade
 

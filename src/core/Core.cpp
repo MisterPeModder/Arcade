@@ -15,113 +15,147 @@ namespace arcade
     // Instantiation
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    Core::Core(DynamicLibrary::Registry &libs, IDisplay *startingDisplay) : _displays(), _games(), _display(), _game()
+    Core::Core(DynamicLibrary::Registry &libs, IDisplay *startingDisplay)
     {
+        LibrarySelector<IDisplay>::Builder displaysBuilder;
+        LibrarySelector<IGame>::Builder gamesBuilder;
+
         // Convert our generic libs into either game or graphics (or both)
         for (auto &[name, lib] : libs) {
             try {
-                this->_displays.emplace(name, lib.symbol<IDisplay::EntryPoint>(IDisplay::ENTRY_POINT)());
+                displaysBuilder.add(name, lib.symbol<IDisplay::EntryPoint>(IDisplay::ENTRY_POINT)());
             } catch (DynamicLibrary::UnknownSymbolError &) {
             }
 
             try {
-                this->_games.emplace(name, lib.symbol<IGame::EntryPoint>(IGame::ENTRY_POINT)());
+                gamesBuilder.add(name, lib.symbol<IGame::EntryPoint>(IGame::ENTRY_POINT)());
             } catch (DynamicLibrary::UnknownSymbolError &) {
             }
         }
 
-        // Some info output, might remove later
-        std::cout << "\nAvailable displays:\n";
-        for (auto &[name, _] : this->_displays) {
-            std::cout << "- " << name << '\n';
-        }
+        this->_displays = displaysBuilder.build();
+        this->_games = gamesBuilder.build();
 
-        std::cout << "\nAvailable games:\n";
-        for (auto &[name, _] : this->_games) {
-            std::cout << "- " << name << '\n';
-        }
+        this->_mainMenu = std::move(MainMenu(this->_displays, this->_games));
 
         std::cout << "\nLoading graphics..." << std::endl;
         this->_display.set(startingDisplay);
 
-        // Load first game available
-        auto firstGame = this->_games.begin();
+        auto x = this->_displays.getSelected();
+        auto y = this->_displays.end();
 
-        if (firstGame != this->_games.end()) {
-            std::cout << "\nLoading graphics..." << std::endl;
-            this->_game.set(firstGame->second);
-            this->_display->loadAssets(
-                [&](auto &manager) { firstGame->second->loadAssets(manager, this->_display->getSize()); });
-        } else {
-            std::cout << "\nNo game available!" << std::endl;
-        }
+        std::cout << "display selected: " << x->second << std::endl;
+        std::cout << "display end: " << y->second << std::endl;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Runtime
+    // Main Loop
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    void Core::eventLoop()
+    void Core::run()
+    {
+        this->_lastUpdate = this->_clock.now();
+        this->_lastFrame = this->_clock.now();
+
+        for (;;) {
+            this->updateDisplaySelection();
+            this->updateGameSelection();
+            if (!this->forwardEvents())
+                break;
+            if (!this->updateGame())
+                continue;
+            this->render();
+            this->awaitNextFrame();
+        }
+    }
+
+    bool Core::forwardEvents()
+    {
+        Event event;
+
+        // Poll all event and forward each to the current game (if any)
+        while (this->_display->pollEvent(event)) {
+            this->_game->handleEvent(event);
+
+            if (event.type == Event::Type::Closed)
+                return false;
+        }
+        return true;
+    }
+
+    bool Core::updateGame()
+    {
+        IGame::State state(this->_game->getState());
+
+        if (state == IGame::State::Ended && this->_games.getSelected() != this->_games.cend()) {
+            std::cout << "Game ended, final score: " << this->_game->getScore() << std::endl;
+            this->_games.select(this->_games.end());
+            return false;
+        } else if (state == IGame::State::Running) {
+            std::chrono::duration<double> elapsed(this->_clock.now() - this->_lastUpdate);
+
+            this->_game->update(elapsed.count());
+            this->_lastUpdate = this->_clock.now();
+        }
+        return true;
+    }
+
+    void Core::render()
+    {
+        this->_display->clear(Color::Black, DefaultColor::Black);
+        this->_display->render([&](auto &renderer) { this->_game->render(renderer); });
+        this->_display->display();
+    }
+
+    void Core::awaitNextFrame()
     {
         using namespace std::chrono_literals;
 
-        Event event;
-        std::chrono::steady_clock clock;
-        auto lastUpdate(clock.now());
-        auto frameTime(1s / static_cast<double>(FRAMERATE_LIMIT)); // the duration of a frame
+        constexpr auto frameTime(1s / static_cast<double>(FRAMERATE_LIMIT)); // the duration of a frame
+        std::chrono::duration<double> elapsed(this->_clock.now() - this->_lastFrame);
 
-        if (this->_game)
-            this->_game->setState(IGame::State::Running);
-
-        // Inform the game about the current screen size
-        this->updateGameSize();
-
-        std::cout << "\nRunning..." << std::endl;
-        for (;;) {
-            // Poll all event and forward each to the current game (if any)
-            while (this->_display->pollEvent(event)) {
-                if (this->_game)
-                    this->_game->handleEvent(event);
-                if (event.type == Event::Type::Closed)
-                    return;
-            }
-
-            this->_display->clear(Color::Black, DefaultColor::Black);
-
-            auto currentUpdate(clock.now());
-            std::chrono::duration<double> elapsed(currentUpdate - lastUpdate);
-
-            if (this->_game) {
-                IGame::State state(this->_game->getState());
-
-                if (state == IGame::State::Ended) {
-                    std::cout << "Game ended, final score: " << this->_game->getScore() << std::endl;
-                    return;
-                } else if (state == IGame::State::Running) {
-                    // Update the game's logic
-                    this->_game->update(elapsed.count());
-                }
-
-                this->_display->render([&](auto &renderer) { this->_game->render(renderer); });
-            }
-
-            this->_display->display();
-
-            // Wait for the next frame if needed
-            lastUpdate = currentUpdate;
-            std::this_thread::sleep_for(frameTime - elapsed);
-        }
+        std::this_thread::sleep_for(frameTime - elapsed);
+        this->_lastFrame = this->_clock.now();
     }
 
-    void Core::updateGameSize()
-    {
-        if (!this->_game)
-            return;
-        Event resizeEvent;
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // State Update
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        resizeEvent.type = Event::Type::Resized;
-        resizeEvent.size.oldSize = {0, 0};
-        resizeEvent.size.newSize = this->_display->getSize();
-        this->_game->handleEvent(resizeEvent);
+    void Core::updateDisplaySelection()
+    {
+        auto selectedDisplay(this->_displays.getSelected());
+
+        if (selectedDisplay == this->_displays.cend() || selectedDisplay->second == this->_display.get())
+            return;
+
+        this->_display.set(selectedDisplay->second);
+        this->reloadAssets();
+    }
+
+    void Core::updateGameSelection()
+    {
+        auto selectedGame(this->_games.getSelected());
+
+        if (selectedGame == this->_games.cend()) {
+            if (this->_game.get() != &this->_mainMenu) {
+                if (this->_game.get() != nullptr)
+                    std::cout << "Exiting to main menu" << std::endl;
+                this->_game.set(&this->_mainMenu); // returning to main menu
+            }
+        } else if (selectedGame->second != this->_game.get()) {
+            std::cout << "Loading " << selectedGame->first << std::endl;
+            this->_game.set(selectedGame->second); // game to game change
+        } else {
+            return;
+        }
+
+        this->reloadAssets();
+        this->_game->setState(IGame::State::Running);
+    }
+
+    void Core::reloadAssets()
+    {
+        this->_display->loadAssets([&](auto &manager) { this->_game->loadAssets(manager, this->_display->getSize()); });
     }
 } // namespace arcade
