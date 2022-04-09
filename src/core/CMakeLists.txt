@@ -6,6 +6,8 @@ set(SRC
     ${INCROOT}/arcade.hpp
     ${SRCROOT}/Core.cpp
     ${INCROOT}/Core.hpp
+    ${SRCROOT}/MainMenu.cpp
+    ${INCROOT}/MainMenu.hpp
 )
 
 set(INCDIRS ${INCROOT})
