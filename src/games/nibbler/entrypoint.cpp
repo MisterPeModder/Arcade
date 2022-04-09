@@ -21,7 +21,8 @@ namespace arcade
             this->_update = 0;
             this->_score = 0;
             this->_snakeSize = 4;
-            this->_running = true;
+            this->_snakeMaxSize = 4;
+            this->_gameState = true;
             this->_direction = {0, 0};
         }
 
@@ -33,6 +34,7 @@ namespace arcade
 
             // set the snake's position at the center of the ground
             pos = (static_cast<vec2i>(this->_back->getSize() / 2) + posBack);
+            pos.y -= 1;
             this->_snake[0]->setPosition(pos);
             pos.y += 1;
             this->_snake[1]->setPosition(pos);
@@ -50,7 +52,7 @@ namespace arcade
         void createSnakePart(IAssetManager &manager)
         {
             // create all snake part with the color Green
-            this->_snakeMaxSize = (this->_back->getSize().x / 2) * (this->_back->getSize().y / 2);
+            this->_snakeMaxSize = (this->_back->getSize().x) * (this->_back->getSize().y);
 
             for (int i = 0; i < _snakeMaxSize; i++) {
                 this->_snake.push_back(manager.createRectObject({1, 1}, nullptr));
@@ -74,29 +76,33 @@ namespace arcade
         void loadAssets(IAssetManager &manager, vec2u displaySize) override final
         {
             vec2i pos;
-            vec2u size = {15, 15};
+            vec2u size = {16, 16};
 
             // this->_font = manager.loadAsset("./assets/fonts/roboto_regular.ttf", IAsset::Type::Font);
             // this->_score = manager.createTextObject("This is a test", this->_font.get());
 
-            this->_back = manager.createRectObject(size, nullptr);
+            this->_back = manager.createRectObject(size, nullptr); // create background and fruit
             this->_fruit = manager.createRectObject({1, 1}, nullptr);
+
             this->_state = State::Loaded;
 
-            this->_back->setBackground(Color(0x221111));
+            this->_back->setBackground(Color(0x221111)); // set background color
             this->_back->setForeground(Color(0xccccff));
-            this->_back->setPosition(static_cast<vec2i>(displaySize / 2 - this->_back->getSize() / 2));
-            this->_back->setPosition(pos);
 
-            this->_fruit->setBackground(Color::Blue);
+            pos = static_cast<vec2i>(displaySize / 2 - this->_back->getSize() / 2);
+            this->_back->setPosition(pos); // set background position
+
+            this->_fruit->setBackground(Color::Blue); // set fruit color
             this->_fruit->setForeground(Color::Blue);
 
             // this->_score->setForeground(Color::Black);
             // this->_score->setBackground(Color::White);
 
-            this->createSnakePart(manager);
-            this->setPositions(pos);
-            this->createMap(size);
+            this->createSnakePart(manager); // create snake
+
+            this->setPositions(pos); // set snake and fruit position
+
+            this->createMap(size); // create map for fruit
         }
 
         void close() override final
@@ -119,13 +125,16 @@ namespace arcade
         void moveFruit()
         {
             std::vector<vec2i> pos = this->_map;
-            int j = 0;
+
+            if (this->_snakeSize >= this->_snakeMaxSize)
+                return;
 
             for (int i = 0; i < this->_snakeSize; i++) { // remove the snake positions from the map
-                for (std::vector<vec2i>::iterator it = pos.begin(); it != pos.end() && j < this->_snakeSize;
-                     it++, j++) {
+                for (int j = 0; j < static_cast<int>(pos.size()); j++) {
                     if (pos[j] + this->_back->getPosition() == this->_snake[i]->getPosition()) {
-                        pos.erase(it);
+                        pos[j] = pos.back();
+                        pos.pop_back();
+                        break;
                     }
                 }
             }
@@ -141,12 +150,12 @@ namespace arcade
             vec2i sizeBack = static_cast<vec2i>(this->_back->getSize());
 
             // if the snake eat a fruit, his size go up by 1 and the fruit is moved
+            if (this->_snakeSize >= this->_snakeMaxSize) { // if the snake do all the map, game won
+                this->_gameState = false;
+                return (0);
+            }
             if (this->_fruit->getPosition() == pos) {
                 this->_scoreValue += 1;
-                if (this->_snakeSize >= this->_snakeMaxSize) { // if the snake do all the map, game won
-                    this->_running = false;
-                    return (0);
-                }
 
                 this->_snakeSize += 1;
                 return (2);
@@ -155,14 +164,14 @@ namespace arcade
             // check if the snake go out of the ground
             if (posSnake.x < posBack.x || posSnake.x > posBack.x + sizeBack.x - 1 || posSnake.y < posBack.y
                 || posSnake.y > posBack.y + sizeBack.y - 1) {
-                this->_running = false;
+                this->_gameState = false;
                 return (0);
             }
 
             // check if the snake is eating himself
             for (int i = 0; i < this->_snakeSize - 1; i++) {
                 if (pos == this->_snake[i]->getPosition()) {
-                    this->_running = false;
+                    this->_gameState = false;
                     return (0);
                 }
             }
@@ -188,12 +197,32 @@ namespace arcade
                 moveFruit();
         }
 
+        // void testGame() // work on pair map side length
+        // {
+        //     vec2i posSnake = _snake.front()->getPosition();
+        //     vec2i posBack = _back->getPosition();
+        //     vec2u sizeBack = _back->getSize();
+
+        //     if (posSnake.x == posBack.x + static_cast<int>(sizeBack.x) - 1 && posSnake.y == posBack.y)
+        //         _direction = {0, 1};
+        //     else if ((posSnake.x == posBack.x + static_cast<int>(sizeBack.x) - 1
+        //                  && posSnake.y == posBack.y + static_cast<int>(sizeBack.y) - 1)
+        //         || (posSnake.x == posBack.x + static_cast<int>(sizeBack.x) - 2 && _direction.y == -1))
+        //         _direction = {-1, 0};
+        //     else if ((posSnake.x == posBack.x && _direction.x == -1)
+        //         || (posSnake.x == posBack.x + static_cast<int>(sizeBack.x) - 2 && _direction.x == 1
+        //             && posSnake.y > posBack.y))
+        //         _direction = {0, -1};
+        //     else if ((posSnake.x == posBack.x && _direction.y == -1))
+        //         _direction = {1, 0};
+        // }
+
         void update(float delta) override final
         {
             if (this->_update > 0.3) { // every 0.3 seconds, the game is updated
                 this->_update = 0;
                 // check if the snake is moving and if the game is win or lost
-                if (this->_running && (this->_direction.x != 0 || this->_direction.y != 0))
+                if (this->_gameState && (this->_direction.x != 0 || this->_direction.y != 0))
                     this->moveSnake();
             }
             this->_update += delta;
@@ -216,11 +245,11 @@ namespace arcade
                     this->_state = State::Ended;
                 else if (event.key.code == 'p')
                     this->_state = this->_state == State::Paused ? State::Running : State::Paused;
-                else if (this->_running == false) { // in case of gameover, press 'r' to restart the game
+                else if (this->_gameState == false) { // in case of gameover or win, press 'r' to restart the game
                     if (event.key.code == 'r') {
                         this->_scoreValue = 0;
                         this->_snakeSize = 4;
-                        this->_running = true;
+                        this->_gameState = true;
                         this->_direction = {0, 0};
                         this->setPositions(this->_back->getPosition());
                     }
@@ -256,12 +285,12 @@ namespace arcade
         unsigned int _scoreValue;
         int _snakeSize;
         int _snakeMaxSize;
-        bool _running;
         float _update;
+
+        bool _gameState;
 
         State _state;
         vec2i _direction;
-
         std::vector<vec2i> _map;
 
         std::unique_ptr<IAsset> _font;
