@@ -1,6 +1,8 @@
 set(INCROOT ${PROJECT_SOURCE_DIR}/src/graphics/common/include)
 
 set(SRC
+    ${INCROOT}/arcade/aliases.hpp
+    ${INCROOT}/arcade/IMutableText.hpp
     ${INCROOT}/arcade/graphics/units.hpp
 )
 

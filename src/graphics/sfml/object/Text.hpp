@@ -14,6 +14,7 @@
 
 #include <arcade/Color.hpp>
 #include <arcade/IGameObject.hpp>
+#include <arcade/IMutableText.hpp>
 #include <arcade/types.hpp>
 
 namespace sf
@@ -25,7 +26,7 @@ namespace arcade
 {
     class Font;
 
-    class Text : public IGameObject, public sf::Drawable {
+    class Text : public IGameObject, public IMutableText, public sf::Drawable {
       public:
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Instantiation
@@ -49,7 +50,6 @@ namespace arcade
         static std::unique_ptr<Text> create(Font const *font, std::string_view text);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
         // IGameObject Implementation
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -59,6 +59,12 @@ namespace arcade
         void setPosition(vec2i pos) override final;
         void setForeground(Color color, DefaultColor) override final;
         void setBackground(Color color, DefaultColor) override final;
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // IMutableText Implementation
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        void setText(std::string_view text) override final;
 
       private:
         /// size, in units.

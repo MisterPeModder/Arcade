@@ -12,6 +12,7 @@
 
 #include <arcade/Color.hpp>
 #include <arcade/IGameObject.hpp>
+#include <arcade/IMutableText.hpp>
 #include <arcade/types.hpp>
 
 namespace arcade
@@ -40,7 +41,6 @@ namespace arcade
         ~Rectangle();
 
         static std::unique_ptr<Rectangle> create(SDL_Renderer *renderer, Texture const *texture, vec2u size);
-        static std::unique_ptr<Rectangle> create(SDL_Renderer *renderer, Font const *font, std::string_view text);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Rendering
@@ -52,14 +52,14 @@ namespace arcade
         // IGameObject Implementation
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        Type getType() const override final;
+        Type getType() const override;
         vec2u getSize() const override final;
         vec2i getPosition() const override final;
         void setPosition(vec2i pos) override final;
         void setForeground(Color color, DefaultColor) override final;
         void setBackground(Color color, DefaultColor) override final;
 
-      private:
+      protected:
         /// Position & Size (in pixels, not units)
         SDL_Rect _dims;
         SDL_Renderer *_renderer;

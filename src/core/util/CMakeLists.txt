@@ -6,6 +6,7 @@ set(SRC
     ${SRCROOT}/DynamicLibrary.cpp
     ${INCROOT}/DynamicLibrary.hpp
     ${INCROOT}/LibraryInstance.hpp
+    ${INCROOT}/LibrarySelector.hpp
     PARENT_SCOPE
 )
 

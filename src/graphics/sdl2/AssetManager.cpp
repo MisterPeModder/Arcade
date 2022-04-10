@@ -9,6 +9,7 @@
 #include "asset/Font.hpp"
 #include "asset/Texture.hpp"
 #include "object/Rectangle.hpp"
+#include "object/Text.hpp"
 
 namespace arcade
 {
@@ -52,7 +53,7 @@ namespace arcade
 
         if (font != nullptr && f == nullptr)
             throw std::logic_error("textObject asset must be of font type");
-        return Rectangle::create(this->_renderer, f, text);
+        return Text::create(this->_renderer, f, text);
     }
 
     std::unique_ptr<IGameObject> AssetManager::createRectObject(vec2u size, IAsset const *texture) const

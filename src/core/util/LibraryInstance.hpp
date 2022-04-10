@@ -19,7 +19,7 @@ namespace arcade
         LibraryInstance() : _instance(nullptr) {}
 
         /// Constructs a LibraryInstance with no instance in it.
-        LibraryInstance(nullptr_t) : _instance(nullptr) {}
+        LibraryInstance(std::nullptr_t) : _instance(nullptr) {}
 
         /// Constructs a LibraryInstance with the given instance and calls its setup function.
         ///
@@ -48,13 +48,22 @@ namespace arcade
         /// Destructor.
         ~LibraryInstance() { this->clear(); }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Lifecycle Managment
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         /// Unloads the contained instance, if any.
-        void clear()
+        ///
+        /// @returns The unloaded instance.
+        T *clear()
         {
+            T *prev(this->_instance);
+
             if (this->_instance) {
                 this->_instance->close();
                 this->_instance = nullptr;
             }
+            return prev;
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

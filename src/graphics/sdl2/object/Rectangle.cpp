@@ -78,22 +78,6 @@ namespace arcade
         return std::unique_ptr<Rectangle>(new Rectangle(renderer, nullptr, size));
     }
 
-    std::unique_ptr<Rectangle> Rectangle::create(SDL_Renderer *renderer, Font const *font, std::string_view text)
-    {
-        if (!font)
-            throw std::logic_error("Missing font");
-        SDL_Texture *sprite(font->render(renderer, text));
-
-        if (!sprite)
-            return std::unique_ptr<Rectangle>();
-        vec2i textureSize = {0, 0};
-
-        SDL_QueryTexture(sprite, nullptr, nullptr, &textureSize.x, &textureSize.y);
-
-        vec2u size = toUnits(static_cast<vec2u>(textureSize));
-        return std::unique_ptr<Rectangle>(new Rectangle(renderer, sprite, size));
-    }
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Rendering
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
