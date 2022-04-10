@@ -48,13 +48,22 @@ namespace arcade
         /// Destructor.
         ~LibraryInstance() { this->clear(); }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Lifecycle Managment
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         /// Unloads the contained instance, if any.
-        void clear()
+        ///
+        /// @returns The unloaded instance.
+        T *clear()
         {
+            T *prev(this->_instance);
+
             if (this->_instance) {
                 this->_instance->close();
                 this->_instance = nullptr;
             }
+            return prev;
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

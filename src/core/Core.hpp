@@ -76,6 +76,11 @@ namespace arcade
         /// (Re-)loads the assets and game objects of the active game or main menu.
         void reloadAssets();
 
+        /// Changes the active display.
+        ///
+        /// @param display The display instance, may not be contained in IDisplay::_displays.
+        void setDisplayInstance(IDisplay *display);
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Main Loop
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

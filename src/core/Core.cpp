@@ -1,5 +1,10 @@
+#include "LibrarySelector.hpp"
+
+#include <cctype>
 #include <chrono>
+#include <filesystem>
 #include <iostream>
+#include <ranges>
 #include <thread>
 
 #include <arcade/Event.hpp>
@@ -38,14 +43,7 @@ namespace arcade
 
         this->_mainMenu = std::move(MainMenu(this->_displays, this->_games));
 
-        std::cout << "\nLoading graphics..." << std::endl;
-        this->_display.set(startingDisplay);
-
-        auto x = this->_displays.getSelected();
-        auto y = this->_displays.end();
-
-        std::cout << "display selected: " << x->second << std::endl;
-        std::cout << "display end: " << y->second << std::endl;
+        this->setDisplayInstance(startingDisplay);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -126,10 +124,13 @@ namespace arcade
     {
         auto selectedDisplay(this->_displays.getSelected());
 
-        if (selectedDisplay == this->_displays.cend() || selectedDisplay->second == this->_display.get())
+        if (selectedDisplay == this->_displays.cend() || selectedDisplay->instance() == this->_display.get())
             return;
 
-        this->_display.set(selectedDisplay->second);
+        IGame *gameInstance = this->_game.clear();
+
+        this->_display.set(selectedDisplay->instance());
+        this->_game.set(gameInstance);
         this->reloadAssets();
     }
 
@@ -138,14 +139,14 @@ namespace arcade
         auto selectedGame(this->_games.getSelected());
 
         if (selectedGame == this->_games.cend()) {
-            if (this->_game.get() != &this->_mainMenu) {
-                if (this->_game.get() != nullptr)
-                    std::cout << "Exiting to main menu" << std::endl;
-                this->_game.set(&this->_mainMenu); // returning to main menu
-            }
-        } else if (selectedGame->second != this->_game.get()) {
-            std::cout << "Loading " << selectedGame->first << std::endl;
-            this->_game.set(selectedGame->second); // game to game change
+            if (this->_game.get() == &this->_mainMenu)
+                return;
+            if (this->_game.get() != nullptr)
+                std::cout << "Exiting to main menu" << std::endl;
+            this->_game.set(&this->_mainMenu); // returning to main menu
+        } else if (selectedGame->instance() != this->_game.get()) {
+            std::cout << "Loading " << selectedGame->name() << std::endl;
+            this->_game.set(selectedGame->instance()); // game to game change
         } else {
             return;
         }
@@ -157,5 +158,15 @@ namespace arcade
     void Core::reloadAssets()
     {
         this->_display->loadAssets([&](auto &manager) { this->_game->loadAssets(manager, this->_display->getSize()); });
+    }
+
+    void Core::setDisplayInstance(IDisplay *display)
+    {
+        std::cout << "\nLoading graphics..." << std::endl;
+
+        auto found = std::ranges::find(this->_displays, display, &LibraryEntry<IDisplay>::instance);
+        this->_displays.select(found);
+
+        this->_display.set(display);
     }
 } // namespace arcade

@@ -24,7 +24,7 @@ add_library(libarcade_core ${SRC})
 target_include_directories(${LIB_NAME} PRIVATE ${INCDIRS})
 target_include_directories(${LIB_NAME} PUBLIC ${INCROOT})
 
-target_link_libraries(libarcade_core PRIVATE arcade_interface dl)
+target_link_libraries(libarcade_core PRIVATE arcade_interface arcade_graphics_common dl)
 
 add_executable(${TARGET_NAME} ${SRCROOT}/main.cpp)
 target_link_libraries(${TARGET_NAME} PRIVATE ${LIB_NAME})
