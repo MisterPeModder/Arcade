@@ -85,6 +85,7 @@ namespace arcade
         while (this->_display->pollEvent(event)) {
             // Exit the current game if the escape key was pressed
             if (event.type == Event::Type::KeyReleased) {
+                event.key.code = toupper(event.key.code);
                 if (event.key.code == '\x1b') {
                     this->_game->setState(IGame::State::Ended);
 
@@ -95,17 +96,23 @@ namespace arcade
                         return false;
                     }
                     break;
-                } else if (event.key.code == 'j' || event.key.code == 'J') {
+                } else if (event.key.code == 'J') {
                     if (event.key.shift)
                         this->_displays.selectPrevious();
                     else if (event.key.alt)
                         this->_games.selectPrevious();
-                } else if (event.key.code == 'l' || event.key.code == 'L') {
+                } else if (event.key.code == 'L') {
                     if (event.key.shift)
                         this->_displays.selectNext();
                     else if (event.key.alt)
                         this->_games.selectNext();
+                } else if (event.key.code == 'R' && event.key.control) {
+                    this->_game.set(this->_game.clear());
+                    this->reloadAssets();
+                    this->_game->setState(IGame::State::Running);
                 }
+            } else if (event.type == Event::Type::KeyPressed) {
+                event.key.code = toupper(event.key.code);
             }
 
             this->_game->handleEvent(event);
