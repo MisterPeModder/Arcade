@@ -124,8 +124,9 @@ namespace arcade
 
         // maximum width of game and display names
         unsigned int height(static_cast<unsigned>(std::max(gameNameObjects.size(), displayNameObjects.size())) + 2);
-        unsigned int gamesWidth(std::ranges::max(gameNameObjects | objectWidth) + 3);
-        unsigned int displaysWidth(std::ranges::max(displayNameObjects | objectWidth) + 3);
+        unsigned int gamesWidth((gameNameObjects.empty() ? 5 : std::ranges::max(gameNameObjects | objectWidth)) + 3);
+        unsigned int displaysWidth(
+            (displayNameObjects.empty() ? 5 : std::ranges::max(displayNameObjects | objectWidth)) + 3);
 
         background->setPosition({0, 0});
         background->setForeground(Color(0x2b2d42), DefaultColor::Black);

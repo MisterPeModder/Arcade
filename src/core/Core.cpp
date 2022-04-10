@@ -195,7 +195,9 @@ namespace arcade
 
     void Core::reloadAssets()
     {
-        this->_display->loadAssets([&](auto &manager) { this->_game->loadAssets(manager, this->_display->getSize()); });
+        if (this->_game)
+            this->_display->loadAssets(
+                [&](auto &manager) { this->_game->loadAssets(manager, this->_display->getSize()); });
     }
 
     void Core::setDisplayInstance(IDisplay *display)
