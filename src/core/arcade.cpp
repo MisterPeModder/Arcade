@@ -41,7 +41,7 @@ namespace arcade
             Core core(libs, defaultGraphics);
 
             // Run the game(s)
-            core.eventLoop();
+            core.run();
         }
 
         return 0;

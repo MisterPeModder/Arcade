@@ -5,6 +5,8 @@ set(SRC
     ${SRC}
     ${SRCROOT}/Rectangle.cpp
     ${INCROOT}/Rectangle.hpp
+    ${SRCROOT}/Text.cpp
+    ${INCROOT}/Text.hpp
     PARENT_SCOPE
 )
 

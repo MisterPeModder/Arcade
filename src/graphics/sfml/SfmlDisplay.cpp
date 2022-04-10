@@ -39,6 +39,7 @@ namespace arcade
     {
         this->_window.create(sf::VideoMode(WINDOW_SIZE_PIXELS.x, WINDOW_SIZE_PIXELS.y), "Arcade (SFML)");
         this->_renderStates = sf::RenderStates(sf::BlendAlpha);
+        this->updateSize();
         std::cout << "[sfml]: setup" << std::endl;
     }
 
