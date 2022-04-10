@@ -5,6 +5,7 @@
 #define ARCADE_CORE_UTIL_LIBRARY_SELECTOR_HPP_
 
 #include <algorithm>
+#include <compare>
 #include <stdexcept>
 #include <string>
 #include <utility>
@@ -112,8 +113,8 @@ namespace arcade
         // Iterators
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        using iterator = std::vector<LibraryEntry<Instance>>::iterator;
-        using const_iterator = std::vector<LibraryEntry<Instance>>::const_iterator;
+        using iterator = typename std::vector<LibraryEntry<Instance>>::iterator;
+        using const_iterator = typename std::vector<LibraryEntry<Instance>>::const_iterator;
 
         /// @returns an iterator to the first available library.
         iterator begin() noexcept { return this->_libs.begin(); }

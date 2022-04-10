@@ -19,7 +19,7 @@ namespace arcade
         LibraryInstance() : _instance(nullptr) {}
 
         /// Constructs a LibraryInstance with no instance in it.
-        LibraryInstance(nullptr_t) : _instance(nullptr) {}
+        LibraryInstance(std::nullptr_t) : _instance(nullptr) {}
 
         /// Constructs a LibraryInstance with the given instance and calls its setup function.
         ///

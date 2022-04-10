@@ -1,18 +1,26 @@
 #include "LibrarySelector.hpp"
 
+#include <algorithm>
 #include <cctype>
 #include <chrono>
 #include <filesystem>
 #include <iostream>
-#include <ranges>
-#include <thread>
+#include <ratio>
+#include <thread> // IWYU pragma: keep
+#include <utility>
+#include <vector>
+#include <unordered_map>
 
+#include <arcade/Color.hpp>
 #include <arcade/Event.hpp>
 #include <arcade/IDisplay.hpp>
 #include <arcade/IGame.hpp>
 
 #include "Core.hpp"
+#include "LibraryInstance.hpp"
 #include "util/DynamicLibrary.hpp"
+
+// IWYU pragma: no_include <bits/this_thread_sleep.h>
 
 namespace arcade
 {
@@ -43,7 +51,7 @@ namespace arcade
         this->_displays = displaysBuilder.build();
         this->_games = gamesBuilder.build();
 
-        this->_mainMenu = std::move(MainMenu(this->_displays, this->_games));
+        this->_mainMenu = MainMenu(this->_displays, this->_games);
 
         this->setDisplayInstance(startingDisplay);
     }
