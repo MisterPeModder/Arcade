@@ -38,4 +38,4 @@ function(add_arcade_game)
 endfunction()
 
 # Games
-# add_subdirectory(nibbler)
+add_subdirectory(nibbler)
