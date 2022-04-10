@@ -26,7 +26,9 @@ namespace arcade
         LibrarySelector<IGame>::Builder gamesBuilder;
 
         // Convert our generic libs into either game or graphics (or both)
-        for (auto &[name, lib] : libs) {
+        for (auto &[path, lib] : libs) {
+            std::string name(prettyLibName(path));
+
             try {
                 displaysBuilder.add(name, lib.symbol<IDisplay::EntryPoint>(IDisplay::ENTRY_POINT)());
             } catch (DynamicLibrary::UnknownSymbolError &) {
@@ -55,7 +57,7 @@ namespace arcade
         this->_lastUpdate = this->_clock.now();
         this->_lastFrame = this->_clock.now();
 
-        for (;;) {
+        do {
             this->updateDisplaySelection();
             this->updateGameSelection();
             if (!this->forwardEvents())
@@ -64,7 +66,7 @@ namespace arcade
                 continue;
             this->render();
             this->awaitNextFrame();
-        }
+        } while (this->_mainMenu.getState() != IGame::State::Ended);
     }
 
     bool Core::forwardEvents()
@@ -73,6 +75,31 @@ namespace arcade
 
         // Poll all event and forward each to the current game (if any)
         while (this->_display->pollEvent(event)) {
+            // Exit the current game if the escape key was pressed
+            if (event.type == Event::Type::KeyReleased) {
+                if (event.key.code == '\x1b') {
+                    this->_game->setState(IGame::State::Ended);
+
+                    // if 'alt' is pressed close the whole program
+                    if (event.key.alt) {
+                        std::cout << "Force quitting..." << std::endl;
+                        this->_mainMenu.setState(IGame::State::Ended);
+                        return false;
+                    }
+                    break;
+                } else if (event.key.code == 'j' || event.key.code == 'J') {
+                    if (event.key.shift)
+                        this->_displays.selectPrevious();
+                    else if (event.key.alt)
+                        this->_games.selectPrevious();
+                } else if (event.key.code == 'l' || event.key.code == 'L') {
+                    if (event.key.shift)
+                        this->_displays.selectNext();
+                    else if (event.key.alt)
+                        this->_games.selectNext();
+                }
+            }
+
             this->_game->handleEvent(event);
 
             if (event.type == Event::Type::Closed)
@@ -168,5 +195,23 @@ namespace arcade
         this->_displays.select(found);
 
         this->_display.set(display);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Miscellaneous
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    std::string Core::prettyLibName(std::string_view path)
+    {
+        std::string name(std::filesystem::path(path).filename().stem());
+
+        // remove the "arcade_" prefix if it is present.
+        if (name.starts_with("arcade_"))
+            name.replace(0, 7, "");
+        if (name.empty())
+            name = "<unamed>";
+        else
+            *name.data() = std::toupper(*name.data()); // uppercase the first letter
+        return name;
     }
 } // namespace arcade

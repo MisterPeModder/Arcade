@@ -7,10 +7,13 @@
 #define ARCADE_CORE_MAIN_MENU_HPP_
 
 #include <memory>
+#include <span>
 #include <string>
+#include <vector>
 
 #include <arcade/IGame.hpp>
 #include <arcade/IGameObject.hpp>
+#include <arcade/aliases.hpp>
 
 #include "util/LibrarySelector.hpp"
 
@@ -23,7 +26,7 @@ namespace arcade
     class MainMenu : public IGame {
       public:
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Constructors
+        // Initialization
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// Default constructor.
@@ -57,8 +60,24 @@ namespace arcade
         LibrarySelector<IDisplay> *_displays;
         LibrarySelector<IGame> *_games;
 
-        std::unique_ptr<IAsset> _font;
-        std::unique_ptr<IGameObject> _title;
+        IAssetPtr _font;
+
+        std::vector<IGameObjectPtr> _objects;
+
+        std::vector<std::pair<IGameObject *, std::function<void(MainMenu &)>>> _clickHandlers;
+
+        void initClickHandlers(IGameObject *quitBox, std::span<IGameObjectPtr> gameNameObjects,
+            std::span<IGameObjectPtr> displayNameObjects);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Utilities
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        IGameObjectPtr stringToText(
+            IAssetManager &manager, Color color, DefaultColor defaultColor, std::string_view line);
+
+        void stringsToText(IAssetManager &manager, Color color, DefaultColor defaultColor, vec2i pos,
+            std::vector<IGameObjectPtr> &out, std::span<std::string_view> lines);
     };
 } // namespace arcade
 
