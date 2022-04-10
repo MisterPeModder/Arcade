@@ -19,7 +19,7 @@ namespace arcade
         Nibbler() : _back(nullptr), _fruit(nullptr)
         {
             this->_update = 0;
-            this->_score = 0;
+            this->_scoreValue = 0;
             this->_snakeSize = 4;
             this->_snakeMaxSize = 4;
             this->_gameState = true;
@@ -107,9 +107,10 @@ namespace arcade
 
         void close() override final
         {
-            this->_font.reset();
+            // this->_font.reset();
+            // this->_score.reset();
+
             this->_back.reset();
-            this->_score.reset();
             this->_fruit.reset();
 
             for (size_t i = 0; i < this->_snake.size(); i++)
@@ -293,9 +294,10 @@ namespace arcade
         vec2i _direction;
         std::vector<vec2i> _map;
 
-        std::unique_ptr<IAsset> _font;
+        // std::unique_ptr<IAsset> _font;
+        // std::unique_ptr<IGameObject> _score;
+
         std::unique_ptr<IGameObject> _back;
-        std::unique_ptr<IGameObject> _score;
         std::unique_ptr<IGameObject> _fruit;
         std::vector<std::unique_ptr<IGameObject>> _snake;
     };
