@@ -121,7 +121,8 @@ namespace arcade
         IGame::State state(this->_game->getState());
 
         if (state == IGame::State::Ended && this->_games.getSelected() != this->_games.cend()) {
-            std::cout << "Game ended, final score: " << this->_game->getScore() << std::endl;
+            std::cout << "Game ended, player " << this->_mainMenu.getPlayerName() << " scored "
+                      << this->_game->getScore() << " points" << std::endl;
             this->_games.select(this->_games.end());
             return false;
         } else if (state == IGame::State::Running) {

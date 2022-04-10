@@ -40,6 +40,8 @@ namespace arcade
         /// Assignment move operator.
         MainMenu &operator=(MainMenu &&);
 
+        std::string_view getPlayerName();
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // IGame overrides
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,6 +59,8 @@ namespace arcade
       private:
         State _state;
 
+        std::array<char, 4> _playerName;
+
         LibrarySelector<IDisplay> *_displays;
         LibrarySelector<IGame> *_games;
 
@@ -64,17 +68,26 @@ namespace arcade
 
         std::vector<IGameObjectPtr> _objects;
 
+        IGameObjectPtr _playerNameText;
+        vec2i _playerNamePos;
+        bool _editingName;
+        unsigned int _editCursor;
+
         std::vector<std::pair<IGameObject *, std::function<void(MainMenu &)>>> _clickHandlers;
 
-        void initClickHandlers(IGameObject *quitBox, std::span<IGameObjectPtr> gameNameObjects,
+        void initClickHandlers(IGameObject *quitBox, IGameObject *nameBox, std::span<IGameObjectPtr> gameNameObjects,
             std::span<IGameObjectPtr> displayNameObjects);
+
+        void toggleEditingName();
+
+        void updatePlayerNameText();
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Utilities
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        IGameObjectPtr stringToText(
-            IAssetManager &manager, Color color, DefaultColor defaultColor, std::string_view line);
+        IGameObjectPtr stringToText(IAssetManager const &manager, Color color, DefaultColor defaultColor,
+            std::string_view line, vec2i pos = {0, 0});
 
         void stringsToText(IAssetManager &manager, Color color, DefaultColor defaultColor, vec2i pos,
             std::vector<IGameObjectPtr> &out, std::span<std::string_view> lines);
