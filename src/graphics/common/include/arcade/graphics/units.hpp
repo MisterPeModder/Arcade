@@ -19,7 +19,7 @@ namespace arcade
     template <typename T> constexpr T toPixels(T units) { return units * PIXELS_PER_UNIT; }
 
     /// The default window size, in units.
-    static constexpr vec2u WINDOW_SIZE_UNITS = {29, 35};
+    static constexpr vec2u WINDOW_SIZE_UNITS = {59, 35};
     /// The default window size, in pixels.
     static constexpr vec2u WINDOW_SIZE_PIXELS = toPixels(WINDOW_SIZE_UNITS);
 
