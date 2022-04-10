@@ -42,6 +42,5 @@ endfunction()
 add_subdirectory(common)
 
 # Graphics Backends
-add_subdirectory(ncurses)
 add_subdirectory(sdl2)
 add_subdirectory(sfml)

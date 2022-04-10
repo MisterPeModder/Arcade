@@ -38,8 +38,4 @@ function(add_arcade_game)
 endfunction()
 
 # Games
-add_subdirectory(centipede)
-add_subdirectory(nibbler)
-add_subdirectory(pacman)
-add_subdirectory(qix)
-add_subdirectory(solarfox)
+# add_subdirectory(nibbler)
