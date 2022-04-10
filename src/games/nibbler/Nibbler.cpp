@@ -68,7 +68,9 @@ namespace arcade
         vec2i pos;
         vec2u size = {16, 16};
 
-        this->_back = manager.createRectObject(size, nullptr);    // create background and fruit
+        this->_snakeImg = manager.loadAsset("assets/snake.png", IAsset::Type::Texture);
+
+        this->_back = manager.createRectObject(size, this->_snakeImg.get()); // create background and fruit
         this->_fruit = manager.createRectObject({1, 1}, nullptr);
 
         this->_state = State::Loaded;
@@ -95,6 +97,7 @@ namespace arcade
         this->_back.reset();
         this->_fruit.reset();
         this->_snake.clear();
+        this->_snakeImg.reset();
     }
 
     void Nibbler::setState(State state) { this->_state = state; }
@@ -181,7 +184,7 @@ namespace arcade
 
     void Nibbler::update(float delta)
     {
-        if (this->_update > 0.3) { // every 0.3 seconds, the game is updated
+        if (this->_update > 0.2) { // every 0.2 seconds, the game is updated
             this->_update = 0;
             // check if the snake is moving and if the game is win or lost
             if (this->_gameState && (this->_direction.x != 0 || this->_direction.y != 0))

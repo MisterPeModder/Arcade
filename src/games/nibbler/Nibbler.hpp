@@ -49,6 +49,8 @@ namespace arcade
         vec2i _direction;
         std::vector<vec2i> _map;
 
+        std::unique_ptr<IAsset> _snakeImg;
+
         std::unique_ptr<IGameObject> _back;
         std::unique_ptr<IGameObject> _fruit;
         std::vector<std::unique_ptr<IGameObject>> _snake;
