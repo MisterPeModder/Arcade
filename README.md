@@ -42,3 +42,11 @@ doxygen
 # Open the genrated pages
 xdg-open doc/generated/html/index.html
 ```
+
+## Groups
+
+| Group A                                        | Group B                                        |
+|------------------------------------------------|------------------------------------------------|
+| Andreas LEROUX <andreas.leroux@epitech.eu>     | Yanis GUAYE <yanis.guaye@epitech.eu>           |
+| Nathan ROUSSEAU <nathan.rousseau@epitech.eu>   | Julien LAFARGUE <julien.lafargue@epitech.eu>   |
+| Johan CHRILLESEN <johan.chrillesen@epitech.eu> | Quentin Leroueil <quentin.leroueil@epitech.eu> |
