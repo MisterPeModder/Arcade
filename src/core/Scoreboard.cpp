@@ -45,7 +45,7 @@ namespace arcade
 
     auto ScoreboardEntry::operator<=>(ScoreboardEntry const &other) const noexcept
     {
-        auto ord1 = this->_score <=> other._score;
+        auto ord1 = other._score <=> this->_score;
 
         if (ord1 == 0) {
             auto ord2(this->_gameName <=> other._gameName);
