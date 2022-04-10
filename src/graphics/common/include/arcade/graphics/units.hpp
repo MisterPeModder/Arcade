@@ -3,8 +3,8 @@
 ///
 /// Common unit conversions.
 
-#ifndef ARCADE_GRAPHICS_COMMON_HPP_
-#define ARCADE_GRAPHICS_COMMON_HPP_
+#ifndef ARCADE_GRAPHICS_COMMON_UNITS_HPP_
+#define ARCADE_GRAPHICS_COMMON_UNITS_HPP_
 
 #include <arcade/types.hpp>
 
@@ -25,4 +25,4 @@ namespace arcade
 
 } // namespace arcade
 
-#endif // !defined(ARCADE_GRAPHICS_COMMON_HPP_)
+#endif // !defined(ARCADE_GRAPHICS_COMMON_UNITS_HPP_)
