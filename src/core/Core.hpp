@@ -12,6 +12,7 @@
 #include <arcade/IGame.hpp>
 
 #include "MainMenu.hpp"
+#include "Scoreboard.hpp"
 #include "util/DynamicLibrary.hpp"
 #include "util/LibraryInstance.hpp"
 #include "util/LibrarySelector.hpp"
@@ -47,6 +48,8 @@ namespace arcade
         LibrarySelector<IDisplay> _displays;
         /// Contains every game instance in the `libs` directory.
         LibrarySelector<IGame> _games;
+
+        Scoreboard _scoreboard;
 
         /// IGame implementation used for rendering the main menu.
         /// This is not part of a dynamic library.

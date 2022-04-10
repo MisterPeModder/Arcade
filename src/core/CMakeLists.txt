@@ -8,6 +8,8 @@ set(SRC
     ${INCROOT}/Core.hpp
     ${SRCROOT}/MainMenu.cpp
     ${INCROOT}/MainMenu.hpp
+    ${SRCROOT}/Scoreboard.cpp
+    ${INCROOT}/Scoreboard.hpp
 )
 
 set(INCDIRS ${INCROOT})

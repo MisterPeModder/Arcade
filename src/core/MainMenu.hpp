@@ -15,6 +15,7 @@
 #include <arcade/IGameObject.hpp>
 #include <arcade/aliases.hpp>
 
+#include "Scoreboard.hpp"
 #include "util/LibrarySelector.hpp"
 
 namespace arcade
@@ -31,7 +32,7 @@ namespace arcade
 
         /// Default constructor.
         MainMenu();
-        explicit MainMenu(LibrarySelector<IDisplay> &displays, LibrarySelector<IGame> &games);
+        explicit MainMenu(LibrarySelector<IDisplay> &displays, LibrarySelector<IGame> &games, Scoreboard &scoreboard);
 
         /// Cannot copy main menu.
         MainMenu(MainMenu const &) = delete;
@@ -40,7 +41,7 @@ namespace arcade
         /// Assignment move operator.
         MainMenu &operator=(MainMenu &&);
 
-        std::string_view getPlayerName();
+        std::string_view getPlayerName() const;
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // IGame overrides
@@ -63,6 +64,7 @@ namespace arcade
 
         LibrarySelector<IDisplay> *_displays;
         LibrarySelector<IGame> *_games;
+        Scoreboard *_scoreboard;
 
         IAssetPtr _font;
 
@@ -81,6 +83,8 @@ namespace arcade
         void toggleEditingName();
 
         void updatePlayerNameText();
+
+        void writePlayerName(char *buf);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Utilities

@@ -51,7 +51,7 @@ namespace arcade
         this->_displays = displaysBuilder.build();
         this->_games = gamesBuilder.build();
 
-        this->_mainMenu = MainMenu(this->_displays, this->_games);
+        this->_mainMenu = MainMenu(this->_displays, this->_games, this->_scoreboard);
 
         this->setDisplayInstance(startingDisplay);
     }
@@ -90,7 +90,7 @@ namespace arcade
 
                     // if 'alt' is pressed close the whole program
                     if (event.key.alt) {
-                        std::cout << "Force quitting..." << std::endl;
+                        std::clog << "[core]: force quitting..." << std::endl;
                         this->_mainMenu.setState(IGame::State::Ended);
                         return false;
                     }
@@ -121,8 +121,10 @@ namespace arcade
         IGame::State state(this->_game->getState());
 
         if (state == IGame::State::Ended && this->_games.getSelected() != this->_games.cend()) {
-            std::cout << "Game ended, player " << this->_mainMenu.getPlayerName() << " scored "
+            std::clog << "[core]: game ended, player " << this->_mainMenu.getPlayerName() << " scored "
                       << this->_game->getScore() << " points" << std::endl;
+            this->_scoreboard.add(ScoreboardEntry(
+                this->_games.getSelected()->name(), this->_mainMenu.getPlayerName(), this->_game->getScore()));
             this->_games.select(this->_games.end());
             return false;
         } else if (state == IGame::State::Running) {
@@ -178,10 +180,10 @@ namespace arcade
             if (this->_game.get() == &this->_mainMenu)
                 return;
             if (this->_game.get() != nullptr)
-                std::cout << "Exiting to main menu" << std::endl;
+                std::clog << "[core]: exiting to main menu" << std::endl;
             this->_game.set(&this->_mainMenu); // returning to main menu
         } else if (selectedGame->instance() != this->_game.get()) {
-            std::cout << "Loading " << selectedGame->name() << std::endl;
+            std::clog << "[core]: loading " << selectedGame->name() << std::endl;
             this->_game.set(selectedGame->instance()); // game to game change
         } else {
             return;
@@ -198,7 +200,7 @@ namespace arcade
 
     void Core::setDisplayInstance(IDisplay *display)
     {
-        std::cout << "\nLoading graphics..." << std::endl;
+        std::clog << "[core]: loading graphics..." << std::endl;
 
         auto found = std::ranges::find(this->_displays, display, &LibraryEntry<IDisplay>::instance);
         this->_displays.select(found);

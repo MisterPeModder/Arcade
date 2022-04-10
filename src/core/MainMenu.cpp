@@ -50,17 +50,18 @@ namespace arcade
     {
     }
 
-    MainMenu::MainMenu(LibrarySelector<IDisplay> &displays, LibrarySelector<IGame> &games)
+    MainMenu::MainMenu(LibrarySelector<IDisplay> &displays, LibrarySelector<IGame> &games, Scoreboard &scoreboard)
         : _state(State::Ended), _playerName({'?', '?', '?', '\0'}), _displays(&displays), _games(&games),
-          _playerNamePos({0, 0}), _editingName(false), _editCursor(0)
+          _scoreboard(&scoreboard), _playerNamePos({0, 0}), _editingName(false), _editCursor(0)
     {
     }
 
     MainMenu::MainMenu(MainMenu &&other)
         : _state(other._state), _playerName(other._playerName), _displays(std::move(other._displays)),
-          _games(std::move(other._games)), _font(std::move(other._font)), _objects(std::move(other._objects)),
-          _playerNameText(std::move(other._playerNameText)), _playerNamePos(other._playerNamePos),
-          _editingName(other._editingName), _editCursor(other._editCursor), _clickHandlers(other._clickHandlers)
+          _games(std::move(other._games)), _scoreboard(other._scoreboard), _font(std::move(other._font)),
+          _objects(std::move(other._objects)), _playerNameText(std::move(other._playerNameText)),
+          _playerNamePos(other._playerNamePos), _editingName(other._editingName), _editCursor(other._editCursor),
+          _clickHandlers(other._clickHandlers)
     {
     }
 
@@ -70,6 +71,7 @@ namespace arcade
         this->_playerName = other._playerName;
         this->_displays = std::move(other._displays);
         this->_games = std::move(other._games);
+        this->_scoreboard = std::move(other._scoreboard);
         this->_font = std::move(other._font);
         this->_objects = std::move(other._objects);
         this->_playerNameText = std::move(other._playerNameText);
@@ -80,7 +82,7 @@ namespace arcade
         return *this;
     }
 
-    std::string_view MainMenu::getPlayerName() { return std::string_view(this->_playerName.data(), 3); }
+    std::string_view MainMenu::getPlayerName() const { return std::string_view(this->_playerName.data(), 3); }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // IGame overrides
@@ -102,7 +104,6 @@ namespace arcade
         IGameObjectPtr nameBox;
         std::vector<IGameObjectPtr> gameNameObjects;
         std::vector<IGameObjectPtr> displayNameObjects;
-        std::vector<IGameObjectPtr> scores;
         IGameObjectPtr title(this->stringToText(manager, Color::White, DefaultColor::White, "[MAIN MENU]", {1, 0}));
 
         auto convert(std::bind(
@@ -125,31 +126,29 @@ namespace arcade
         unsigned int height(static_cast<unsigned>(std::max(gameNameObjects.size(), displayNameObjects.size())) + 2);
         unsigned int gamesWidth(std::ranges::max(gameNameObjects | objectWidth) + 3);
         unsigned int displaysWidth(std::ranges::max(displayNameObjects | objectWidth) + 3);
-        unsigned int scoresWidth(manager.createTextObject("--- n/a", this->_font.get())->getSize().x + 2);
 
         background->setPosition({0, 0});
         background->setForeground(Color(0x2b2d42), DefaultColor::Black);
 
         gamesBox = manager.createRectObject({gamesWidth, height});
         displaysBox = manager.createRectObject({displaysWidth, height});
-        scoresBox = manager.createRectObject({scoresWidth, height + 4});
 
         gamesBox->setPosition({1, 2});
         displaysBox->setPosition({static_cast<int>(gamesBox->getSize().x) + 2, 2});
         quitBox->setPosition({1, 2 + static_cast<int>(height) + 1});
-        scoresBox->setPosition({displaysBox->getPosition().x + static_cast<int>(displaysBox->getSize().x) + 1, 2});
+
+        vec2i scoresPos{displaysBox->getPosition().x + static_cast<int>(displaysBox->getSize().x) + 1, 2};
+        this->_scoreboard->initDisplay(manager, this->_font.get(), scoresPos + 1, height + 2);
+        scoresBox = manager.createRectObject(this->_scoreboard->getSize() + vec2u{3, 2});
+        scoresBox->setPosition(scoresPos);
 
         gamesBox->setForeground(Color(0xeae2b7), DefaultColor::White);
         displaysBox->setForeground(Color(0xf77f00), DefaultColor::White);
         quitBox->setForeground(Color(0xd62828), DefaultColor::Red);
         scoresBox->setForeground(Color(0x2a6f97), DefaultColor::White);
 
-        for (unsigned i(0), count(scoresBox->getSize().y - 2); i < count; ++i)
-            scores.push_back(this->stringToText(manager, Color::Black, DefaultColor::Black, "--- n/a"));
-
         moveInBounds(*gamesBox, gameNameObjects);
         moveInBounds(*displaysBox, displayNameObjects);
-        moveInBounds(*scoresBox, scores);
 
         vec2u quitBoxSize(quitBox->getSize());
 
@@ -161,7 +160,9 @@ namespace arcade
         quitText->setPosition(quitBox->getPosition() + 1);
         this->_playerNamePos = nameBox->getPosition() + 1;
 
-        this->_playerNameText = this->stringToText(manager, Color::Black, DefaultColor::Black, "name: ???");
+        char buf[11];
+        this->writePlayerName(buf);
+        this->_playerNameText = this->stringToText(manager, Color::Black, DefaultColor::Black, buf);
         this->updatePlayerNameText();
 
         int bottom(quitBox->getPosition().y + quitBoxSize.y);
@@ -179,7 +180,6 @@ namespace arcade
         this->_objects.push_back(std::move(nameBox));
         std::ranges::move(gameNameObjects, std::back_inserter(this->_objects));
         std::ranges::move(displayNameObjects, std::back_inserter(this->_objects));
-        std::ranges::move(scores, std::back_inserter(this->_objects));
         this->_objects.push_back(std::move(quitText));
         this->_objects.push_back(std::move(title));
 
@@ -199,6 +199,7 @@ namespace arcade
         this->_playerNameText.reset();
         this->_clickHandlers.clear();
         this->_objects.clear();
+        this->_scoreboard->closeDisplay();
         this->_font.reset();
     }
 
@@ -226,6 +227,7 @@ namespace arcade
     {
         for (IGameObjectPtr const &object : this->_objects)
             renderer.draw(*object);
+        this->_scoreboard->render(renderer);
         renderer.draw(*this->_playerNameText);
     }
 
@@ -279,12 +281,9 @@ namespace arcade
         IMutableText *mutableText = dynamic_cast<IMutableText *>(this->_playerNameText.get());
 
         if (mutableText) {
-            char buf[] = "name: ---\0";
+            char buf[11];
 
-            buf[6] = this->_playerName[0];
-            buf[7] = this->_playerName[1];
-            buf[8] = this->_playerName[2];
-
+            this->writePlayerName(buf);
             mutableText->setText(buf);
         }
 
@@ -293,6 +292,14 @@ namespace arcade
 
         this->_playerNameText->setForeground(color, defaultColor);
         this->_playerNameText->setPosition(this->_playerNamePos);
+    }
+
+    void MainMenu::writePlayerName(char *buf)
+    {
+        std::ranges::copy("name: ---\0", buf);
+        buf[6] = this->_playerName[0];
+        buf[7] = this->_playerName[1];
+        buf[8] = this->_playerName[2];
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
